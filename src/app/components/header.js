@@ -1,8 +1,16 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Header = () => {
-  return <Text>HEllo</Text>;
-};
+export default function users() {
+  return (
+    <View>
+      <Text>header</Text>
+    </View>
+  );
+}
 
-export default Header;
+// const Header = () => {
+//   return <Text>HEllo</Text>;
+// };
+
+// export default Header;
