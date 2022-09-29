@@ -62,7 +62,7 @@ const AddFriendModal = () => {
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
         {data.map((item, index) => (
-          <View horizontal keyExtractor={(item, index) => index} data={data}>
+          <View horizontal keyExtractor={(item, index) => index} data={data} key={index}>
             <Text style={styles.friends}>{item.name}</Text>
           </View>
         ))}
