@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native";
 
+// The AddFriendModal component handles the functionality of the modal.
+// So that users can type a name and add that friend to a page.
 const AddFriendModal = () => {
+  // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
+  // The useState for handling data as an object e.g. ID's, names etc...
   const [data, setData] = useState([{}]);
+  // The useState handling the names added.
   const [name, setName] = useState("");
+  // The useState for handling the toggle functionality that highlights names on click.
   const [myStyle, setMyStyle] = useState(false);
 
+  // This function when called passes in the index from the key.
+  // Which refers to the items (names) that have changed.
+  // Also, setMyStyle is called which toggles the previous state that the index was before once clicked.
   const handleClick = (index) => {
     setMyStyle((prevState) => ({
       ...myStyle,
@@ -20,6 +29,7 @@ const AddFriendModal = () => {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
+        // Closes the modal on click.
         onRequestClose={() => {
           console.log("Modal has been closed.");
           setModalVisible(!modalVisible);
@@ -30,19 +40,26 @@ const AddFriendModal = () => {
             <Text style={styles.modalText}>Add Friend</Text>
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              // Handles the typing of characters by the user.
               onChangeText={(name) => setName(name)}
               placeholder={"enter name"}
               value={name}
             />
             <View style={styles.modalButtonContainer}>
+              {/* Pressable is react natives equivalent to "button".  */}
               <Pressable
                 style={[styles.cancelButton, styles.cancelButtonClose]}
+                // Toggles modal visibility on click
                 onPress={() => setModalVisible(!modalVisible)}
               >
                 <Text style={styles.textStyle}>Cancel</Text>
               </Pressable>
               <Pressable
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
+                // When a user types a name.
+                // Then presses the add button.
+                // This adds the name to the page as a list.
+                // While also logging the typed name to the console.
                 onPress={() => {
                   if (name) setData([...data, { name: name }]);
                   console.log(`${name} has been added.`);
@@ -56,12 +73,19 @@ const AddFriendModal = () => {
           </View>
         </View>
       </Modal>
+      {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
       <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={false}>
         <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
+        {/*
+         *
+         */}
         {data.map((item, index) => (
           <TouchableOpacity
+            // When a users presses a name.
+            // The function handleClick(index) is called.
+            // Which handles the toggle functionality of the background colours.
             onPress={() => handleClick(index)}
             style={{
               backgroundColor: myStyle[`${index}`] ? "#2196F3" : "white",
@@ -71,12 +95,12 @@ const AddFriendModal = () => {
             }}
             key={index}
           >
-            <View horizontal keyExtractor={(item, index) => index} data={data} key={index}>
+            {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
+            <View>
               <Text>{item.name}</Text>
             </View>
           </TouchableOpacity>
         ))}
-        {/* <AddFriendFooter /> */}
       </ScrollView>
     </View>
   );
@@ -156,4 +180,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
+
 export default AddFriendModal;

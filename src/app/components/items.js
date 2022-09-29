@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
+// The component which handles the functionality of the itemised receipt.
 const Items = () => {
   return (
     <View>
