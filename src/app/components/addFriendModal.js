@@ -38,26 +38,29 @@ const AddFriendModal = () => {
               placeholder={"enter name"}
               value={name}
             />
-            <Pressable
-              style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-              onPress={() => {
-                if (name) setData([...data, { name: name }]);
-                console.log(`${name} has been added.`);
-                setName("");
-              }}
-            >
-              <Text style={styles.textStyle}>➕</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.cancelButton, styles.cancelButtonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Cancel</Text>
-            </Pressable>
+            <View style={styles.modalButtonContainer}>
+              <Pressable
+                style={[styles.cancelButton, styles.cancelButtonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Cancel</Text>
+              </Pressable>
+              <Pressable
+                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
+                onPress={() => {
+                  if (name) setData([...data, { name: name }]);
+                  console.log(`${name} has been added.`);
+                  setName("");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle}>➕</Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
-      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal>
+      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={false}>
         <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
@@ -66,12 +69,6 @@ const AddFriendModal = () => {
             <Text style={styles.friends}>{item.name}</Text>
           </View>
         ))}
-        {/* <FlatList
-          horizontal
-          keyExtractor={(item, index) => index}
-          data={data}
-          renderItem={({ item }) => <Text style={styles.friends}>{item.name}</Text>}
-        /> */}
       </ScrollView>
     </View>
   );
@@ -112,6 +109,7 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
     position: "fixed",
+    marginRight: 16,
   },
 
   cancelButtonClose: {
@@ -148,6 +146,10 @@ const styles = StyleSheet.create({
   },
   friends: {
     marginRight: 16,
+  },
+  modalButtonContainer: {
+    display: "flex",
+    flexDirection: "row",
   },
 });
 export default AddFriendModal;
