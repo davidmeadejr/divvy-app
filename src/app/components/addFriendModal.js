@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native";
-import AddFriendFooter from "./addFriendFooter";
 
 const AddFriendModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
