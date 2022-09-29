@@ -86,7 +86,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text></Text>
+      {/* <Text>{realm.objects("Task")}</Text> */}
       <Text style={styles.orangeEmoji}>🍊</Text>
       <Text style={styles.titleText}>£0.30p each{"\n"}</Text>
       <Text style={styles.appleEmoji}>🍎</Text>
