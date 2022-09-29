@@ -10,10 +10,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Items />
-      {/* <Header />
-      <Users /> */}
-      <StatusBar style="auto" />
       <Users />
+      <StatusBar style="auto" />
     </View>
   );
 }

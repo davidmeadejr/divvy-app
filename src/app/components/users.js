@@ -1,36 +1,27 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, SafeAreaVie, FlatList } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet, SafeAreaVie, FlatList, Modal, Alert } from "react-native";
+import AddFriendModal from "./addFriendModal";
 
 const Users = () => {
   const [data, setData] = useState([{}]);
   const [name, setName] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <TextInput
-        style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
-        onChangeText={(name) => setName(name)}
-        placeholder={"enter name"}
-        value={name}
-      />
-      <Button
-        title={"Add Friend "}
-        onPress={() => {
-          if (name) setData([...data, { name: name }]);
-          console.log(`${name} has been added.`);
-        }}
-      />
-      <FlatList keyExtractor={(item, index) => index} data={data} renderItem={({ item }) => <Text>{item.name}</Text>} />
+      <AddFriendModal />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
     justifyContent: "center",
     // paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#ecf0f1",
+    backgroundColor: "#fff",
     padding: 8,
+    position: "absolute",
+    bottom: 10,
   },
 });
 
