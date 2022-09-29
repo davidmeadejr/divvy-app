@@ -61,14 +61,17 @@ const AddFriendModal = () => {
         <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
-        <View>
-          <FlatList
-            horizontal
-            keyExtractor={(item, index) => index}
-            data={data}
-            renderItem={({ item }) => <Text style={styles.friends}>{item.name}</Text>}
-          />
-        </View>
+        {data.map((item, index) => (
+          <View horizontal keyExtractor={(item, index) => index} data={data}>
+            <Text style={styles.friends}>{item.name}</Text>
+          </View>
+        ))}
+        {/* <FlatList
+          horizontal
+          keyExtractor={(item, index) => index}
+          data={data}
+          renderItem={({ item }) => <Text style={styles.friends}>{item.name}</Text>}
+        /> */}
       </ScrollView>
     </View>
   );
