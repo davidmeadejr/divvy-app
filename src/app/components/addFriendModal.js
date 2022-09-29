@@ -31,7 +31,6 @@ const AddFriendModal = () => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Add Friend</Text>
-            {/* <AddFriendInput /> */}
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
               onChangeText={(name) => setName(name)}
