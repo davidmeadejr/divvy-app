@@ -3,9 +3,6 @@ import { View, Text, TextInput, Button, StyleSheet, SafeAreaVie, FlatList, Modal
 import AddFriendModal from "./addFriendModal";
 
 const Users = () => {
-  const [data, setData] = useState([{}]);
-  const [name, setName] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <AddFriendModal />
