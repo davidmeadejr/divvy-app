@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  SafeAreaVie,
-  FlatList,
-  Modal,
-  Alert,
-  Pressable,
-  ScrollView,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native";
+import AddFriendFooter from "./addFriendFooter";
 
 const AddFriendModal = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [data, setData] = useState([{}]);
   const [name, setName] = useState("");
+  const [myStyle, setMyStyle] = useState(false);
+
+  const handleClick = (index) => {
+    setMyStyle((prevState) => ({
+      ...myStyle,
+      [index]: !prevState[index],
+    }));
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -64,10 +62,22 @@ const AddFriendModal = () => {
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
         {data.map((item, index) => (
-          <View horizontal keyExtractor={(item, index) => index} data={data} key={index}>
-            <Text style={styles.friends}>{item.name}</Text>
-          </View>
+          <TouchableOpacity
+            onPress={() => handleClick(index)}
+            style={{
+              backgroundColor: myStyle[`${index}`] ? "#2196F3" : "white",
+              marginRight: myStyle[`${index}`] ? 16 : 16,
+              borderRadius: myStyle[`${index}`] ? 10 : 10,
+              padding: myStyle[`${index}`] ? 10 : 5,
+            }}
+            key={index}
+          >
+            <View horizontal keyExtractor={(item, index) => index} data={data} key={index}>
+              <Text>{item.name}</Text>
+            </View>
+          </TouchableOpacity>
         ))}
+        {/* <AddFriendFooter /> */}
       </ScrollView>
     </View>
   );
@@ -100,7 +110,6 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
     position: "fixed",
-    marginRight: 16,
   },
 
   cancelButton: {
@@ -142,9 +151,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-  },
-  friends: {
-    marginRight: 16,
   },
   modalButtonContainer: {
     display: "flex",

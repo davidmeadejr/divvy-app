@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, SafeAreaVie, FlatList, Modal, Alert } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import AddFriendModal from "./addFriendModal";
 
 const Users = () => {
@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     justifyContent: "center",
-    // paddingTop: Constants.statusBarHeight,
     backgroundColor: "#fff",
     padding: 8,
     position: "absolute",

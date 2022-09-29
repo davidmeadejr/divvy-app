@@ -1,10 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 
 import Items from "../app/components/items";
 import Users from "../app/components/users";
-import Header from "../app/components/header";
 
 export default function App() {
   return (
@@ -24,7 +23,5 @@ const styles = StyleSheet.create({
     marginRight: 16,
     marginBottom: 16,
     marginLeft: 16,
-    // alignItems: "center",
-    // justifyContent: "center",
   },
 });

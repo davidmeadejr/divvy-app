@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 const Items = () => {
@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
     display: "flex",
     fontSize: 30,
     fontWeight: "bold",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // flexDirection: "column",
   },
   item: {
     display: "flex",
