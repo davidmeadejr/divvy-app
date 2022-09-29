@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, SafeAreaVie, FlatList } from "react-native";
-import { v4 as uuidv4 } from "uuid";
 
 const Users = () => {
   const [data, setData] = useState([{}]);
@@ -17,10 +16,10 @@ const Users = () => {
         title={"Add Friend "}
         onPress={() => {
           if (name) setData([...data, { name: name }]);
-          console.log("hi");
+          console.log(`${name} has been added.`);
         }}
       />
-      <FlatList keyExtractor={(item) => item} data={data} renderItem={({ item }) => <Text>{item.name}</Text>} />
+      <FlatList keyExtractor={(item, index) => index} data={data} renderItem={({ item }) => <Text>{item.name}</Text>} />
     </View>
   );
 };
