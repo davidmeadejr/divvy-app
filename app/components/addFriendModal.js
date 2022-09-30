@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native";
+import { Friend } from "../models/Friend";
+import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
