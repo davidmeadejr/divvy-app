@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Modal,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import { Friend } from "../models/Friend";
 import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
@@ -17,6 +27,7 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
   // The useState for handling the toggle functionality that highlights names on click.
   const [myStyle, setMyStyle] = useState(false);
   // Creates a new entry in the friend collection.
+
   const addFriendToRealm = (name) => {
     if (!realm.objects("Friend").filtered("name == $0", name).length) {
       realm.write(() => {
@@ -27,16 +38,27 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
       Alert.alert("This name already exists, please use a different name.");
     }
   };
+
   // This function when called passes in the index from the key.
   // Which refers to the items (names) that have changed.
   // Also, setMyStyle is called which toggles the previous state that the index was before once clicked.
-  const handleClick = (index) => {
+  const handleClick = (item, index) => {
     setMyStyle((prevState) => ({
       ...myStyle,
       [index]: !prevState[index],
     }));
-    setSelectedFriends([...selectedFriends, friends[index]]);
+
+    const friendIdx = selectedFriends
+      .map((friend) => friend._id.toString())
+      .indexOf(item._id.toString());
+    if (friendIdx === -1) {
+      setSelectedFriends([...selectedFriends, item]);
+    } else {
+      selectedFriends.splice(friendIdx, 1);
+      setSelectedFriends(selectedFriends);
+    }
   };
+
   console.log(data);
   return (
     <View style={styles.centeredView}>
@@ -77,10 +99,10 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
                 // While also logging the typed name to the console.
                 onPress={() => {
                   if (name) {
-                    setData([...data, { name: name }]);
+                    // setData([...data, { name: name }]);
                     addFriendToRealm(name);
                   }
-                  console.log(`${name} has been added.`);
+                  // console.log(`${name} has been added.`);
                   setName("");
                   setModalVisible(!modalVisible);
                 }}
@@ -92,8 +114,15 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
         </View>
       </Modal>
       {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
-      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={true}>
-        <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
+      <ScrollView
+        contentContainerStyle={styles.openModalContainer}
+        horizontal
+        showsHorizontalScrollIndicator={true}
+      >
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible(true)}
+        >
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
         {/*
@@ -105,14 +134,14 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
             // When a users presses a name.
             // The function handleClick(index) is called.
             // Which handles the toggle functionality of the background colours.
-            onPress={() => handleClick(index)}
+            onPress={() => handleClick(item, index)}
             style={{
               backgroundColor: myStyle[`${index}`] ? "#2196F3" : "white",
               marginRight: myStyle[`${index}`] ? 16 : 16,
               borderRadius: myStyle[`${index}`] ? 10 : 10,
               padding: myStyle[`${index}`] ? 10 : 5,
             }}
-            key={index}
+            key={item._id.toString()}
           >
             {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
             <View>

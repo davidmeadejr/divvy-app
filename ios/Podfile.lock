@@ -5,8 +5,6 @@ PODS:
     - ExpoModulesCore
   - EXConstants (13.2.4):
     - ExpoModulesCore
-  - EXErrorRecovery (3.2.0):
-    - ExpoModulesCore
   - EXFileSystem (14.1.0):
     - ExpoModulesCore
   - EXFont (10.2.1):
@@ -243,6 +241,8 @@ PODS:
   - React-jsinspector (0.69.6)
   - React-logger (0.69.6):
     - glog
+  - react-native-get-random-values (1.8.0):
+    - React-Core
   - React-perflogger (0.69.6)
   - React-RCTActionSheet (0.69.6):
     - React-Core/RCTActionSheetHeaders (= 0.69.6)
@@ -319,7 +319,6 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
-  - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - Expo (from `../node_modules/expo`)
@@ -344,6 +343,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -373,8 +373,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-application/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
-  EXErrorRecovery:
-    :path: "../node_modules/expo-error-recovery/ios"
   EXFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   EXFont:
@@ -421,6 +419,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-get-random-values:
+    :path: "../node_modules/react-native-get-random-values"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -455,7 +455,6 @@ SPEC CHECKSUMS:
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   EXApplication: e418d737a036e788510f2c4ad6c10a7d54d18586
   EXConstants: 7c44785d41d8e959d527d23d29444277a4d1ee73
-  EXErrorRecovery: 74d71ee59f6814315457b09d68e86aa95cc7d05d
   EXFileSystem: 927e0a8885aa9c49e50fc38eaba2c2389f2f1019
   EXFont: 06df627203afcb8a3b3152ec06eb2f11f46f0cff
   Expo: 39582e41ae9e0aa9ed016d3918da87ee61e87525
@@ -481,6 +480,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: c61b60de03b3474e5749b8a8fd8e6507630d62c4
   React-jsinspector: eaacb698c5af7a99131bc1933806372c20222dfd
   React-logger: ebb4d31bbbe4f1a8a1a9b658d7429210b8f68160
+  react-native-get-random-values: a6ea6a8a65dc93e96e24a11105b1a9c8cfe1d72a
   React-perflogger: 1fb1ad5333b43a5137afd7608695f7a42c5efd27
   React-RCTActionSheet: a435bd67689433575a1e5d7614b021d2c17f0726
   React-RCTAnimation: d097c5ed2d00735958508617555abd85183b94e2
@@ -496,6 +496,6 @@ SPEC CHECKSUMS:
   RealmJS: 96af0fcb0bf79530e090067df590650917c27b20
   Yoga: 75bf4b0131cfb46a659cd0c13309b79a6fcff66d
 
-PODFILE CHECKSUM: 8c1f2a5540d0257561e0485dc3fca177ae3cb29e
+PODFILE CHECKSUM: 12ce5b2572393b691e670addd55ca3f14021173c
 
 COCOAPODS: 1.11.3
