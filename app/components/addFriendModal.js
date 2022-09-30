@@ -132,14 +132,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    position: "fixed",
+    position: "relative",
   },
 
   cancelButton: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    position: "fixed",
+    position: "relative",
     marginRight: 16,
   },
 
