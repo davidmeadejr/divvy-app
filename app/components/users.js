@@ -3,10 +3,10 @@ import { View, StyleSheet } from "react-native";
 import AddFriendModal from "./addFriendModal";
 
 // The Users component which is parent component of the AddFriendModal component.
-const Users = () => {
+const Users = ({ selectedFriends, setSelectedFriends }) => {
   return (
     <View style={styles.container}>
-      <AddFriendModal />
+      <AddFriendModal selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
     </View>
   );
 };
