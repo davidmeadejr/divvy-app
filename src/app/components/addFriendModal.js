@@ -7,7 +7,7 @@ const AddFriendModal = () => {
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
   // The useState for handling data as an object e.g. ID's, names etc...
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState([]);
   // The useState handling the names added.
   const [name, setName] = useState("");
   // The useState for handling the toggle functionality that highlights names on click.
@@ -22,7 +22,7 @@ const AddFriendModal = () => {
       [index]: !prevState[index],
     }));
   };
-
+  console.log(data);
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -74,7 +74,7 @@ const AddFriendModal = () => {
         </View>
       </Modal>
       {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
-      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={true}>
         <Pressable style={[styles.button, styles.buttonOpen]} onPress={() => setModalVisible(true)}>
           <Text style={styles.textStyle}>➕</Text>
         </Pressable>
