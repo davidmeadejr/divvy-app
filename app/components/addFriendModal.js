@@ -5,7 +5,7 @@ import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
-const AddFriendModal = () => {
+const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
   const realm = useRealm();
   const friends = useQuery("Friend");
   // The useState for handling the modal.
@@ -31,6 +31,7 @@ const AddFriendModal = () => {
       ...myStyle,
       [index]: !prevState[index],
     }));
+    setSelectedFriends([...selectedFriends, friends[index]]);
   };
   console.log(data);
   return (
@@ -94,6 +95,13 @@ const AddFriendModal = () => {
         {/*
          *
          */}
+        {/* {selectedFriends.map((friend, index) => {
+          return (
+            <Text>
+              {friend.name} {friend._id.toString()}
+            </Text>
+          );
+        })} */}
         {friends.map((item, index) => (
           <TouchableOpacity
             // When a users presses a name.

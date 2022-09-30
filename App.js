@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 // Imports that allow you to use "react" and "react-natives" features.
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { RealmProvider } from "./app/createRealmContext";
 
 // Components that have been imported.
@@ -10,10 +10,12 @@ import Users from "./app/components/users";
 
 // The main component which acts as a container for all other components within the the codebase.
 const App = () => {
+  const [selectedFriends, setSelectedFriends] = useState([]);
+
   return (
     <View style={styles.container}>
-      <Items />
-      <Users />
+      <Items selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
+      <Users selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
       <StatusBar style="auto" />
     </View>
   );
