@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity, Alert } from "react-native";
 import { Friend } from "../models/Friend";
 import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
@@ -18,10 +18,14 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
   const [myStyle, setMyStyle] = useState(false);
   // Creates a new entry in the friend collection.
   const addFriendToRealm = (name) => {
-    realm.write(() => {
-      const friend = realm.create("Friend", new Friend({ name: name }));
-    });
-    console.log(`realm log = ${friends.map((friend) => friend.name)}`);
+    if (!realm.objects("Friend").filtered("name == $0", name).length) {
+      realm.write(() => {
+        const friend = realm.create("Friend", new Friend({ name: name }));
+      });
+      console.log(`realm log = ${friends.map((friend) => friend.name)}`);
+    } else {
+      Alert.alert("This name already exists, please use a different name.");
+    }
   };
   // This function when called passes in the index from the key.
   // Which refers to the items (names) that have changed.
