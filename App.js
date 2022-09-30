@@ -2,13 +2,14 @@ import { StatusBar } from "expo-status-bar";
 // Imports that allow you to use "react" and "react-natives" features.
 import { StyleSheet, View } from "react-native";
 import React from "react";
+import { RealmProvider } from "./app/createRealmContext";
 
 // Components that have been imported.
 import Items from "./app/components/items";
 import Users from "./app/components/users";
 
 // The main component which acts as a container for all other components within the the codebase.
-export default function App() {
+const App = () => {
   return (
     <View style={styles.container}>
       <Items />
@@ -16,8 +17,15 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
-}
+};
 
+export default function AppWrapper() {
+  return (
+    <RealmProvider>
+      <App />
+    </RealmProvider>
+  );
+}
 // CSS styling for the App component.
 const styles = StyleSheet.create({
   container: {
