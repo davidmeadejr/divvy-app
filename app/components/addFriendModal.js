@@ -99,13 +99,7 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
         {/*
          *
          */}
-        {/* {selectedFriends.map((friend, index) => {
-          return (
-            <Text>
-              {friend.name} {friend._id.toString()}
-            </Text>
-          );
-        })} */}
+
         {friends.map((item, index) => (
           <TouchableOpacity
             // When a users presses a name.
