@@ -6,6 +6,8 @@ import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
 const AddFriendModal = () => {
+  const realm = useRealm();
+  const friends = useQuery("Friend");
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
   // The useState for handling data as an object e.g. ID's, names etc...
@@ -14,7 +16,13 @@ const AddFriendModal = () => {
   const [name, setName] = useState("");
   // The useState for handling the toggle functionality that highlights names on click.
   const [myStyle, setMyStyle] = useState(false);
-
+  // Creates a new entry in the friend collection.
+  const addFriendToRealm = (name) => {
+    realm.write(() => {
+      const friend = realm.create("Friend", new Friend({ name: name }));
+    });
+    console.log(`realm log = ${friends.map((friend) => friend.name)}`);
+  };
   // This function when called passes in the index from the key.
   // Which refers to the items (names) that have changed.
   // Also, setMyStyle is called which toggles the previous state that the index was before once clicked.
@@ -63,7 +71,10 @@ const AddFriendModal = () => {
                 // This adds the name to the page as a list.
                 // While also logging the typed name to the console.
                 onPress={() => {
-                  if (name) setData([...data, { name: name }]);
+                  if (name) {
+                    setData([...data, { name: name }]);
+                    addFriendToRealm(name);
+                  }
                   console.log(`${name} has been added.`);
                   setName("");
                   setModalVisible(!modalVisible);
@@ -83,7 +94,7 @@ const AddFriendModal = () => {
         {/*
          *
          */}
-        {data.map((item, index) => (
+        {friends.map((item, index) => (
           <TouchableOpacity
             // When a users presses a name.
             // The function handleClick(index) is called.
