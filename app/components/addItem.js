@@ -1,18 +1,37 @@
 import React, { useState } from "react";
 import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
-import { View, Modal, Text, Pressable, TextInput } from "react-native";
+import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
 
 export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
   const realm = useRealm();
   // const [modalVisible, setModalVisible] = useState(false);
   const [itemName, setItemName] = useState("");
-  const [itemAmount, setItemAmount] = useState(0);
+  const [itemAmount, setItemAmount] = useState("");
 
   const addItemToRealm = (name, amount) => {
     realm.write(() => {
       realm.create("Item", new Item({ name: name, amount: amount }));
     });
+  };
+
+  const handleItemModalAddDishOnPress = () => {
+    const itemAmountFloat = parseFloat(itemAmount);
+    if (itemName && itemAmount) {
+      if (isNaN(itemAmountFloat)) {
+        Alert.alert("Only characters allowed in item amount are 0123456789.");
+      } else if (parseFloat(itemAmountFloat.toFixed(2)) !== itemAmountFloat) {
+        Alert.alert("Item amount can only be up to two decimal places");
+      } else {
+        console.log(itemName, itemAmount);
+        addItemToRealm(itemName, itemAmountFloat);
+        setItemName("");
+        setItemAmount("");
+        setItemModalVisible(!itemModalVisible);
+      }
+    } else {
+      Alert.alert("Enter a name and amount");
+    }
   };
   return (
     <View
@@ -66,7 +85,7 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
             />
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
-              placeholder="Enter dish amount"
+              placeholder="Enter dish amount - eg. 15.99"
               onChangeText={(amount) => setItemAmount(amount)}
             />
             <View>
@@ -80,15 +99,7 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
               </Pressable>
               <Pressable
                 // style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                onPress={() => {
-                  if (itemName && itemAmount) {
-                    addItemToRealm(itemName, itemAmount);
-                    // console.log(itemName);
-                  }
-                  console.log(itemName);
-                  setItemName("");
-                  setItemModalVisible(!itemModalVisible);
-                }}
+                onPress={() => handleItemModalAddDishOnPress()}
               >
                 <Text
                 // style={styles.textStyle}

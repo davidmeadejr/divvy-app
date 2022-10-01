@@ -55,16 +55,6 @@ export default Items = ({ selectedFriends, setSelectedFriends }) => {
         title="Add Item"
         onPress={() => setItemModalVisible(true)}
       ></Button>
-      {/* <Button
-        title="Add Field"
-        onPress={() => {
-          realm.write(() => {
-            realm.create("Item", new Item({ name: "Spag Bol", amount: 5 }));
-            realm.create("Item", new Item({ name: "Lasagne", amount: 4 }));
-            realm.create("Item", new Item({ name: "Ice cream", amount: 4 }));
-          });
-        }}
-      ></Button> */}
       <Totals />
     </View>
   );

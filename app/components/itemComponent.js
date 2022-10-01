@@ -1,15 +1,26 @@
 import React from "react";
-import { Text, View, Pressable } from "react-native";
+import { useRealm } from "../createRealmContext";
+import { Text, View, Pressable, Alert } from "react-native";
 
 export default ItemComponent = ({ itemOnPressAddFriend, item }) => {
+  const realm = useRealm();
   const itemFriends = (item) => {
     if (!item.friends.length) return [];
     return item.friends.map((friend) => friend.name).join(", ");
   };
 
+  const handleLongPress = (item) => {
+    realm.write(() => {
+      realm.delete(item);
+    });
+  };
+
   return (
     <View>
-      <Pressable onPress={() => itemOnPressAddFriend(item)}>
+      <Pressable
+        onPress={() => itemOnPressAddFriend(item)}
+        onLongPress={() => handleLongPress(item)}
+      >
         <Text
           style={{
             backgroundColor: "#2196F3",
