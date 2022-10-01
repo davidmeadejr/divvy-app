@@ -17,6 +17,7 @@ import AddItem from "./addItem";
 export default Items = ({ selectedFriends, setSelectedFriends }) => {
   const realm = useRealm();
   const itemsResult = useQuery("Item");
+  const [itemModalVisible, setItemModalVisible] = useState(false);
 
   const itemOnPressAddFriend = (item) => {
     selectedFriends.forEach((selectedFriend) => {
@@ -46,7 +47,14 @@ export default Items = ({ selectedFriends, setSelectedFriends }) => {
         }}
         keyExtractor={(item) => item._id.toString()}
       />
-      <AddItem />
+      <AddItem
+        itemModalVisible={itemModalVisible}
+        setItemModalVisible={setItemModalVisible}
+      />
+      <Button
+        title="Add Item"
+        onPress={() => setItemModalVisible(true)}
+      ></Button>
       {/* <Button
         title="Add Field"
         onPress={() => {
