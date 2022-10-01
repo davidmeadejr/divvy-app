@@ -11,6 +11,7 @@ import { useRealm, useQuery } from "../createRealmContext";
 import { Item } from "../models/Item";
 import ItemComponent from "./itemComponent";
 import Totals from "./totals";
+import AddItem from "./addItem";
 
 // The component which handles the functionality of the itemised receipt.
 export default Items = ({ selectedFriends, setSelectedFriends }) => {
@@ -45,6 +46,7 @@ export default Items = ({ selectedFriends, setSelectedFriends }) => {
         }}
         keyExtractor={(item) => item._id.toString()}
       />
+      <AddItem />
       {/* <Button
         title="Add Field"
         onPress={() => {
