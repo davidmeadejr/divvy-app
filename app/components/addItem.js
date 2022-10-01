@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Modal, Text, Pressable } from "react-native";
+import { View, Modal, Text, Pressable, TextInput } from "react-native";
 
 export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
   // const [modalVisible, setModalVisible] = useState(false);
@@ -18,7 +18,6 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
         animationType="slide"
         transparent={true}
         visible={itemModalVisible}
-        // {modalVisible}
         // Closes the modal on click.
         // onRequestClose={() => {
         //   console.log("Modal has been closed.");
@@ -51,14 +50,39 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
             }}
           >
             <Text>Hello world</Text>
-            <Pressable
-              onPress={() => {
-                setItemModalVisible(!itemModalVisible);
-                console.log("hello");
-              }}
-            >
-              <Text>Send back</Text>
-            </Pressable>
+            <TextInput
+              style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              placeholder="Enter dish name"
+              onChangeText={(name) => setItemName(name)}
+            />
+            <View>
+              <Pressable
+                onPress={() => {
+                  setItemModalVisible(!itemModalVisible);
+                  console.log("hello");
+                }}
+              >
+                <Text>Send back</Text>
+              </Pressable>
+              <Pressable
+                // style={[styles.modalAddButton, styles.modalAddButtonOpen]}
+                onPress={() => {
+                  if (itemName) {
+                    // addFriendToRealm(name);
+                    // console.log(itemName);
+                  }
+                  console.log(itemName);
+                  setItemName("");
+                  setItemModalVisible(!itemModalVisible);
+                }}
+              >
+                <Text
+                // style={styles.textStyle}
+                >
+                  ➕
+                </Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
