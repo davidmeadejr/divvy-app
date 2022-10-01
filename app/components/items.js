@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, View, Button, FlatList } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  View,
+  Button,
+  FlatList,
+  Pressable,
+} from "react-native";
 import { useRealm, useQuery } from "../createRealmContext";
 import { Item } from "../models/Item";
+import ItemComponent from "./itemComponent";
 import Totals from "./totals";
 
 // The component which handles the functionality of the itemised receipt.
-const Items = ({ selectedFriends, setSelectedFriends }) => {
+export default Items = ({ selectedFriends, setSelectedFriends }) => {
   const realm = useRealm();
   const itemsResult = useQuery("Item");
-
-  const itemFriends = (item) => {
-    if (!item.friends.length) return [];
-    return item.friends.map((friend) => friend.name).join(", ");
-  };
 
   const itemOnPressAddFriend = (item) => {
     selectedFriends.forEach((selectedFriend) => {
@@ -34,29 +37,15 @@ const Items = ({ selectedFriends, setSelectedFriends }) => {
         data={itemsResult}
         renderItem={({ item }) => {
           return (
-            <View>
-              <Text
-                style={{
-                  backgroundColor: "#2196F3",
-                  marginRight: 16,
-                  marginTop: 5,
-                  marginBottom: 5,
-                  borderRadius: 10,
-                  padding: 10,
-                }}
-                onPress={() => itemOnPressAddFriend(item)}
-              >
-                {item.name} £{item.amount.toFixed(2)} {itemFriends(item)}
-              </Text>
-            </View>
+            <ItemComponent
+              itemOnPressAddFriend={itemOnPressAddFriend}
+              item={item}
+            />
           );
         }}
         keyExtractor={(item) => item._id.toString()}
       />
-      {/* {selectedFriends.map((friend, index) => {
-        return <Text>{friend.name}</Text>;
-      })} */}
-      <Button
+      {/* <Button
         title="Add Field"
         onPress={() => {
           realm.write(() => {
@@ -65,7 +54,7 @@ const Items = ({ selectedFriends, setSelectedFriends }) => {
             realm.create("Item", new Item({ name: "Ice cream", amount: 4 }));
           });
         }}
-      ></Button>
+      ></Button> */}
       <Totals />
     </View>
   );
@@ -82,5 +71,3 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
 });
-
-export default Items;

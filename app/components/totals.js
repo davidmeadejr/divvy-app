@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, View, Button, FlatList } from "react-native";
 import { useRealm, useQuery } from "../createRealmContext";
-import { Item } from "../models/Item";
-import { Friend } from "../models/Friend";
-import { Realm } from "@realm/react";
+// import { Item } from "../models/Item";
+// import { Friend } from "../models/Friend";
+// import { Realm } from "@realm/react";
 
 const Totals = () => {
-  const realm = useRealm();
-
+  realm = useRealm();
   const individualTotals = () => {
-    return realm.objects("Friend").map((friend) => {
+    return useQuery("Friend").map((friend) => {
       return {
+        name: friend.name,
         id: friend._id.toString(),
         amount: friend.items
           .map((item) => item.amount / item.friends.length)
@@ -19,23 +19,27 @@ const Totals = () => {
     });
   };
 
+  const mealTotal = () => {
+    return realm
+      .objects("Item")
+      .map((item) => item.amount)
+      .reduce((a, b) => a + b, 0);
+  };
+
   return (
     <View>
       <FlatList
         data={individualTotals()}
         renderItem={({ item }) => {
-          const friendName = realm.objectForPrimaryKey(
-            "Friend",
-            Realm.BSON.ObjectId(item.id)
-          ).name;
           return (
             <Text>
-              {friendName} £{item.amount.toFixed(2)}
+              {item.name} £{item.amount.toFixed(2)}
             </Text>
           );
         }}
         keyExtractor={(item) => item.id}
       />
+      <Text>Total: £{mealTotal().toFixed(2)}</Text>
     </View>
   );
 };
