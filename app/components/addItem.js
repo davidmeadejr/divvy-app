@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import { useRealm } from "../createRealmContext";
+import { Item } from "../models/Item";
 import { View, Modal, Text, Pressable, TextInput } from "react-native";
 
 export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
+  const realm = useRealm();
   // const [modalVisible, setModalVisible] = useState(false);
-  const [itemName, setItemName] = useState();
+  const [itemName, setItemName] = useState("");
+  const [itemAmount, setItemAmount] = useState(0);
 
+  const addItemToRealm = (name, amount) => {
+    realm.write(() => {
+      realm.create("Item", new Item({ name: name, amount: amount }));
+    });
+  };
   return (
     <View
       style={{
@@ -55,6 +64,11 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
               placeholder="Enter dish name"
               onChangeText={(name) => setItemName(name)}
             />
+            <TextInput
+              style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              placeholder="Enter dish amount"
+              onChangeText={(amount) => setItemAmount(amount)}
+            />
             <View>
               <Pressable
                 onPress={() => {
@@ -67,8 +81,8 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible }) => {
               <Pressable
                 // style={[styles.modalAddButton, styles.modalAddButtonOpen]}
                 onPress={() => {
-                  if (itemName) {
-                    // addFriendToRealm(name);
+                  if (itemName && itemAmount) {
+                    addItemToRealm(itemName, itemAmount);
                     // console.log(itemName);
                   }
                   console.log(itemName);
