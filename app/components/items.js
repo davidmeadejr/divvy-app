@@ -39,9 +39,7 @@ export default Items = ({ selectedFriends, selectedMeal, setSelectedMeal }) => {
         onPress={() => setItemModalVisible(true)}
       ></Button>
       <Totals selectedMeal={selectedMeal} />
-      <Pressable onPress={() => setSelectedMeal()}>
-        <Text>Back</Text>
-      </Pressable>
+      <Button title="Back" onPress={() => setSelectedMeal()} />
     </View>
   );
 };
