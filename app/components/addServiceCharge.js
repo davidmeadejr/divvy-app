@@ -3,23 +3,18 @@ import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
 import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
 
-export default AddItem = ({
+export default AddServiceCharge = ({
   itemModalVisible,
   setItemModalVisible,
-  selectedMeal,
 }) => {
+  const realm = useRealm();
+  // const [modalVisible, setModalVisible] = useState(false);
   const [itemName, setItemName] = useState("");
   const [itemAmount, setItemAmount] = useState("");
 
-  const realm = useRealm();
-
   const addItemToRealm = (name, amount) => {
     realm.write(() => {
-      const item = realm.create(
-        "Item",
-        new Item({ name: name, amount: amount })
-      );
-      selectedMeal.items.push(item);
+      realm.create("Item", new Item({ name: name, amount: amount }));
     });
   };
 

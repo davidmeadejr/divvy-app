@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Text, StyleSheet, View, Button, FlatList } from "react-native";
-import { useRealm, useQuery } from "../createRealmContext";
-// import { Item } from "../models/Item";
-// import { Friend } from "../models/Friend";
-// import { Realm } from "@realm/react";
+import React from "react";
+import { Text, View, FlatList } from "react-native";
+import { useRealm } from "../createRealmContext";
 
-const Totals = () => {
+const Totals = ({ selectedMeal }) => {
   realm = useRealm();
   const individualTotals = () => {
-    return useQuery("Friend").map((friend) => {
+    return selectedMeal.friends.map((friend) => {
       return {
         name: friend.name,
         id: friend._id.toString(),
@@ -20,8 +17,7 @@ const Totals = () => {
   };
 
   const mealTotal = () => {
-    return realm
-      .objects("Item")
+    return selectedMeal.items
       .map((item) => item.amount)
       .reduce((a, b) => a + b, 0);
   };

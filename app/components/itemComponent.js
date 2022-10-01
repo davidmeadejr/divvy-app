@@ -2,7 +2,7 @@ import React from "react";
 import { useRealm } from "../createRealmContext";
 import { Text, View, Pressable, Alert } from "react-native";
 
-export default ItemComponent = ({ itemOnPressAddFriend, item }) => {
+export default ItemComponent = ({ selectedFriends, item }) => {
   const realm = useRealm();
   const itemFriends = (item) => {
     if (!item.friends.length) return [];
@@ -12,6 +12,19 @@ export default ItemComponent = ({ itemOnPressAddFriend, item }) => {
   const handleLongPress = (item) => {
     realm.write(() => {
       realm.delete(item);
+    });
+  };
+
+  const itemOnPressAddFriend = (item) => {
+    selectedFriends.forEach((selectedFriend) => {
+      const friendIdx = item.friends
+        .map((friend) => friend._id.toString())
+        .indexOf(selectedFriend._id.toString());
+      realm.write(() => {
+        friendIdx === -1
+          ? item.friends.push(selectedFriend)
+          : item.friends.splice(friendIdx, 1);
+      });
     });
   };
 

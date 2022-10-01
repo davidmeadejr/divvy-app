@@ -15,13 +15,15 @@ import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
-const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
+const AddFriendModal = ({
+  selectedFriends,
+  setSelectedFriends,
+  selectedMeal,
+}) => {
   const realm = useRealm();
   const friends = useQuery("Friend");
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
-  // The useState for handling data as an object e.g. ID's, names etc...
-  const [data, setData] = useState([]);
   // The useState handling the names added.
   const [name, setName] = useState("");
   // The useState for handling the toggle functionality that highlights names on click.
@@ -32,8 +34,8 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
     if (!realm.objects("Friend").filtered("name == $0", name).length) {
       realm.write(() => {
         const friend = realm.create("Friend", new Friend({ name: name }));
+        selectedMeal.friends.push(friend);
       });
-      console.log(`realm log = ${friends.map((friend) => friend.name)}`);
     } else {
       Alert.alert("This name already exists, please use a different name.");
     }
@@ -47,7 +49,17 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
       ...myStyle,
       [index]: !prevState[index],
     }));
+    alterSelectedFriends(item);
+  };
 
+  const handleLongPress = (item) => {
+    alterSelectedFriends(item);
+    realm.write(() => {
+      realm.delete(item);
+    });
+  };
+
+  const alterSelectedFriends = (item) => {
     const friendIdx = selectedFriends
       .map((friend) => friend._id.toString())
       .indexOf(item._id.toString());
@@ -59,7 +71,6 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
     }
   };
 
-  console.log(data);
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -67,10 +78,10 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
         transparent={true}
         visible={modalVisible}
         // Closes the modal on click.
-        onRequestClose={() => {
-          console.log("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        // onRequestClose={() => {
+        //   console.log("Modal has been closed.");
+        //   setModalVisible(!modalVisible);
+        // }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -129,12 +140,13 @@ const AddFriendModal = ({ selectedFriends, setSelectedFriends }) => {
          *
          */}
 
-        {friends.map((item, index) => (
+        {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
             // When a users presses a name.
             // The function handleClick(index) is called.
             // Which handles the toggle functionality of the background colours.
             onPress={() => handleClick(item, index)}
+            onLongPress={() => handleLongPress(item)}
             style={{
               backgroundColor: myStyle[`${index}`] ? "#2196F3" : "white",
               marginRight: myStyle[`${index}`] ? 16 : 16,

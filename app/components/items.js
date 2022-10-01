@@ -14,35 +14,17 @@ import Totals from "./totals";
 import AddItem from "./addItem";
 
 // The component which handles the functionality of the itemised receipt.
-export default Items = ({ selectedFriends, setSelectedFriends }) => {
-  const realm = useRealm();
-  const itemsResult = useQuery("Item");
+export default Items = ({ selectedFriends, selectedMeal, setSelectedMeal }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-
-  const itemOnPressAddFriend = (item) => {
-    selectedFriends.forEach((selectedFriend) => {
-      const friendIdx = item.friends
-        .map((friend) => friend._id.toString())
-        .indexOf(selectedFriend._id.toString());
-      realm.write(() => {
-        friendIdx === -1
-          ? item.friends.push(selectedFriend)
-          : item.friends.splice(friendIdx, 1);
-      });
-    });
-  };
 
   return (
     <View>
       <Text style={styles.itemsContainer}>Items</Text>
       <FlatList
-        data={itemsResult}
+        data={selectedMeal.items}
         renderItem={({ item }) => {
           return (
-            <ItemComponent
-              itemOnPressAddFriend={itemOnPressAddFriend}
-              item={item}
-            />
+            <ItemComponent selectedFriends={selectedFriends} item={item} />
           );
         }}
         keyExtractor={(item) => item._id.toString()}
@@ -50,12 +32,16 @@ export default Items = ({ selectedFriends, setSelectedFriends }) => {
       <AddItem
         itemModalVisible={itemModalVisible}
         setItemModalVisible={setItemModalVisible}
+        selectedMeal={selectedMeal}
       />
       <Button
         title="Add Item"
         onPress={() => setItemModalVisible(true)}
       ></Button>
-      <Totals />
+      <Totals selectedMeal={selectedMeal} />
+      <Pressable onPress={() => setSelectedMeal()}>
+        <Text>Back</Text>
+      </Pressable>
     </View>
   );
 };
