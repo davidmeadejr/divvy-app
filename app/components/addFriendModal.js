@@ -150,12 +150,12 @@ const AddFriendModal = ({
             onPress={() => handleClick(item, index)}
             onLongPress={() => handleLongPress(item)}
             style={{
-              backgroundColor: myStyle[`${item._id.toString()}`]
+              backgroundColor: myStyle[item._id.toString()]
                 ? "#2196F3"
                 : "white",
-              marginRight: myStyle[`${item._id.toString()}`] ? 16 : 16,
-              borderRadius: myStyle[`${item._id.toString()}`] ? 10 : 10,
-              padding: myStyle[`${item._id.toString()}`] ? 10 : 5,
+              marginRight: myStyle[item._id.toString()] ? 16 : 16,
+              borderRadius: myStyle[item._id.toString()] ? 10 : 10,
+              padding: myStyle[item._id.toString()] ? 10 : 5,
             }}
             key={item._id.toString()}
           >

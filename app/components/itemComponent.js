@@ -18,6 +18,7 @@ export default ItemComponent = ({
     realm.write(() => {
       realm.delete(item);
     });
+    setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
 
   const itemOnPressAddFriend = (item) => {
