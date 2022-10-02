@@ -27,7 +27,7 @@ const AddFriendModal = ({
   // The useState handling the names added.
   const [name, setName] = useState("");
   // The useState for handling the toggle functionality that highlights names on click.
-  const [myStyle, setMyStyle] = useState(false);
+  const [myStyle, setMyStyle] = useState({});
   // Creates a new entry in the friend collection.
 
   const addFriendToRealm = (name) => {
@@ -45,11 +45,13 @@ const AddFriendModal = ({
   // Which refers to the items (names) that have changed.
   // Also, setMyStyle is called which toggles the previous state that the index was before once clicked.
   const handleClick = (item, index) => {
-    setMyStyle((prevState) => ({
-      ...myStyle,
-      [index]: !prevState[index],
-    }));
-    alterSelectedFriends(item);
+    console.log(item._id.toString());
+    const itemId = item._id.toString();
+    myStyle[itemId] = true;
+    Object.keys(myStyle).forEach((key) => (myStyle[key] = key === itemId));
+    setMyStyle(myStyle);
+    console.log(myStyle);
+    setSelectedFriends([item]);
   };
 
   const handleLongPress = (item) => {
@@ -148,10 +150,12 @@ const AddFriendModal = ({
             onPress={() => handleClick(item, index)}
             onLongPress={() => handleLongPress(item)}
             style={{
-              backgroundColor: myStyle[`${index}`] ? "#2196F3" : "white",
-              marginRight: myStyle[`${index}`] ? 16 : 16,
-              borderRadius: myStyle[`${index}`] ? 10 : 10,
-              padding: myStyle[`${index}`] ? 10 : 5,
+              backgroundColor: myStyle[`${item._id.toString()}`]
+                ? "#2196F3"
+                : "white",
+              marginRight: myStyle[`${item._id.toString()}`] ? 16 : 16,
+              borderRadius: myStyle[`${item._id.toString()}`] ? 10 : 10,
+              padding: myStyle[`${item._id.toString()}`] ? 10 : 5,
             }}
             key={item._id.toString()}
           >
