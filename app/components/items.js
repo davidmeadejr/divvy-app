@@ -16,7 +16,7 @@ import AddItem from "./addItem";
 // The component which handles the functionality of the itemised receipt.
 export default Items = ({ selectedFriends, selectedMeal, setSelectedMeal }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-
+  const realm = useRealm();
   return (
     <View>
       <Text style={styles.itemsContainer}>Items</Text>
@@ -24,7 +24,12 @@ export default Items = ({ selectedFriends, selectedMeal, setSelectedMeal }) => {
         data={selectedMeal.items}
         renderItem={({ item }) => {
           return (
-            <ItemComponent selectedFriends={selectedFriends} item={item} />
+            <ItemComponent
+              selectedFriends={selectedFriends}
+              item={item}
+              selectedMeal={selectedMeal}
+              setSelectedMeal={setSelectedMeal}
+            />
           );
         }}
         keyExtractor={(item) => item._id.toString()}

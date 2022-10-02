@@ -2,7 +2,12 @@ import React from "react";
 import { useRealm } from "../createRealmContext";
 import { Text, View, Pressable, Alert } from "react-native";
 
-export default ItemComponent = ({ selectedFriends, item }) => {
+export default ItemComponent = ({
+  selectedFriends,
+  item,
+  selectedMeal,
+  setSelectedMeal,
+}) => {
   const realm = useRealm();
   const itemFriends = (item) => {
     if (!item.friends.length) return [];
@@ -26,6 +31,7 @@ export default ItemComponent = ({ selectedFriends, item }) => {
           : item.friends.splice(friendIdx, 1);
       });
     });
+    setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
 
   return (

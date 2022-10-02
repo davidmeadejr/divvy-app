@@ -1,19 +1,21 @@
 import React from "react";
 import { Text, View, FlatList } from "react-native";
-import { useRealm } from "../createRealmContext";
+import { useRealm, useQuery } from "../createRealmContext";
+import { Realm } from "@realm/react";
 
 const Totals = ({ selectedMeal }) => {
-  realm = useRealm();
   const individualTotals = () => {
-    return selectedMeal.friends.map((friend) => {
-      return {
-        name: friend.name,
-        id: friend._id.toString(),
-        amount: friend.items
-          .map((item) => item.amount / item.friends.length)
-          .reduce((a, b) => a + b, 0),
-      };
-    });
+    return useQuery("Friend")
+      .filtered("meal._id == $0", selectedMeal._id)
+      .map((friend) => {
+        return {
+          name: friend.name,
+          id: friend._id.toString(),
+          amount: friend.items
+            .map((item) => item.amount / item.friends.length)
+            .reduce((a, b) => a + b, 0),
+        };
+      });
   };
 
   const mealTotal = () => {
