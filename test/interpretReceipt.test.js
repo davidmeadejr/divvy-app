@@ -14,6 +14,14 @@ describe("interpretReceipt method", () => {
     );
   });
 
+  it("returns an error if the argument is not an object", () => {
+    expect(() => {
+      interpretReceipt([1]);
+    }).toThrow(
+      new Error("Incorrect datatype in argument for interpretReceipt")
+    );
+  });
+
   // it("should return an object if it matches criteria", () => {
   //   expect(interpretReceipt([])).toEqual();
   // });
