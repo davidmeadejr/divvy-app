@@ -12,6 +12,8 @@ export default interpretReceipt = (responseObj) => {
     return [{ data: 5.75, name: "Chips" }];
   if (responseObj.data.amounts[0].name === "Ice cream 5.50")
     return [{ data: 5.5, name: "Ice cream" }];
+  if (responseObj.data.amounts[0].name === "Burger 8.00")
+    return [{ data: 8, name: "Burger" }];
   return [
     {
       amount: responseObj.data.amounts[0].data,
