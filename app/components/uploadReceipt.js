@@ -4,6 +4,7 @@ import { Text, View, Button, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "../common/styles";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { Meal } from "../models/Meal";
 // Components that have been imported.
 // import Items from "./app/components/items";
 // import Users from "./app/components/users";
@@ -77,6 +78,16 @@ export default UploadReceipt = ({ setCreateNewMeal, setSelectedMeal }) => {
       />
       <Image style={{ width: 150, height: 150 }} source={imageSource} />
       <Button title="Submit to taggun" onPress={() => sendImageToTaggun()} />
+      <Button
+        title="No receipt meal"
+        onPress={() => {
+          let newMeal;
+          realm.write(() => {
+            newMeal = realm.create("Meal", new Meal({}));
+          });
+          setSelectedMeal(newMeal);
+        }}
+      />
       <Text>{taggunResponse.data.text.text}</Text>
       <StatusBar style="auto" />
     </View>
