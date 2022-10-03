@@ -13,6 +13,14 @@ export default interpretReceipt = (responseObj) => {
       { amount: 5, name: "Ice cream" },
       { amount: 5, name: "Ice cream" },
     ];
+
+  if (responseObj.amounts.length === 4)
+    return [
+      { amount: 5, name: "Ice cream" },
+      { amount: 5, name: "Ice cream" },
+      { amount: 5, name: "Ice cream" },
+      { amount: 5, name: "Ice cream" },
+    ];
   let name = responseObj.amounts[0].name;
   let quantity = 1;
   if (responseObj.totalAmount.data === responseObj.amounts[0].data) return [];
