@@ -1,21 +1,21 @@
 export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
   verifyArgumentIsObject(responseObj);
-  const filteredArray = filterArrayForInvalidEntries(responseObj);
+  let filteredArray = filterArrayForInvalidEntries(responseObj);
+  filteredArray = duplicateArrayForQuantity(filteredArray);
 
-  if (!parseFloat(filteredArray[0].text[0])) {
-    return filteredArray.map((item) => {
-      if (responseObj.totalAmount.data === item.data) return;
-      let itemName = item.text;
-      if (itemName.includes(filteredArray[0].data.toString())) {
-        const nameAsArray = itemName.split(" ");
-        nameAsArray.splice(nameAsArray.length - 1, 1);
-        itemName = nameAsArray.join(" ");
-      }
-      return { amount: item.data, name: itemName };
-    });
+  return filteredArray.map(iterateThroughArray);
+};
+
+const iterateThroughArray = (item, idx, filteredArray) => {
+  let itemName = item.text;
+  itemName = itemName.replace(/^[0-9]x/gi, "").trim();
+  if (itemName.includes(filteredArray[0].data.toString())) {
+    const nameAsArray = itemName.split(" ");
+    nameAsArray.splice(nameAsArray.length - 1, 1);
+    itemName = nameAsArray.join(" ");
   }
-  return duplicateEntriesForItemQuantity(filteredArray);
+  return { amount: item.data, name: itemName };
 };
 
 const verifyArgumentIsObject = (responseObj) => {
@@ -33,6 +33,7 @@ const filterArrayForInvalidEntries = (responseObj) => {
   const filteredArray = [];
   const filteredArrayText = [];
   responseObj.amounts.forEach((item) => {
+    if (responseObj.totalAmount.data === item.data) return;
     const idx = filteredArrayText.indexOf(item.text);
     if (idx > -1 && filteredArray[idx].data !== item.data) {
       if (filteredArray[idx].data > item.data)
@@ -45,16 +46,13 @@ const filterArrayForInvalidEntries = (responseObj) => {
   return filteredArray;
 };
 
-const duplicateEntriesForItemQuantity = (filteredArray) => {
-  let name = filteredArray[0].text;
-  let quantity = 1;
-  quantity = parseFloat(name[0]);
-  const nameAsArray = name.split(" ");
-  nameAsArray.splice(0, 1);
-  name = nameAsArray.join(" ");
-
-  return Array(quantity).fill({
-    amount: filteredArray[0].data,
-    name: name,
+const duplicateArrayForQuantity = (filteredArray) => {
+  const newArray = [];
+  filteredArray.forEach((item) => {
+    let pushTimes = 1;
+    if (item.text.match(/^[0-9]+x.*/gi))
+      pushTimes = parseInt(item.text.match(/^[0-9]/gi));
+    for (let i = 0; i < pushTimes; i++) newArray.push(item);
   });
+  return newArray;
 };

@@ -344,4 +344,21 @@ describe("interpretReceipt method", () => {
       { amount: 7, name: "Pizza" },
     ]);
   });
+
+  it("duplicates items and leaves order unchanged", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5, text: "Chips" },
+        { data: 5, text: "2x Ice Cream" },
+        { data: 7, text: "Pizza" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5, name: "Chips" },
+      { amount: 5, name: "Ice Cream" },
+      { amount: 5, name: "Ice Cream" },
+      { amount: 7, name: "Pizza" },
+    ]);
+  });
 });
