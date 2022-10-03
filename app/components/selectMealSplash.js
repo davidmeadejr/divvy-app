@@ -59,7 +59,7 @@ export default SelectMealSplash = ({ selectedMeal, setSelectedMeal }) => {
         title="Create new meal"
         onPress={() => handleButtonPress()}
       ></Button>
-      <Image style={{ width: 100, height: 100 }} source={imageSource} />
+      {/* <Image style={{ width: 100, height: 100 }} source={imageSource} /> */}
 
       <FlatList
         data={result}
@@ -75,7 +75,7 @@ export default SelectMealSplash = ({ selectedMeal, setSelectedMeal }) => {
         }}
         keyExtractor={(item) => item._id.toString()}
       />
-      <Button
+      {/* <Button
         title="Take A Photo"
         color="darkgray"
         onPress={() =>
@@ -110,7 +110,7 @@ export default SelectMealSplash = ({ selectedMeal, setSelectedMeal }) => {
             }
           )
         }
-      />
+      /> */}
       {/* <Button title="Submit to taggun" onPress={() => submitPhoto()} /> */}
       {/* <Text>{imageSource.uri}</Text> */}
     </View>
