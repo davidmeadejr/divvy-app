@@ -32,25 +32,43 @@ describe("interpretReceipt method", () => {
 
   it("returns an object with name and amount that fit criteria", () => {
     expect(
-      interpretReceipt({ data: { amounts: [{ data: 3.5, name: "Pasta" }] } })
+      interpretReceipt({
+        data: {
+          totalAmount: { data: 29.25 },
+          amounts: [{ data: 3.5, name: "Pasta" }],
+        },
+      })
     ).toEqual([{ amount: 3.5, name: "Pasta" }]);
   });
 
   it("returns an object with name and amount that fit criteria", () => {
     expect(
-      interpretReceipt({ data: { amounts: [{ data: 6, name: "Ice cream" }] } })
+      interpretReceipt({
+        data: {
+          totalAmount: { data: 29.25 },
+          amounts: [{ data: 6, name: "Ice cream" }],
+        },
+      })
     ).toEqual([{ amount: 6, name: "Ice cream" }]);
   });
 
   it("returns an object with name and amount that fit criteria", () => {
     expect(
-      interpretReceipt({ data: { amounts: [{ data: 2, name: "Chips" }] } })
+      interpretReceipt({
+        data: {
+          totalAmount: { data: 29.25 },
+          amounts: [{ data: 2, name: "Chips" }],
+        },
+      })
     ).toEqual([{ amount: 2, name: "Chips" }]);
   });
 
   it("strips the amount from the name if present", () => {
     const receiptData = {
-      data: { amounts: [{ data: 5.75, name: "Chips 5.75" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 5.75, name: "Chips 5.75" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 5.75, name: "Chips" },
@@ -59,7 +77,10 @@ describe("interpretReceipt method", () => {
 
   it("strips the amount from the name if present", () => {
     const receiptData = {
-      data: { amounts: [{ data: 5.5, name: "Ice cream 5.50" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 5.5, name: "Ice cream 5.50" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 5.5, name: "Ice cream" },
@@ -68,36 +89,54 @@ describe("interpretReceipt method", () => {
 
   it("strips the amount from the name if present", () => {
     const receiptData = {
-      data: { amounts: [{ data: 8, name: "Burger 8.00" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 8, name: "Burger 8.00" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 8, name: "Burger" },
     ]);
   });
 
-  it("strips the quantity from the name 3x Burger", () => {
+  it("strips the quantity from the name 3x Burger and returns three objects", () => {
     const receiptData = {
-      data: { amounts: [{ data: 8, name: "3x Burger" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 8, name: "3x Burger" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 8, name: "Burger" },
+      { amount: 8, name: "Burger" },
       { amount: 8, name: "Burger" },
     ]);
   });
 
-  it("strips the quantity from the name 2x Chips", () => {
+  it("strips the quantity from the name 2x Chips and returns two objects", () => {
     const receiptData = {
-      data: { amounts: [{ data: 8, name: "2x Chips" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 8, name: "2x Chips" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 8, name: "Chips" },
       { amount: 8, name: "Chips" },
     ]);
   });
 
-  it("strips the quantity from the name 4x Noodles", () => {
+  it("strips the quantity from the name 4x Noodles and returns four objects", () => {
     const receiptData = {
-      data: { amounts: [{ data: 10, name: "4x Noodles" }] },
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 10, name: "4x Noodles" }],
+      },
     };
     expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 10, name: "Noodles" },
+      { amount: 10, name: "Noodles" },
+      { amount: 10, name: "Noodles" },
       { amount: 10, name: "Noodles" },
     ]);
   });
