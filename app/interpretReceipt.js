@@ -9,16 +9,10 @@ export default interpretReceipt = (responseObj) => {
   )
     throw new Error("Incorrect datatype in argument for interpretReceipt");
   let name = responseObj.data.amounts[0].name;
-  if (name === "3x Burger") {
-    return [{ amount: 8, name: "Burger" }];
-  }
-
-  if (name === "2x Chips") {
-    return [{ amount: 8, name: "Chips" }];
-  }
-
-  if (name === "4x Noodles") {
-    return [{ amount: 10, name: "Noodles" }];
+  if (parseFloat(name[0])) {
+    const nameAsArray = name.split(" ");
+    nameAsArray.splice(0, 1);
+    name = nameAsArray.join(" ");
   }
 
   if (name.includes(responseObj.data.amounts[0].data.toString())) {
