@@ -53,7 +53,7 @@ describe("interpretReceipt method", () => {
       data: { amounts: [{ data: 5.75, name: "Chips 5.75" }] },
     };
     expect(interpretReceipt(receiptData)).toEqual([
-      { data: 5.75, name: "Chips" },
+      { amount: 5.75, name: "Chips" },
     ]);
   });
 
@@ -62,7 +62,7 @@ describe("interpretReceipt method", () => {
       data: { amounts: [{ data: 5.5, name: "Ice cream 5.50" }] },
     };
     expect(interpretReceipt(receiptData)).toEqual([
-      { data: 5.5, name: "Ice cream" },
+      { amount: 5.5, name: "Ice cream" },
     ]);
   });
 
@@ -71,7 +71,7 @@ describe("interpretReceipt method", () => {
       data: { amounts: [{ data: 8, name: "Burger 8.00" }] },
     };
     expect(interpretReceipt(receiptData)).toEqual([
-      { data: 8, name: "Burger" },
+      { amount: 8, name: "Burger" },
     ]);
   });
 });
