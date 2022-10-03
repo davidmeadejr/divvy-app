@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import styles from "../common/styles";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import { Meal } from "../models/Meal";
+import { useRealm } from "../createRealmContext";
 // Components that have been imported.
 // import Items from "./app/components/items";
 // import Users from "./app/components/users";
@@ -16,7 +17,7 @@ export default UploadReceipt = ({ setCreateNewMeal, setSelectedMeal }) => {
   const [taggunResponse, setTaggunResponse] = useState({
     data: { text: { text: "awaiting taggun response" } },
   });
-
+  const realm = useRealm();
   const sendImageToTaggun = async () => {
     const axios = require("axios");
     const FormData = require("form-data");
