@@ -329,4 +329,19 @@ describe("interpretReceipt method", () => {
       { amount: 2.5, name: "Ice Cream" },
     ]);
   });
+
+  it("removes duplicates with different data and leaves other entries", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5, text: "Ice Cream" },
+        { data: 2.5, text: "Ice Cream" },
+        { data: 7, text: "Pizza" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 2.5, name: "Ice Cream" },
+      { amount: 7, name: "Pizza" },
+    ]);
+  });
 });
