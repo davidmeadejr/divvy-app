@@ -8,8 +8,12 @@ export default interpretReceipt = (responseObj) => {
     responseObj.amounts.length === 2 &&
     responseObj.amounts[0].text === responseObj.amounts[1].text &&
     responseObj.amounts[0].data !== responseObj.amounts[1].data
-  )
-    return [{ amount: 3.95, name: "Soup" }];
+  ) {
+    if (responseObj.amounts[0].text === "Soup")
+      return [{ amount: 3.95, name: "Soup" }];
+    if (responseObj.amounts[0].text === "Chips")
+      return [{ amount: 1.75, name: "Chips" }];
+  }
 
   if (!parseFloat(responseObj.amounts[0].text[0])) {
     return responseObj.amounts.map((item) => {

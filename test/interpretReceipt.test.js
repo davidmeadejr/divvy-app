@@ -291,7 +291,7 @@ describe("interpretReceipt method", () => {
     ]);
   });
 
-  it("removes a duplicate with the lowest data", () => {
+  it("removes a duplicate with the lowest data (soup 3.95/soup 11.95", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
@@ -301,6 +301,19 @@ describe("interpretReceipt method", () => {
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 3.95, name: "Soup" },
+    ]);
+  });
+
+  it("removes a duplicate with the lowest data (soup 3.95/soup 11.95", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 3.5, text: "Chips" },
+        { data: 1.75, text: "Chips" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 1.75, name: "Chips" },
     ]);
   });
 });
