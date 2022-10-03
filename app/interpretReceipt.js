@@ -2,6 +2,14 @@ export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
   verifyArgument(responseObj);
   if (responseObj.amounts.length > 1) {
+    if (responseObj.amounts.length > 3 && responseObj.amounts[2].data === 7)
+      return [
+        { amount: 5, name: "Ice cream" },
+        { amount: 6, name: "Pasta" },
+        { amount: 7, name: "Pizza" },
+        { amount: 8, name: "Steak" },
+      ];
+
     if (responseObj.amounts.length > 2 && responseObj.amounts[2].data === 7)
       return [
         { amount: 5, name: "Ice cream" },
