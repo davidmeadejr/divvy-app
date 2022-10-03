@@ -4,54 +4,56 @@ import { Item } from "../models/Item";
 import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
 import styles from "../common/styles";
 export default AddServiceCharge = ({
-  serviceChargeModalVisible,
-  setServiceChargeModalVisible,
+  tipModalVisible,
+  setTipModalVisible,
   selectedMeal,
 }) => {
   const realm = useRealm();
-  const [serviceCharge, setServiceCharge] = useState("");
+  const [tip, setTip] = useState("");
 
   const handlePress = () => {
-    const serviceChargeFloat = parseFloat(serviceCharge);
-    if (isNaN(serviceChargeFloat)) {
+    const tipFloat = parseFloat(tip);
+    if (isNaN(tipFloat)) {
       Alert.alert("Only characters allowed in service charge are 0123456789.");
-    } else if (
-      parseFloat(serviceChargeFloat.toFixed(2)) !== serviceChargeFloat
-    ) {
-      Alert.alert("Service charge can only be up to two decimal places");
+    } else if (parseFloat(tipFloat.toFixed(2)) !== tipFloat) {
+      Alert.alert("Tip percentage can only be up to two decimal places");
     } else {
       realm.write(() => {
-        selectedMeal.serivceChargeAmount = serviceChargeFloat;
+        selectedMeal.tipAmount = tipFloat;
       });
-      setServiceChargeModalVisible(false);
+      setTipModalVisible(false);
     }
   };
   return (
-    <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={serviceChargeModalVisible}
-      >
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22,
+      }}
+    >
+      <Modal animationType="slide" transparent={true} visible={tipModalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add service charge %</Text>
+            <Text style={styles.modalText}>Add tip %</Text>
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
-              placeholder="12.5"
-              onChangeText={(amount) => setServiceCharge(amount)}
+              placeholder="10"
+              onChangeText={(amount) => setTip(amount)}
             />
             <View style={styles.modalButtonContainer}>
               <Pressable
                 style={[styles.cancelButton, styles.cancelButtonClose]}
                 onPress={() => {
-                  setServiceChargeModalVisible(false);
+                  setTipModalVisible(!tipModalVisible);
                 }}
               >
                 <Text style={styles.textStyle}>Cancel</Text>
               </Pressable>
               <Pressable
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
+                // style={[styles.modalAddButton, styles.modalAddButtonOpen]}
                 onPress={() => handlePress()}
               >
                 <Text style={styles.textStyle}>➕</Text>
@@ -63,3 +65,18 @@ export default AddServiceCharge = ({
     </View>
   );
 };
+// modalAddButton: {
+// borderRadius: 20,
+// padding: 10,
+// elevation: 2,
+// },
+// buttonOpen: {
+//   backgroundColor: "#F194FF",
+// },
+
+// modalAddButtonOpen: {
+//   backgroundColor: "#F194FF",
+// },
+// buttonClose: {
+//   backgroundColor: "#2196F3",
+// },

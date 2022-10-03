@@ -10,18 +10,38 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import styles from "../common/styles";
 import { Friend } from "../models/Friend";
 import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
 
+const friendColours = [
+  "#e6194B",
+  "#3cb44b",
+  "#ffe119",
+  "#4363d8",
+  "#f58231",
+  "#42d4f4",
+  "#f032e6",
+  "#fabed4",
+  "#469990",
+  "#dcbeff",
+  "#9A6324",
+  "#fffac8",
+  "#800000",
+  "#aaffc3",
+  "#000075",
+  "#a9a9a9",
+];
+
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
-const AddFriendModal = ({
-  selectedFriends,
-  setSelectedFriends,
+export default AddFriendModal = ({
+  selectedFriend,
+  setSelectedFriend,
   selectedMeal,
+  setSelectedMeal,
 }) => {
   const realm = useRealm();
-  const friends = useQuery("Friend");
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
   // The useState handling the names added.
@@ -45,32 +65,22 @@ const AddFriendModal = ({
   // Which refers to the items (names) that have changed.
   // Also, setMyStyle is called which toggles the previous state that the index was before once clicked.
   const handleClick = (item, index) => {
-    console.log(item._id.toString());
     const itemId = item._id.toString();
-    myStyle[itemId] = true;
-    Object.keys(myStyle).forEach((key) => (myStyle[key] = key === itemId));
+    // myStyle[itemId] = true;
+    [...Object.keys(myStyle), itemId].forEach(
+      (key) => (myStyle[key] = key === itemId)
+    );
     setMyStyle(myStyle);
-    console.log(myStyle);
-    setSelectedFriends([item]);
+    setSelectedFriend(item);
   };
 
   const handleLongPress = (item) => {
-    alterSelectedFriends(item);
+    if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
+      setSelectedFriend();
     realm.write(() => {
       realm.delete(item);
     });
-  };
-
-  const alterSelectedFriends = (item) => {
-    const friendIdx = selectedFriends
-      .map((friend) => friend._id.toString())
-      .indexOf(item._id.toString());
-    if (friendIdx === -1) {
-      setSelectedFriends([...selectedFriends, item]);
-    } else {
-      selectedFriends.splice(friendIdx, 1);
-      setSelectedFriends(selectedFriends);
-    }
+    setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
 
   return (
@@ -100,7 +110,7 @@ const AddFriendModal = ({
               <Pressable
                 style={[styles.cancelButton, styles.cancelButtonClose]}
                 // Toggles modal visibility on click
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => setModalVisible(false)}
               >
                 <Text style={styles.textStyle}>Cancel</Text>
               </Pressable>
@@ -112,12 +122,10 @@ const AddFriendModal = ({
                 // While also logging the typed name to the console.
                 onPress={() => {
                   if (name) {
-                    // setData([...data, { name: name }]);
                     addFriendToRealm(name);
                   }
-                  // console.log(`${name} has been added.`);
                   setName("");
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
                 }}
               >
                 <Text style={styles.textStyle}>➕</Text>
@@ -133,15 +141,27 @@ const AddFriendModal = ({
         showsHorizontalScrollIndicator={true}
       >
         <Pressable
-          style={[styles.button, styles.buttonOpen]}
+          style={[styles.button, styles.buttonOpen, { marginRight: 10 }]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>➕</Text>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <Text
+              style={{
+                color: "black",
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
+              Add Friend
+            </Text>
+            <Text style={styles.textStyle}>➕</Text>
+          </View>
         </Pressable>
-        {/*
-         *
-         */}
-
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
             // When a users presses a name.
@@ -150,18 +170,23 @@ const AddFriendModal = ({
             onPress={() => handleClick(item, index)}
             onLongPress={() => handleLongPress(item)}
             style={{
-              backgroundColor: myStyle[item._id.toString()]
-                ? "#2196F3"
-                : "white",
-              marginRight: myStyle[item._id.toString()] ? 16 : 16,
-              borderRadius: myStyle[item._id.toString()] ? 10 : 10,
-              padding: myStyle[item._id.toString()] ? 10 : 5,
+              borderWidth: myStyle[item._id.toString()] ? 5 : 2,
+              borderColor: friendColours[index],
+              marginRight: myStyle[item._id.toString()] ? 13 : 16,
+              borderRadius: 10,
+              padding: myStyle[item._id.toString()] ? 7 : 10,
             }}
             key={item._id.toString()}
           >
             {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
             <View>
-              <Text>{item.name}</Text>
+              <Text
+                style={{
+                  fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
+                }}
+              >
+                {item.name}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -170,79 +195,4 @@ const AddFriendModal = ({
   );
 };
 
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    position: "relative",
-  },
-
-  cancelButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    position: "relative",
-    marginRight: 16,
-  },
-
-  cancelButtonClose: {
-    backgroundColor: "#2196F3",
-  },
-  modalAddButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-
-  modalAddButtonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
-  openModalContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  modalButtonContainer: {
-    display: "flex",
-    flexDirection: "row",
-  },
-});
-
-export default AddFriendModal;
+// export default AddFriendModal;

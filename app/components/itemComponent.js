@@ -3,7 +3,7 @@ import { useRealm } from "../createRealmContext";
 import { Text, View, Pressable, Alert } from "react-native";
 
 export default ItemComponent = ({
-  selectedFriends,
+  selectedFriend,
   item,
   selectedMeal,
   setSelectedMeal,
@@ -22,7 +22,7 @@ export default ItemComponent = ({
   };
 
   const itemOnPressAddFriend = (item) => {
-    selectedFriends.forEach((selectedFriend) => {
+    if (selectedFriend) {
       const friendIdx = item.friends
         .map((friend) => friend._id.toString())
         .indexOf(selectedFriend._id.toString());
@@ -31,8 +31,8 @@ export default ItemComponent = ({
           ? item.friends.push(selectedFriend)
           : item.friends.splice(friendIdx, 1);
       });
-    });
-    setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
+      setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
+    }
   };
 
   return (

@@ -8,14 +8,22 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.3.4",
     "@realm/react": "^0.3.2",
+    "apollo-upload-client": "^17.0.0",
+    "axios": "^0.27.2",
     "expo": "~46.0.13",
+    "expo-file-system": "~14.1.0",
+    "expo-fs": "^0.2.2",
     "expo-splash-screen": "~0.16.2",
     "expo-status-bar": "~1.4.0",
+    "form-data": "^4.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-fs": "^2.20.0",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-image-picker": "^4.10.0",
     "react-native-uuid": "^2.0.1",
     "react-native-web": "~0.18.7",
     "realm": "^10.21.1"

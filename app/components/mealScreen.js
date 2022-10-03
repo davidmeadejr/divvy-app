@@ -10,19 +10,20 @@ import Users from "./users";
 
 // The main component which acts as a container for all other components within the the codebase.
 export default MealScreen = ({ selectedMeal, setSelectedMeal }) => {
-  const [selectedFriends, setSelectedFriends] = useState([]);
+  const [selectedFriend, setSelectedFriend] = useState();
 
   return (
     <View style={styles.container}>
       <Items
-        selectedFriends={selectedFriends}
-        setSelectedFriends={setSelectedFriends}
+        selectedFriend={selectedFriend}
+        setSelectedFriend={setSelectedFriend}
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
       />
       <Users
-        selectedFriends={selectedFriends}
-        setSelectedFriends={setSelectedFriends}
+        setSelectedMeal={setSelectedMeal}
+        selectedFriend={selectedFriend}
+        setSelectedFriend={setSelectedFriend}
         selectedMeal={selectedMeal}
       />
       <StatusBar style="auto" />
