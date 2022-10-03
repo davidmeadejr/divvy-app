@@ -34,7 +34,7 @@ describe("interpretReceipt method", () => {
     expect(
       interpretReceipt({
         totalAmount: { data: 29.25 },
-        amounts: [{ data: 3.5, name: "Pasta" }],
+        amounts: [{ data: 3.5, text: "Pasta" }],
       })
     ).toEqual([{ amount: 3.5, name: "Pasta" }]);
   });
@@ -43,7 +43,7 @@ describe("interpretReceipt method", () => {
     expect(
       interpretReceipt({
         totalAmount: { data: 29.25 },
-        amounts: [{ data: 6, name: "Ice cream" }],
+        amounts: [{ data: 6, text: "Ice cream" }],
       })
     ).toEqual([{ amount: 6, name: "Ice cream" }]);
   });
@@ -52,7 +52,7 @@ describe("interpretReceipt method", () => {
     expect(
       interpretReceipt({
         totalAmount: { data: 29.25 },
-        amounts: [{ data: 2, name: "Chips" }],
+        amounts: [{ data: 2, text: "Chips" }],
       })
     ).toEqual([{ amount: 2, name: "Chips" }]);
   });
@@ -60,7 +60,7 @@ describe("interpretReceipt method", () => {
   it("strips the amount from the name if present", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 5.75, name: "Chips 5.75" }],
+      amounts: [{ data: 5.75, text: "Chips 5.75" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 5.75, name: "Chips" },
@@ -70,7 +70,7 @@ describe("interpretReceipt method", () => {
   it("strips the amount from the name if present", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 5.5, name: "Ice cream 5.50" }],
+      amounts: [{ data: 5.5, text: "Ice cream 5.50" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 5.5, name: "Ice cream" },
@@ -80,7 +80,7 @@ describe("interpretReceipt method", () => {
   it("strips the amount from the name if present", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 8, name: "Burger 8.00" }],
+      amounts: [{ data: 8, text: "Burger 8.00" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 8, name: "Burger" },
@@ -90,7 +90,7 @@ describe("interpretReceipt method", () => {
   it("strips the quantity from the name 3x Burger and returns three objects", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 8, name: "3x Burger" }],
+      amounts: [{ data: 8, text: "3x Burger" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 8, name: "Burger" },
@@ -102,7 +102,7 @@ describe("interpretReceipt method", () => {
   it("strips the quantity from the name 2x Chips and returns two objects", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 8, name: "2x Chips" }],
+      amounts: [{ data: 8, text: "2x Chips" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 8, name: "Chips" },
@@ -113,7 +113,7 @@ describe("interpretReceipt method", () => {
   it("strips the quantity from the name 4x Noodles and returns four objects", () => {
     const receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 10, name: "4x Noodles" }],
+      amounts: [{ data: 10, text: "4x Noodles" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 10, name: "Noodles" },
@@ -126,7 +126,7 @@ describe("interpretReceipt method", () => {
   it("doesn't return objects containing the total price", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 29.25, name: "-FOOD 29.25 --" }],
+      amounts: [{ data: 29.25, text: "-FOOD 29.25 --" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([]);
   });
@@ -134,7 +134,7 @@ describe("interpretReceipt method", () => {
   it("doesn't return objects containing the total price", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 29.25, name: "-Prev Bal  29.25" }],
+      amounts: [{ data: 29.25, text: "-Prev Bal  29.25" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([]);
   });
@@ -142,7 +142,7 @@ describe("interpretReceipt method", () => {
   it("doesn't return objects containing the total price", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
-      amounts: [{ data: 29.25, name: "SUBTOTAL 29.25" }],
+      amounts: [{ data: 29.25, text: "SUBTOTAL 29.25" }],
     };
     expect(interpretReceipt(receiptData)).toEqual([]);
   });
@@ -151,8 +151,8 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
@@ -165,9 +165,9 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
@@ -181,10 +181,10 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
-        { data: 5, name: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
+        { data: 5, text: "Ice cream" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
@@ -199,8 +199,8 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 6, name: "Pasta" },
+        { data: 5, text: "Ice cream" },
+        { data: 6, text: "Pasta" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
@@ -213,9 +213,9 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 6, name: "Pasta" },
-        { data: 7, name: "Pizza" },
+        { data: 5, text: "Ice cream" },
+        { data: 6, text: "Pasta" },
+        { data: 7, text: "Pizza" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
@@ -229,10 +229,10 @@ describe("interpretReceipt method", () => {
     receiptData = {
       totalAmount: { data: 29.25 },
       amounts: [
-        { data: 5, name: "Ice cream" },
-        { data: 6, name: "Pasta" },
-        { data: 7, name: "Pizza" },
-        { data: 8, name: "Steak" },
+        { data: 5, text: "Ice cream" },
+        { data: 6, text: "Pasta" },
+        { data: 7, text: "Pizza" },
+        { data: 8, text: "Steak" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
