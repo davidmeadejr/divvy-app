@@ -56,4 +56,13 @@ describe("interpretReceipt method", () => {
       { data: 5.75, name: "Chips" },
     ]);
   });
+
+  it("strips the amount from the name if present", () => {
+    const receiptData = {
+      data: { amounts: [{ data: 5.5, name: "Ice cream 5.50" }] },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { data: 5.5, name: "Ice cream" },
+    ]);
+  });
 });
