@@ -3,7 +3,6 @@ export default interpretReceipt = (responseObj) => {
   verifyArgumentIsObject(responseObj);
   let filteredArray = filterArrayForInvalidEntries(responseObj);
   filteredArray = duplicateArrayForQuantity(filteredArray);
-
   return filteredArray.map(iterateThroughArray);
 };
 
