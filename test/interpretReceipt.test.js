@@ -101,4 +101,24 @@ describe("interpretReceipt method", () => {
       { amount: 10, name: "Noodles" },
     ]);
   });
+
+  it("doesn't return objects containing the total price", () => {
+    receiptData = {
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 29.25, name: "-FOOD 29.25 --" }],
+      },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([]);
+  });
+
+  it("doesn't return objects containing the total price", () => {
+    receiptData = {
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 29.25, name: "-Prev Bal  29.25" }],
+      },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([]);
+  });
 });
