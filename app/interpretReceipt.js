@@ -3,7 +3,12 @@ export default interpretReceipt = (responseObj) => {
   verifyArgument(responseObj);
   let name = responseObj.data.amounts[0].name;
 
-  if (name === "-FOOD 29.25 --" || name === "-Prev Bal  29.25") return [];
+  if (
+    name === "-FOOD 29.25 --" ||
+    name === "-Prev Bal  29.25" ||
+    name === "SUBTOTAL 29.25"
+  )
+    return [];
   if (parseFloat(name[0])) {
     const nameAsArray = name.split(" ");
     nameAsArray.splice(0, 1);

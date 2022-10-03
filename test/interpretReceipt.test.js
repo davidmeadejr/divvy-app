@@ -121,4 +121,14 @@ describe("interpretReceipt method", () => {
     };
     expect(interpretReceipt(receiptData)).toEqual([]);
   });
+
+  it("doesn't return objects containing the total price", () => {
+    receiptData = {
+      data: {
+        totalAmount: { data: 29.25 },
+        amounts: [{ data: 29.25, name: "SUBTOTAL 29.25" }],
+      },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([]);
+  });
 });
