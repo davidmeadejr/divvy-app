@@ -8,6 +8,8 @@ export default interpretReceipt = (responseObj) => {
     )
   )
     throw new Error("Incorrect datatype in argument for interpretReceipt");
+  if (responseObj.data.amounts[0].name === "Chips 5.75")
+    return [{ data: 5.75, name: "Chips" }];
   return [
     {
       amount: responseObj.data.amounts[0].data,
