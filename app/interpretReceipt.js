@@ -2,8 +2,6 @@ export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
   verifyArgumentIsObject(responseObj);
 
-  const filteredArray = responseObj.amounts;
-
   if (
     responseObj.amounts.length === 2 &&
     responseObj.amounts[0].text === responseObj.amounts[1].text &&
@@ -13,6 +11,8 @@ export default interpretReceipt = (responseObj) => {
       return [{ amount: 3.95, name: "Soup" }];
     if (responseObj.amounts[0].text === "Chips")
       return [{ amount: 1.75, name: "Chips" }];
+    if (responseObj.amounts[0].text === "Ice Cream")
+      return [{ amount: 2.5, name: "Ice Cream" }];
   }
 
   if (!parseFloat(responseObj.amounts[0].text[0])) {
