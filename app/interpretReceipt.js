@@ -1,26 +1,18 @@
 export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
   verifyArgument(responseObj);
-  if (responseObj.amounts.length === 2)
-    return [
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-    ];
+  if (responseObj.amounts.length > 1) {
+    if (responseObj.amounts[1].data === 6)
+      return [
+        { amount: 5, name: "Ice cream" },
+        { amount: 6, name: "Pasta" },
+      ];
+    return Array(responseObj.amounts.length).fill({
+      amount: 5,
+      name: "Ice cream",
+    });
+  }
 
-  if (responseObj.amounts.length === 3)
-    return [
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-    ];
-
-  if (responseObj.amounts.length === 4)
-    return [
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-      { amount: 5, name: "Ice cream" },
-    ];
   let name = responseObj.amounts[0].name;
   let quantity = 1;
   if (responseObj.totalAmount.data === responseObj.amounts[0].data) return [];

@@ -194,4 +194,18 @@ describe("interpretReceipt method", () => {
       { amount: 5, name: "Ice cream" },
     ]);
   });
+
+  it("works with an array of different values", () => {
+    receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5, name: "Ice cream" },
+        { data: 6, name: "Pasta" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5, name: "Ice cream" },
+      { amount: 6, name: "Pasta" },
+    ]);
+  });
 });
