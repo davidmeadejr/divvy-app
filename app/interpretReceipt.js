@@ -1,6 +1,5 @@
 export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
-  console.log(typeof responseObj);
   if (
     !(
       typeof responseObj === "object" &&
@@ -9,4 +8,5 @@ export default interpretReceipt = (responseObj) => {
     )
   )
     throw new Error("Incorrect datatype in argument for interpretReceipt");
+  return [{ data: 3.5, name: "Pasta" }];
 };

@@ -29,4 +29,10 @@ describe("interpretReceipt method", () => {
       new Error("Incorrect datatype in argument for interpretReceipt")
     );
   });
+
+  it("returns an object with name and amount that fit criteria", () => {
+    expect(
+      interpretReceipt({ data: { amounts: [{ data: 3.5, name: "Pasta" }] } })
+    ).toEqual([{ data: 3.5, name: "Pasta" }]);
+  });
 });
