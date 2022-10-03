@@ -74,4 +74,13 @@ describe("interpretReceipt method", () => {
       { amount: 8, name: "Burger" },
     ]);
   });
+
+  it("strips the quantity from the name", () => {
+    const receiptData = {
+      data: { amounts: [{ data: 8, name: "3x Burger" }] },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 8, name: "Burger" },
+    ]);
+  });
 });
