@@ -242,4 +242,50 @@ describe("interpretReceipt method", () => {
       { amount: 8, name: "Steak" },
     ]);
   });
+
+  it("changes the values of an array of 2", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5.75, text: "Chips 5.75" },
+        { data: 5.75, text: "Chips 5.75" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5.75, name: "Chips" },
+      { amount: 5.75, name: "Chips" },
+    ]);
+  });
+
+  it("changes the values of an array of 3", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5.5, text: "Pizza 5.50" },
+        { data: 5.5, text: "Pizza 5.50" },
+        { data: 5.5, text: "Pizza 5.50" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5.5, name: "Pizza" },
+      { amount: 5.5, name: "Pizza" },
+      { amount: 5.5, name: "Pizza" },
+    ]);
+  });
+
+  it("changes the values of an array of 4", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        { data: 5, text: "Ice Cream 5.00" },
+        { data: 5, text: "Ice Cream 5.00" },
+        { data: 5, text: "Ice Cream 5.00" },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5, name: "Ice Cream" },
+      { amount: 5, name: "Ice Cream" },
+      { amount: 5, name: "Ice Cream" },
+    ]);
+  });
 });
