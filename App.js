@@ -1,24 +1,33 @@
 import { StatusBar } from "expo-status-bar";
 // Imports that allow you to use "react" and "react-natives" features.
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { RealmProvider } from "./app/createRealmContext";
-
-// Components that have been imported.
-import Items from "./app/components/items";
-import Users from "./app/components/users";
+import MealScreen from "./app/components/mealScreen";
+import SelectMealSplash from "./app/components/selectMealSplash";
 
 // The main component which acts as a container for all other components within the the codebase.
 const App = () => {
-  const [selectedFriends, setSelectedFriends] = useState([]);
+  const [selectedMeal, setSelectedMeal] = useState();
 
-  return (
-    <View style={styles.container}>
-      <Items selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
-      <Users selectedFriends={selectedFriends} setSelectedFriends={setSelectedFriends} />
-      <StatusBar style="auto" />
-    </View>
-  );
+  const mainRender = () => {
+    if (!selectedMeal) {
+      return (
+        <SelectMealSplash
+          selectedMeal={selectedMeal}
+          setSelectedMeal={setSelectedMeal}
+        />
+      );
+    }
+    return (
+      <MealScreen
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+      />
+    );
+  };
+
+  return mainRender();
 };
 
 export default function AppWrapper() {

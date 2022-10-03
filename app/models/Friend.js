@@ -11,6 +11,16 @@ export class Friend {
     properties: {
       name: "string",
       _id: "objectId",
+      items: {
+        type: "linkingObjects",
+        objectType: "Item",
+        property: "friends",
+      },
+      meal: {
+        type: "linkingObjects",
+        objectType: "Meal",
+        property: "friends",
+      },
     },
   };
 }
