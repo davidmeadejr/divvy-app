@@ -35,4 +35,10 @@ describe("interpretReceipt method", () => {
       interpretReceipt({ data: { amounts: [{ data: 3.5, name: "Pasta" }] } })
     ).toEqual([{ data: 3.5, name: "Pasta" }]);
   });
+
+  it("returns an object with name and amount that fit criteria", () => {
+    expect(
+      interpretReceipt({ data: { amounts: [{ data: 6, name: "Ice cream," }] } })
+    ).toEqual([{ data: 6, name: "Ice cream" }]);
+  });
 });
