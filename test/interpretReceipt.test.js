@@ -75,12 +75,21 @@ describe("interpretReceipt method", () => {
     ]);
   });
 
-  it("strips the quantity from the name", () => {
+  it("strips the quantity from the name 3x Burger", () => {
     const receiptData = {
       data: { amounts: [{ data: 8, name: "3x Burger" }] },
     };
     expect(interpretReceipt(receiptData)).toEqual([
       { amount: 8, name: "Burger" },
+    ]);
+  });
+
+  it("strips the quantity from the name 2x Chips", () => {
+    const receiptData = {
+      data: { amounts: [{ data: 8, name: "2x Chips" }] },
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 8, name: "Chips" },
     ]);
   });
 });

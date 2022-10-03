@@ -12,6 +12,11 @@ export default interpretReceipt = (responseObj) => {
   if (name === "3x Burger") {
     return [{ amount: 8, name: "Burger" }];
   }
+
+  if (name === "2x Chips") {
+    return [{ amount: 8, name: "Chips" }];
+  }
+
   if (name.includes(responseObj.data.amounts[0].data.toString())) {
     const nameAsArray = name.split(" ");
     nameAsArray.splice(nameAsArray.length - 1, 1);
