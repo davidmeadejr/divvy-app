@@ -1,29 +1,22 @@
 import React, { useState } from "react";
-import {
-  View,
-  Button,
-  Modal,
-  Text,
-  Pressable,
-  TextInput,
-  Alert,
-  FlatList,
-  Image,
-} from "react-native";
+import { View, Button, Text, Pressable, Alert, FlatList } from "react-native";
 import { useRealm, useQuery } from "../createRealmContext";
 import { Meal } from "../models/Meal";
 
-export default SelectMealSplash = ({ selectedMeal, setSelectedMeal }) => {
-  // const [selectedMeal, setSelectedMeal] = useState();
-
+export default SelectMealSplash = ({
+  selectedMeal,
+  setSelectedMeal,
+  setCreateNewMeal,
+}) => {
   const realm = useRealm();
   const result = useQuery("Meal");
   const handleButtonPress = () => {
     try {
-      realm.write(() => {
-        const meal = realm.create("Meal", new Meal({}));
-        setSelectedMeal(meal);
-      });
+      // realm.write(() => {
+      //   const meal = realm.create("Meal", new Meal({}));
+      //   // setSelectedMeal(meal);
+      // });
+      setCreateNewMeal(true);
     } catch {
       Alert.alert("There was an issue creating a new meal");
     }
