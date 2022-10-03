@@ -280,9 +280,11 @@ describe("interpretReceipt method", () => {
         { data: 5, text: "Ice Cream 5.00" },
         { data: 5, text: "Ice Cream 5.00" },
         { data: 5, text: "Ice Cream 5.00" },
+        { data: 5, text: "Ice Cream 5.00" },
       ],
     };
     expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 5, name: "Ice Cream" },
       { amount: 5, name: "Ice Cream" },
       { amount: 5, name: "Ice Cream" },
       { amount: 5, name: "Ice Cream" },
