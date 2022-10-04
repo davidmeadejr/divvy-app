@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   Modal,
   Pressable,
   ScrollView,
@@ -12,7 +11,7 @@ import {
 } from "react-native";
 import styles from "../common/styles";
 import { Friend } from "../models/Friend";
-import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
+import { useRealm } from "../createRealmContext";
 
 const friendColours = [
   "#e6194B",
@@ -51,7 +50,7 @@ export default AddFriendModal = ({
   // Creates a new entry in the friend collection.
 
   const addFriendToRealm = (name) => {
-    if (!realm.objects("Friend").filtered("name == $0", name).length) {
+    if (!selectedMeal.friends.some((friend) => friend.name === name)) {
       realm.write(() => {
         const friend = realm.create("Friend", new Friend({ name: name }));
         selectedMeal.friends.push(friend);
@@ -194,5 +193,3 @@ export default AddFriendModal = ({
     </View>
   );
 };
-
-// export default AddFriendModal;
