@@ -7,6 +7,7 @@ export default AddServiceCharge = ({
   tipModalVisible,
   setTipModalVisible,
   selectedMeal,
+  setSelectedMeal,
 }) => {
   const realm = useRealm();
   const [tip, setTip] = useState("");
@@ -20,6 +21,7 @@ export default AddServiceCharge = ({
     } else {
       realm.write(() => {
         selectedMeal.tipAmount = tipFloat;
+        setSelectedMeal(selectedMeal);
       });
       setTipModalVisible(false);
     }

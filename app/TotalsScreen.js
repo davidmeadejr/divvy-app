@@ -24,22 +24,55 @@ export default TotalsScreen = ({ navigation, route }) => {
     });
   };
 
+  const getZeroOrAmountAsPercentage = (amountType) => {
+    return !selectedMeal[amountType] ? "0%" : selectedMeal[amountType] + "%";
+  };
+
   return (
     <View style={styles.container}>
       <Button title="<- Items" onPress={handleItemsButtonPress} />
-      <Button
-        title="Service Charge"
-        onPress={() => setServiceChargeModalVisible(true)}
-      />
-      <Button title="Tip" onPress={() => setTipModalVisible(true)} />
+
       <Totals selectedMeal={selectedMeal} />
+      <View>
+        <Button
+          title="Service Charge"
+          onPress={() => setServiceChargeModalVisible(true)}
+        />
+        <Text>{selectedMeal.serivceChargeAmount + "%"}</Text>
+      </View>
+      <View>
+        <Button title="Tip" onPress={() => setTipModalVisible(true)} />
+        <Text>{selectedMeal.tipAmount + "%"}</Text>
+      </View>
+      <View>
+        <Button
+          title="Discount"
+          onPress={() => {
+            // discount modal doesn't exist yet
+          }}
+        />
+        <Text>0%</Text>
+      </View>
+      <View>
+        <Button
+          title="Tax"
+          onPress={() => {
+            // tax modal doens't exist yet
+          }}
+        />
+        <Text>0%</Text>
+      </View>
       <AddServiceCharge
         serviceChargeModalVisible={serviceChargeModalVisible}
         setServiceChargeModalVisible={setServiceChargeModalVisible}
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
       />
       <AddTip
         tipModalVisible={tipModalVisible}
         setTipModalVisible={setTipModalVisible}
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
       />
     </View>
   );
