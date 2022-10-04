@@ -40,7 +40,7 @@ export default AddServiceCharge = ({
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
               placeholder="10"
-              onChangeText={(amount) => setTip(amount)}
+              onChangeText={setTip}
             />
             <View style={styles.modalButtonContainer}>
               <Pressable

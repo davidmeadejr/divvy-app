@@ -329,7 +329,9 @@ const MealScreen = ({ navigation, route }) => {
       />
       <Button
         title="Totals ->"
-        onPress={() => navigation.navigate("Totals Screen")}
+        onPress={() =>
+          navigation.navigate("Totals Screen", { selectedMeal: selectedMeal })
+        }
       />
       <Users
         selectedMeal={selectedMeal}
