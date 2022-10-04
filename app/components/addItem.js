@@ -3,7 +3,8 @@ import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
 import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
 import styles from "../common/styles";
-export default AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
+
+const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
   const [itemName, setItemName] = useState("");
   const [itemAmount, setItemAmount] = useState("");
 
@@ -81,3 +82,5 @@ export default AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal 
     </View>
   );
 };
+
+export default AddItem;

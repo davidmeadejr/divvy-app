@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 // Imports that allow you to use "react" and "react-natives" features.
 import { Pressable, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RealmProvider } from "./app/createRealmContext";
 // import MealScreen from "./app/components/mealScreen";
 import SelectMealSplash from "./app/components/selectMealSplash";
 
 import UploadReceipt from "./app/components/uploadReceipt";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Image, ImageBackground, Button, TouchableHighlight } from "react-native";
 import addItem from "./app/components/addItem";
@@ -15,7 +15,11 @@ import addItem from "./app/components/addItem";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import uploadReceipt from "./app/components/uploadReceipt";
 import AddItem from "./app/components/addItem";
-// import UploadPicture from "./app/components/uploadPicture";
+import Items from "./app/components/items";
+import { useRealm } from "./app/createRealmContext";
+import { Meal } from "./app/models/Meal";
+import styles from "./app/common/styles";
+import Users from "./app/components/users";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -71,12 +75,13 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const CameraScreen = ({ navigation }) => {
-  const [selectedMeal, setSelectedMeal] = useState();
+const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) => {
+  // const [selectedMeal, setSelectedMeal] = useState();
   const [createNewMeal, setCreateNewMeal] = useState(false);
 
   const [imageSource, setImageSource] = useState();
   const [imageObj, setImageObj] = useState();
+  const realm = useRealm();
 
   return (
     // <>
@@ -130,9 +135,16 @@ const CameraScreen = ({ navigation }) => {
               paddingRight: 20,
               marginBottom: 30,
             }}
-            onPress={() => navigation.navigate("Meal Screen")}
+            onPress={() => {
+              let newMeal;
+              realm.write(() => {
+                console.log("creating new meal");
+                newMeal = realm.create("Meal", new Meal({}));
+              });
+              navigation.navigate("Meal Screen", { selectedMeal: newMeal });
+            }}
           >
-            Add ✨
+            Create ✨
           </Text>
         </TouchableHighlight>
         <TouchableHighlight
@@ -271,62 +283,22 @@ const SavePhotoScreen = ({ navigation }) => {
   );
 };
 
-// const UploadPhoto = () => {
-//   return <UploadPicture />;
-// };
-
-const MealScreen = () => {
-  // const [selectedMeal, setSelectedMeal] = useState();
-  // const [createNewMeal, setCreateNewMeal] = useState(false);
-
-  // const mainRender = () => {
-  //   if (!selectedMeal && !createNewMeal) {
-  //     return (
-  //       <SelectMealSplash
-  //         selectedMeal={selectedMeal}
-  //         setSelectedMeal={setSelectedMeal}
-  //         createNewMeal={createNewMeal}
-  //         setCreateNewMeal={setCreateNewMeal}
-  //       />
-  //     );
-  //   } else if (!selectedMeal && createNewMeal) {
-  //     return <UploadReceipt setCreateNewMeal={setCreateNewMeal} setSelectedMeal={setSelectedMeal} />;
-  //   } else {
-  //     return <MealScreen selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} />;
-  //   }
-  // };
-
-  // return mainRender();
-
-  return <SelectMealSplash />;
+const MealScreen = ({ navigation, route }) => {
+  const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
+  const [selectedFriend, setSelectedFriend] = useState();
+  return (
+    <View style={styles.container}>
+      <Items selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} selectedFriend={selectedFriend} />
+      <Users selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} setSelectedFriend={setSelectedFriend} />
+      {/* <Users /> */}
+    </View>
+  );
 };
 
 const Stack = createNativeStackNavigator();
 
 // The main component which acts as a container for all other components within the the codebase.
 const App = () => {
-  // const [selectedMeal, setSelectedMeal] = useState();
-  // const [createNewMeal, setCreateNewMeal] = useState(false);
-
-  // const mainRender = () => {
-  //   if (!selectedMeal && !createNewMeal) {
-  //     return (
-  //       <SelectMealSplash
-  //         selectedMeal={selectedMeal}
-  //         setSelectedMeal={setSelectedMeal}
-  //         createNewMeal={createNewMeal}
-  //         setCreateNewMeal={setCreateNewMeal}
-  //       />
-  //     );
-  //   } else if (!selectedMeal && createNewMeal) {
-  //     return <UploadReceipt setCreateNewMeal={setCreateNewMeal} setSelectedMeal={setSelectedMeal} />;
-  //   } else {
-  //     return <MealScreen selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} />;
-  //   }
-  // };
-
-  // return mainRender();
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -347,13 +319,3 @@ export default function AppWrapper() {
     </RealmProvider>
   );
 }
-// CSS styling for the App component.
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     marginTop: 50,
-//     marginRight: 16,
-//     marginBottom: 16,
-//     marginLeft: 16,
-// }
