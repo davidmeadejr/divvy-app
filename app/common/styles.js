@@ -73,4 +73,12 @@ export default styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
   },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    marginTop: 50,
+    marginRight: 16,
+    marginBottom: 16,
+    marginLeft: 16,
+  },
 });

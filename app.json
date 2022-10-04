@@ -1,14 +1,15 @@
 {
   "expo": {
-    "name": "awesomeproject",
-    "slug": "awesomeproject",
+    "name": "Divvy",
+    "slug": "Divvy",
     "version": "1.0.0",
     "sdkVersion": "46.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#4B23F3"
+    },
     "ios": {
       "bundleIdentifier": "i"
     },

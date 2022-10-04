@@ -1,16 +1,13 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import AddFriendModal from "./addFriendModal";
+// import styles from "../common/styles";
 
 // The Users component which is parent component of the AddFriendModal component.
-const Users = ({
-  selectedFriend,
-  setSelectedFriend,
-  selectedMeal,
-  setSelectedMeal,
-}) => {
+export default Users = ({ selectedFriend, setSelectedFriend, selectedMeal, setSelectedMeal }) => {
   return (
     <View style={styles.container}>
+      {/* <Text>hello world</Text> */}
       <AddFriendModal
         setSelectedMeal={setSelectedMeal}
         selectedFriend={selectedFriend}
@@ -32,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Users;
+// export default Users;
