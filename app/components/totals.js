@@ -45,6 +45,14 @@ const Totals = ({ selectedMeal }) => {
     }
   };
 
+  const getIndividualItems = (friend) => {
+    return friend.items
+      .map((item) =>
+        item.friends.length === 1 ? item.name : `${item.name} (shared)`
+      )
+      .join(", ");
+  };
+
   return (
     <View>
       <Text>Subtotal: £{subTotal().toFixed(2)}</Text>
@@ -57,24 +65,13 @@ const Totals = ({ selectedMeal }) => {
               <Text>
                 {item.name} £{getIndividualTotal(item).toFixed(2)}
               </Text>
-              <Text>{item.items.map((i) => i.name).join(", ")}</Text>
+              <Text>{getIndividualItems(item)}</Text>
             </View>
           );
         }}
       />
       {getServiceCharge()}
       {getTip()}
-      {/* <FlatList
-        data={individualTotals()}
-        renderItem={({ item }) => {
-          return (
-            <Text>
-              {item.name} £{item.amount.toFixed(2)}
-            </Text>
-          );
-        }}
-        keyExtractor={(item) => item.id}
-      /> */}
       <Text>Total: £{getTotal(subTotal()).toFixed(2)}</Text>
     </View>
   );

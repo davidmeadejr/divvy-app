@@ -11,12 +11,14 @@ import styles from "./common/styles";
 import Totals from "./components/totals";
 import AddServiceCharge from "./components/addServiceCharge";
 import AddTip from "./components/addTip";
+import ValueModal from "./components/valueModal";
 
 export default TotalsScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
   const [serviceChargeModalVisible, setServiceChargeModalVisible] =
     useState(false);
   const [tipModalVisible, setTipModalVisible] = useState(false);
+  const [discountModalVisible, setDiscountModalVisible] = useState(false);
 
   const handleItemsButtonPress = () => {
     navigation.navigate("Meal Screen", {
@@ -48,7 +50,7 @@ export default TotalsScreen = ({ navigation, route }) => {
         <Button
           title="Discount"
           onPress={() => {
-            // discount modal doesn't exist yet
+            setDiscountModalVisible(true);
           }}
         />
         <Text>0%</Text>
@@ -62,17 +64,29 @@ export default TotalsScreen = ({ navigation, route }) => {
         />
         <Text>0%</Text>
       </View>
-      <AddServiceCharge
-        serviceChargeModalVisible={serviceChargeModalVisible}
-        setServiceChargeModalVisible={setServiceChargeModalVisible}
+      {/* service charge value modal */}
+      <ValueModal
+        valueModalVisible={serviceChargeModalVisible}
+        setValueModalVisible={setServiceChargeModalVisible}
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
+        modalType={"serviceCharge"}
       />
-      <AddTip
-        tipModalVisible={tipModalVisible}
-        setTipModalVisible={setTipModalVisible}
+      {/* tip value modal */}
+      <ValueModal
+        valueModalVisible={tipModalVisible}
+        setValueModalVisible={setTipModalVisible}
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
+        modalType={"tip"}
+      />
+      {/* discount value modal */}
+      <ValueModal
+        valueModalVisible={discountModalVisible}
+        setValueModalVisible={setDiscountModalVisible}
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+        modalType={"discount"}
       />
     </View>
   );
