@@ -9,7 +9,14 @@ import SelectMealSplash from "./app/components/selectMealSplash";
 import UploadReceipt from "./app/components/uploadReceipt";
 import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Image, ImageBackground, Button, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 import addItem from "./app/components/addItem";
 
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
@@ -20,6 +27,7 @@ import { useRealm } from "./app/createRealmContext";
 import { Meal } from "./app/models/Meal";
 import styles from "./app/common/styles";
 import Users from "./app/components/users";
+import TotalsScreen from "./app/TotalsScreen";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -31,9 +39,17 @@ const HomeScreen = ({ navigation }) => {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Image
           source={require("./assets/adaptive-icon.png")}
-          style={{ width: 350, height: 350, backgroundColor: "rgb(75,35,243,0.3)", marginTop: -320 }}
+          style={{
+            width: 350,
+            height: 350,
+            backgroundColor: "rgb(75,35,243,0.3)",
+            marginTop: -320,
+          }}
         />
-        <TouchableHighlight style={{ marginBottom: 32 }} onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableHighlight
+          style={{ marginBottom: 32 }}
+          onPress={() => navigation.navigate("Camera Screen")}
+        >
           <Text
             style={{
               fontSize: 32,
@@ -75,7 +91,12 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) => {
+const CameraScreen = ({
+  navigation,
+  selectedMeal,
+  setSelectedMeal,
+  testVar,
+}) => {
   // const [selectedMeal, setSelectedMeal] = useState();
   const [createNewMeal, setCreateNewMeal] = useState(false);
 
@@ -201,7 +222,9 @@ const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) =>
           </Text>
         </TouchableHighlight>
         {/* <View style={{ flex: 0, alignItems: "center", padding: 16, backgroundColor: "#333" }}> */}
-        <TouchableHighlight onPress={() => navigation.navigate("Save Photo Screen")}>
+        <TouchableHighlight
+          onPress={() => navigation.navigate("Save Photo Screen")}
+        >
           <Text
             style={{
               fontSize: 32,
@@ -241,7 +264,9 @@ const SavePhotoScreen = ({ navigation }) => {
           paddingRight: 16,
         }}
       >
-        <TouchableHighlight onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableHighlight
+          onPress={() => navigation.navigate("Camera Screen")}
+        >
           <Text
             style={{
               fontSize: 20,
@@ -258,7 +283,9 @@ const SavePhotoScreen = ({ navigation }) => {
             ⬅ Retake
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableHighlight
+          onPress={() => navigation.navigate("Camera Screen")}
+        >
           <Text
             style={{
               fontSize: 20,
@@ -276,7 +303,14 @@ const SavePhotoScreen = ({ navigation }) => {
           </Text>
         </TouchableHighlight>
       </View>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#333" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#333",
+        }}
+      >
         <Text style={{ color: "#fff" }}>"Itemised Receipt functionality"</Text>
       </View>
     </>
@@ -288,7 +322,15 @@ const MealScreen = ({ navigation, route }) => {
   const [selectedFriend, setSelectedFriend] = useState();
   return (
     <View style={styles.container}>
-      <Items selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} selectedFriend={selectedFriend} />
+      <Items
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+        selectedFriend={selectedFriend}
+      />
+      <Button
+        title="Totals ->"
+        onPress={() => navigation.navigate("Totals Screen")}
+      />
       <Users
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
@@ -307,10 +349,31 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="🏠" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Camera Screen" component={CameraScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Save Photo Screen" component={SavePhotoScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Meal Screen" component={MealScreen} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="🏠"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Camera Screen"
+          component={CameraScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Save Photo Screen"
+          component={SavePhotoScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Meal Screen"
+          component={MealScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Totals Screen"
+          component={TotalsScreen}
+          options={{ headerShown: false }}
+        />
         {/* <Stack.Screen name="Upload Photo" component={UploadPhoto} options={{ headerShown: false }} /> */}
       </Stack.Navigator>
     </NavigationContainer>
