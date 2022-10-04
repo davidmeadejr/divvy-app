@@ -3,11 +3,7 @@ import { View, Button, Text, Pressable, Alert, FlatList } from "react-native";
 import { useRealm, useQuery } from "../createRealmContext";
 import { Meal } from "../models/Meal";
 
-export default SelectMealSplash = ({
-  selectedMeal,
-  setSelectedMeal,
-  setCreateNewMeal,
-}) => {
+export default SelectMealSplash = ({ selectedMeal, setSelectedMeal, setCreateNewMeal }) => {
   const realm = useRealm();
   const result = useQuery("Meal");
   const handleButtonPress = () => {
@@ -38,19 +34,13 @@ export default SelectMealSplash = ({
       }}
     >
       <Text>Select your meal!</Text>
-      <Button
-        title="Create new meal"
-        onPress={() => handleButtonPress()}
-      ></Button>
+      <Button title="Create new meal" onPress={() => handleButtonPress()}></Button>
 
       <FlatList
         data={result}
         renderItem={({ item }) => {
           return (
-            <Pressable
-              style={{ padding: 5 }}
-              onPress={() => handleItemPress(item)}
-            >
+            <Pressable style={{ padding: 5 }} onPress={() => handleItemPress(item)}>
               <Text>Meal at {new Date(item.createdAt).toUTCString()}</Text>
             </Pressable>
           );
