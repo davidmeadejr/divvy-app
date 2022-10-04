@@ -1,12 +1,16 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Image } from "react-native";
+import { View, ImageBackground, Text } from "react-native";
+import { Pressable } from "react-native";
+import React from "react";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button title="Next Screen" onPress={() => navigation.navigate("Details")} />
+      <ImageBackground
+        source={"./assets/background-image.png"}
+        resizeMode="cover"
+        style={styles.image}
+      ></ImageBackground>
+      <Text>Hi</Text>
     </View>
   );
 };

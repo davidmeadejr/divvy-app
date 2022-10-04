@@ -8,17 +8,13 @@ import SelectMealSplash from "./app/components/selectMealSplash";
 import UploadReceipt from "./app/components/uploadReceipt";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ImageBackground } from "react-native";
 
-const SplashScreen = () => {
+const SplashScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#4B23F3" }}>
-      <Pressable>
-        <Image
-          source={require("./assets/icon.png")}
-          style={{ width: 250, height: 250 }}
-          onPress={() => navigation.navigate("🏠")}
-        />
+      <Pressable onPress={() => navigation.navigate("🏠")}>
+        <Image source={require("./assets/icon.png")} style={{ width: 200, height: 200 }} />
       </Pressable>
     </View>
   );
@@ -26,10 +22,15 @@ const SplashScreen = () => {
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      {/* <Button title="Next Screen" onPress={() => navigation.navigate("Details")} /> */}
-    </View>
+    <ImageBackground
+      source={require("./assets/background-image.png")}
+      resizeMode={"cover"}
+      style={{ flex: 1, width: "100%", height: "100%" }}
+    >
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Text>Hi</Text>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -62,6 +63,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* <Stack.Screen name="➗" component={SplashScreen} />
+        <Stack.Screen name="🏠" component={HomeScreen} /> */}
         <Stack.Screen name="➗" component={SplashScreen} />
         <Stack.Screen name="🏠" component={HomeScreen} />
       </Stack.Navigator>
