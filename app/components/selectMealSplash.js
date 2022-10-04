@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Button, Text, Pressable, Alert, FlatList } from "react-native";
 import { useRealm, useQuery } from "../createRealmContext";
 import { Meal } from "../models/Meal";
+import AddItem from "./addItem";
 
 export default SelectMealSplash = ({ selectedMeal, setSelectedMeal, setCreateNewMeal }) => {
   const realm = useRealm();
@@ -10,9 +11,10 @@ export default SelectMealSplash = ({ selectedMeal, setSelectedMeal, setCreateNew
     try {
       // realm.write(() => {
       //   const meal = realm.create("Meal", new Meal({}));
-      //   // setSelectedMeal(meal);
+      //   setSelectedMeal(meal);
       // });
       setCreateNewMeal(true);
+      return <AddItem />;
     } catch {
       Alert.alert("There was an issue creating a new meal");
     }
