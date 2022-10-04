@@ -361,4 +361,37 @@ describe("interpretReceipt method", () => {
       { amount: 7, name: "Pizza" },
     ]);
   });
+
+  it("removes both sets of data from duplicate if data for duplicates is different", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        {
+          data: 1.75,
+          text: "2x CHIPS / ONION RINGS 1.75 3.50",
+        },
+        {
+          data: 3.5,
+          text: "2x CHIPS / ONION RINGS 1.75 3.50",
+        },
+      ],
+    };
+    expect(interpretReceipt(receiptData)).toEqual([
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+    ]);
+  });
+
+  it("returns the desired result from the example response", () => {
+    const result = [
+      { amount: 3.95, name: "SOUP" },
+      { amount: 3.95, name: "SOUP" },
+      { amount: 3.95, name: "SOUP" },
+      { amount: 6.95, name: "Lasagne (V)" },
+      { amount: 6.95, name: "MISC FOOD" },
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+    ];
+    expect(interpretReceipt(exampleTaggunResponse.data)).toEqual(result);
+  });
 });

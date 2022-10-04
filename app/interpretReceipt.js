@@ -1,19 +1,20 @@
 export default interpretReceipt = (responseObj) => {
   if (!responseObj) return [];
   verifyArgumentIsObject(responseObj);
-  let filteredArray = filterArrayForInvalidEntries(responseObj);
-  filteredArray = duplicateArrayForQuantity(filteredArray);
+  let filteredArray = removeInvalidEntriesFromArray(responseObj);
+  filteredArray = duplicateEntriesInArrayForQuantity(filteredArray);
   return filteredArray.map(iterateThroughArray);
 };
 
-const iterateThroughArray = (item, idx, filteredArray) => {
-  let itemName = item.text;
-  itemName = itemName.replace(/^[0-9]x/gi, "").trim();
-  if (itemName.includes(filteredArray[0].data.toString())) {
-    const nameAsArray = itemName.split(" ");
-    nameAsArray.splice(nameAsArray.length - 1, 1);
-    itemName = nameAsArray.join(" ");
-  }
+const iterateThroughArray = (item) => {
+  const itemName = item.text
+    // removes case insensitive quantities at the beginning of the name
+    // eg. 2x, 14x, 5X
+    .replace(/^[0-9]x/gi, "")
+    // removes item amount from the item name
+    .replace(new RegExp(item.data.toFixed(2)), "")
+    .replace(/[\d\.]+$/gi, "")
+    .trim();
   return { amount: item.data, name: itemName };
 };
 
@@ -28,7 +29,7 @@ const verifyArgumentIsObject = (responseObj) => {
     throw new Error("Incorrect datatype in argument for interpretReceipt");
 };
 
-const filterArrayForInvalidEntries = (responseObj) => {
+const removeInvalidEntriesFromArray = (responseObj) => {
   const filteredArray = [];
   const filteredArrayText = [];
   responseObj.amounts.forEach((item) => {
@@ -45,7 +46,7 @@ const filterArrayForInvalidEntries = (responseObj) => {
   return filteredArray;
 };
 
-const duplicateArrayForQuantity = (filteredArray) => {
+const duplicateEntriesInArrayForQuantity = (filteredArray) => {
   const newArray = [];
   filteredArray.forEach((item) => {
     let pushTimes = 1;
