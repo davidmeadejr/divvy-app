@@ -10,20 +10,10 @@ const Totals = ({ selectedMeal }) => {
       .map((amount) => roundToTwo((subtotal * amount) / 100))
       .reduce((a, b) => a + b, 0);
 
-  const individualTotalsObj = (friend) => {
-    const friendSubTotal = friend.items
+  const getIndividualTotal = (friend) => {
+    return friend.items
       .map((item) => roundToTwo(item.amount / item.friends.length))
       .reduce((a, b) => a + b, 0);
-    return {
-      name: friend.name,
-      id: friend._id.toString(),
-      amount: getTotal(friendSubTotal),
-    };
-  };
-  const individualTotals = () => {
-    return useQuery("Friend")
-      .filtered("meal._id == $0", selectedMeal._id)
-      .map(individualTotalsObj);
   };
 
   const subTotal = () => {
@@ -35,29 +25,46 @@ const Totals = ({ selectedMeal }) => {
   const getTotal = (amount) => {
     return amount + addedCharge(amount);
   };
-  const serviceCharge = () => {
-    if (selectedMeal.serivceChargeAmount) {
-      return (
-        <Text>
-          Service charge: £
-          {((subTotal() * selectedMeal.serivceChargeAmount) / 100).toFixed(2)}
-        </Text>
-      );
-    }
+
+  const getServiceCharge = () => {
+    if (selectedMeal.serivceChargeAmount)
+      <Text>{`Service charge: £${(
+        (subTotal() * selectedMeal.serivceChargeAmount) /
+        100
+      ).toFixed(2)}`}</Text>;
   };
 
-  const tip = () => {
+  const getTip = () => {
     if (selectedMeal.tipAmount) {
-      return <Text>Tip: {selectedMeal.tipAmount}%</Text>;
+      return (
+        <Text>{`Service charge: £${(
+          (subTotal() * selectedMeal.tipAmount) /
+          100
+        ).toFixed(2)}`}</Text>
+      );
     }
   };
 
   return (
     <View>
       <Text>Subtotal: £{subTotal().toFixed(2)}</Text>
-      {serviceCharge()}
-      {tip()}
       <FlatList
+        data={selectedMeal.friends}
+        renderItem={({ item }) => {
+          console.log(item);
+          return (
+            <View>
+              <Text>
+                {item.name} £{getIndividualTotal(item).toFixed(2)}
+              </Text>
+              <Text>{item.items.map((i) => i.name).join(", ")}</Text>
+            </View>
+          );
+        }}
+      />
+      {getServiceCharge()}
+      {getTip()}
+      {/* <FlatList
         data={individualTotals()}
         renderItem={({ item }) => {
           return (
@@ -67,7 +74,7 @@ const Totals = ({ selectedMeal }) => {
           );
         }}
         keyExtractor={(item) => item.id}
-      />
+      /> */}
       <Text>Total: £{getTotal(subTotal()).toFixed(2)}</Text>
     </View>
   );
