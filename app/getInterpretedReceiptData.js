@@ -51,11 +51,11 @@ const removeInvalidEntriesFromArray = (responseObj) => {
 };
 
 const duplicateEntriesInArrayForQuantity = (filteredArray) => {
-  const newArray = [];
+  let newArray = [];
   filteredArray.forEach((item) => {
-    const quantity = parseInt(item.text.match(/^[0-9]/gi));
-    for (let i = 0; i < (isNaN(quantity) ? 1 : quantity); i++)
-      newArray.push(item);
+    let quantity = parseInt(item.text.match(/^[0-9]/gi));
+    quantity = isNaN(quantity) ? 1 : quantity;
+    newArray = [...newArray, ...Array(quantity).fill(item)];
   });
   return newArray;
 };
