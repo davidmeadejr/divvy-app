@@ -289,7 +289,12 @@ const MealScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <Items selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} selectedFriend={selectedFriend} />
-      <Users selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} setSelectedFriend={setSelectedFriend} />
+      <Users
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+        selectedFriend={selectedFriend}
+        setSelectedFriend={setSelectedFriend}
+      />
       {/* <Users /> */}
     </View>
   );
