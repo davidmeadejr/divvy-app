@@ -1,17 +1,18 @@
 import React from "react";
 import { Text, View, FlatList } from "react-native";
-import { useRealm, useQuery } from "../createRealmContext";
-import { Realm } from "@realm/react";
+import { useQuery } from "../createRealmContext";
 
 const Totals = ({ selectedMeal }) => {
+  const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
+
   const addedCharge = (subtotal) =>
     [selectedMeal.serivceChargeAmount, selectedMeal.tipAmount]
-      .map((amount) => (subtotal * amount) / 100)
+      .map((amount) => roundToTwo((subtotal * amount) / 100))
       .reduce((a, b) => a + b, 0);
 
   const individualTotalsObj = (friend) => {
     const friendSubTotal = friend.items
-      .map((item) => item.amount / item.friends.length)
+      .map((item) => roundToTwo(item.amount / item.friends.length))
       .reduce((a, b) => a + b, 0);
     return {
       name: friend.name,
@@ -27,7 +28,7 @@ const Totals = ({ selectedMeal }) => {
 
   const subTotal = () => {
     return selectedMeal.items
-      .map((item) => item.amount)
+      .map((item) => roundToTwo(item.amount))
       .reduce((a, b) => a + b, 0);
   };
 

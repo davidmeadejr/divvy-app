@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
 import { Meal } from "../models/Meal";
+import getInterpretedReceiptData from "../getInterpretedReceiptData";
 // The main component which acts as a container for all other components within the the codebase.
 export default UploadReceipt = ({ setCreateNewMeal, setSelectedMeal }) => {
   const [imageSource, setImageSource] = useState();
@@ -64,19 +65,15 @@ export default UploadReceipt = ({ setCreateNewMeal, setSelectedMeal }) => {
   };
 
   const createMealFromTaggunResponse = () => {
-    let newMeal;
     realm.write(() => {
-      newMeal = realm.create("Meal", new Meal({}));
-      taggunResponse.data.amounts.forEach((item) => {
-        const newItem = realm.create(
-          "Item",
-          new Item({ name: item.text, amount: item.data })
-        );
+      const newMeal = realm.create("Meal", new Meal({}));
+      getInterpretedReceiptData(taggunResponse.data).forEach((item) => {
+        const newItem = realm.create("Item", new Item(item));
         newMeal.items.push(newItem);
       });
+      setSelectedMeal(newMeal);
+      setCreateNewMeal(false);
     });
-    setSelectedMeal(newMeal);
-    setCreateNewMeal(false);
   };
 
   useEffect(() => {
