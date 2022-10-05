@@ -684,4 +684,16 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 13,
   },
+
+  addFriendEmojiText: {
+    textAlign: "center",
+    marginLeft: 10,
+    fontSize: 32,
+  },
+
+  addFriendEmojiView: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });

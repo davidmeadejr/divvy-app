@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  Pressable,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import React from "react";
+import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import styles from "../common/styles";
 import { useRealm } from "../createRealmContext";
-import WhiteAddImage from "./whiteAddImage";
+import AddFriendButton from "./addFriendButton";
 
 const friendColours = [
   "#e6194B",
@@ -56,38 +50,10 @@ export default AddFriendScrollView = ({
     });
     setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
+
   return (
     <View style={styles.openModalContainer}>
-      <TouchableOpacity
-        style={[
-          styles.button,
-          styles.buttonOpen,
-          styles.addFriendContainer,
-          { marginRight: 10 },
-        ]}
-        onPress={() => setModalVisible(true)}
-      >
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-          i
-        >
-          <WhiteAddImage />
-          <Text
-            style={{
-              textAlign: "center",
-              marginLeft: 10,
-              fontSize: 32,
-            }}
-          >
-            👪
-          </Text>
-        </View>
-        <Text style={styles.addFriendText}>Add Friend</Text>
-      </TouchableOpacity>
+      <AddFriendButton setModalVisible={setModalVisible} />
       <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
