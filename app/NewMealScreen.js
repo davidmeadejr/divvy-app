@@ -41,22 +41,34 @@ export default NewMealScreen = ({ navigation }) => {
         } else if (imageResult.errorCode) {
           console.log(imageResult.errorCode);
         } else {
-          navigation.navigate({ imageResult: imageResult.assets[0] });
-          // const source = {
-          //   uri: "data:image/jpeg;base64," + result.assets[0].base64,
-          // };
-          // setImageObj(
-          //   JSON.stringify({
-          //     image: e.assets[0].base64,
-          //     filename: e.assets[0].fileName,
-          //     contentType: e.assets[0].type,
-          //   })
-          // );
-          // setImageSource(source);
+          const imageSrc = {
+            uri: "data:image/jpeg;base64," + imageResult.assets[0].base64,
+          };
+          const imageTaggunObj = JSON.stringify({
+            image: imageResult.assets[0].base64,
+            filename: imageResult.assets[0].fileName,
+            contentType: imageResult.assets[0].type,
+          });
+
+          navigation.navigate("Save Photo Screen", {
+            imageTaggunObj,
+            imageSrc,
+          });
         }
       }
     );
   };
+  // const source = {
+  //   uri: "data:image/jpeg;base64," + result.assets[0].base64,
+  // };
+  // setImageObj(
+  //   JSON.stringify({
+  //     image: e.assets[0].base64,
+  //     filename: e.assets[0].fileName,
+  //     contentType: e.assets[0].type,
+  //   })
+  // );
+  // setImageSource(source);
 
   return (
     <ImageBackground
