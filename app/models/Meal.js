@@ -9,7 +9,7 @@ export class Meal {
     this.createdAt = new Date().toISOString();
     this.tipAmount = 0;
     this.tipType = "percent";
-    this.serivceChargeAmount = 0;
+    this.serviceChargeAmount = 0;
     this.serviceChargeType = "percent";
     this.discountAmount = 0;
     this.discountType = "percent";
@@ -26,7 +26,7 @@ export class Meal {
       _id: "objectId",
       tipAmount: "float",
       tipType: "string",
-      serivceChargeAmount: "float",
+      serviceChargeAmount: "float",
       serviceChargeType: "string",
       friends: "Friend[]",
       items: "Item[]",

@@ -18,6 +18,12 @@ export default TotalsScreen = ({ navigation, route }) => {
     });
   };
 
+  const getAddedCostAmountOrPercentage = (addedCost) => {
+    if (selectedMeal[`${addedCost}Type`] === "percent")
+      return `${selectedMeal[`${addedCost}Amount`]}%`;
+    return `£${selectedMeal[`${addedCost}Amount`].toFixed(2)}%`;
+  };
+
   return (
     <View style={styles.container}>
       <Button title="<- Items" onPress={handleItemsButtonPress} />
@@ -28,11 +34,11 @@ export default TotalsScreen = ({ navigation, route }) => {
           title="Service Charge"
           onPress={() => setServiceChargeModalVisible(true)}
         />
-        <Text>{selectedMeal.serivceChargeAmount + "%"}</Text>
+        <Text>{getAddedCostAmountOrPercentage("serviceCharge")}</Text>
       </View>
       <View>
         <Button title="Tip" onPress={() => setTipModalVisible(true)} />
-        <Text>{selectedMeal.tipAmount + "%"}</Text>
+        <Text>{getAddedCostAmountOrPercentage("tip")}</Text>
       </View>
       <View>
         <Button
@@ -41,7 +47,7 @@ export default TotalsScreen = ({ navigation, route }) => {
             setDiscountModalVisible(true);
           }}
         />
-        <Text>0%</Text>
+        <Text>{getAddedCostAmountOrPercentage("discount")}</Text>
       </View>
       <View>
         <Button
@@ -50,7 +56,7 @@ export default TotalsScreen = ({ navigation, route }) => {
             setTaxModalVisible(true);
           }}
         />
-        <Text>0%</Text>
+        <Text>{getAddedCostAmountOrPercentage("tax")}</Text>
       </View>
       {/* service charge value modal */}
       <ValueModal

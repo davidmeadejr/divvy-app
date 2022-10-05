@@ -32,6 +32,9 @@ export default ValueModal = ({
     } else if (parseFloat(valueFloat.toFixed(2)) !== valueFloat) {
       Alert.alert("Value can only be up to two decimal places");
     } else {
+      console.log("serviceCharge");
+      console.log(modalType);
+      console.log(selectedMeal[`${modalType}Amount`]);
       realm.write(() => {
         selectedMeal[`${modalType}Amount`] = valueFloat;
         setSelectedMeal(selectedMeal);
@@ -71,6 +74,8 @@ export default ValueModal = ({
     );
   };
 
+  const getModalType = () =>
+    modalType === "serviceCharge" ? "service charge" : modalType;
   return (
     <View
       style={{
@@ -87,7 +92,7 @@ export default ValueModal = ({
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add {modalType} value</Text>
+            <Text style={styles.modalText}>Add {getModalType()} value</Text>
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
               placeholder="10"

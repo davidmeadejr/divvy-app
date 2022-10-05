@@ -5,7 +5,7 @@ export default Totals = ({ selectedMeal }) => {
   const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
 
   const getAddedCharge = (subtotal) =>
-    [selectedMeal.serivceChargeAmount, selectedMeal.tipAmount]
+    [selectedMeal.serviceChargeAmount, selectedMeal.tipAmount]
       .map((amount) => roundToTwo((subtotal * amount) / 100))
       .reduce((a, b) => a + b, 0);
 
