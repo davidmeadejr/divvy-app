@@ -17,6 +17,8 @@ import styles from "./app/common/styles";
 import Users from "./app/components/users";
 import TotalsScreen from "./app/TotalsScreen";
 import SavedMealsScreen from "./app/SavedMealsScreen";
+import NewMealScreen from "./app/NewMealScreen";
+import SavePhotoScreen from "./app/SavePhotoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
         />
         <TouchableOpacity
           style={styles.newMealsButton}
-          onPress={() => navigation.navigate("Camera Screen")}
+          onPress={() => navigation.navigate("New Meal Screen")}
         >
           <Text style={styles.newMealsButtonText}>New Meals 🍽️</Text>
         </TouchableOpacity>
@@ -48,113 +50,6 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </ImageBackground>
-  );
-};
-
-/*
- * Camera Screen Functionality
- */
-const CameraScreen = ({
-  navigation,
-  selectedMeal,
-  setSelectedMeal,
-  testVar,
-}) => {
-  const [createNewMeal, setCreateNewMeal] = useState(false);
-  const [imageSource, setImageSource] = useState();
-  const [imageObj, setImageObj] = useState();
-  const realm = useRealm();
-
-  return (
-    <ImageBackground
-      source={require("./assets/background-image-two.png")}
-      resizeMode={"cover"}
-      style={styles.cameraScreenBackground}
-    >
-      <View style={styles.cameraScreenContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-          <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={styles.createButton}
-            onPress={() => {
-              let newMeal;
-              realm.write(() => {
-                console.log("creating new meal");
-                newMeal = realm.create("Meal", new Meal({}));
-              });
-              navigation.navigate("Meal Screen", { selectedMeal: newMeal });
-            }}
-          >
-            Create ✨
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            launchImageLibrary(
-              {
-                cameraType: "back",
-                mediaType: "photo",
-                saveToPhotos: true,
-                includeBase64: true,
-              },
-              (e) => {
-                if (e.didCancel) {
-                  console.log("cancelled");
-                } else if (e.errorMessage) {
-                  console.log("error: " + e.errorMessage);
-                } else if (e.errorCode) {
-                  console.log(e.errorCode);
-                } else {
-                  const source = {
-                    uri: "data:image/jpeg;base64," + e.assets[0].base64,
-                  };
-                  setImageObj(
-                    JSON.stringify({
-                      image: e.assets[0].base64,
-                      filename: e.assets[0].fileName,
-                      contentType: e.assets[0].type,
-                    })
-                  );
-                  setImageSource(source);
-                }
-              }
-            )
-          }
-        >
-          <Text style={styles.uploadButton}>Upload 📁</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Save Photo Screen")}
-        >
-          <Text style={styles.cameraEmojiButton}>📸</Text>
-        </TouchableOpacity>
-      </View>
-    </ImageBackground>
-  );
-};
-
-/*
- * Save Photo Screen Functionality
- */
-const SavePhotoScreen = ({ navigation }) => {
-  return (
-    <>
-      <View style={styles.savePhotoContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
-          <Text style={styles.retakePhotoButton}>⬅ Retake</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
-          <Text style={styles.usePhotoButton}>Use</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.photoScreenshotContainer}>
-        <Text style={styles.photoScreenshot}>
-          "Itemised Receipt functionality"
-        </Text>
-      </View>
-    </>
   );
 };
 
@@ -200,8 +95,8 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Camera Screen"
-          component={CameraScreen}
+          name="New Meal Screen"
+          component={NewMealScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

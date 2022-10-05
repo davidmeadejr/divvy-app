@@ -24,7 +24,7 @@ export default Items = ({ navigation, selectedFriend, selectedMeal, setSelectedM
   return (
     <View style={styles.itemsContainer}>
       <View style={styles.mealHeader}>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
           <Text style={styles.mealScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Totals Screen", { selectedMeal: selectedMeal })}>
