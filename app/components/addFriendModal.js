@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   Modal,
   Pressable,
   ScrollView,
@@ -12,7 +11,7 @@ import {
 } from "react-native";
 import styles from "../common/styles";
 import { Friend } from "../models/Friend";
-import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
+import { useRealm } from "../createRealmContext";
 import WhiteAddImage from "./whiteAddImage";
 
 const friendColours = [
@@ -86,17 +85,7 @@ export default AddFriendModal = ({
 
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        // Closes the modal on click.
-        // onRequestClose={() => {
-        //   console.log("Modal has been closed.");
-        //   setModalVisible(!modalVisible);
-        // }}
-        // style={styles.addFriendModalContainer}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Add Friend</Text>
