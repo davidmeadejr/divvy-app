@@ -12,9 +12,51 @@ import { useRealm } from "./createRealmContext";
 import { Meal } from "./models/Meal";
 
 export default NewMealScreen = ({ navigation }) => {
-  const [imageSource, setImageSource] = useState();
-  const [imageObj, setImageObj] = useState();
+  // const [imageSource, setImageSource] = useState();
+  // const [imageObj, setImageObj] = useState();
   const realm = useRealm();
+
+  const createNewMeal = () => {
+    let newMeal;
+    realm.write(() => {
+      console.log("creating new meal");
+      newMeal = realm.create("Meal", new Meal({}));
+    });
+    navigation.navigate("Meal Screen", { selectedMeal: newMeal });
+  };
+
+  const handleLibraryImage = () => {
+    launchImageLibrary(
+      {
+        cameraType: "back",
+        mediaType: "photo",
+        saveToPhotos: true,
+        includeBase64: true,
+      },
+      (imageResult) => {
+        if (imageResult.didCancel) {
+          console.log("cancelled");
+        } else if (imageResult.errorMessage) {
+          console.log("error: " + imageResult.errorMessage);
+        } else if (imageResult.errorCode) {
+          console.log(imageResult.errorCode);
+        } else {
+          navigation.navigate({ imageResult: imageResult.assets[0] });
+          // const source = {
+          //   uri: "data:image/jpeg;base64," + result.assets[0].base64,
+          // };
+          // setImageObj(
+          //   JSON.stringify({
+          //     image: e.assets[0].base64,
+          //     filename: e.assets[0].fileName,
+          //     contentType: e.assets[0].type,
+          //   })
+          // );
+          // setImageSource(source);
+        }
+      }
+    );
+  };
 
   return (
     <ImageBackground
@@ -26,54 +68,10 @@ export default NewMealScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={styles.createButton}
-            onPress={() => {
-              let newMeal;
-              realm.write(() => {
-                console.log("creating new meal");
-                newMeal = realm.create("Meal", new Meal({}));
-              });
-              navigation.navigate("Meal Screen", { selectedMeal: newMeal });
-            }}
-          >
-            Create ✨
-          </Text>
+        <TouchableOpacity onPress={createNewMeal}>
+          <Text style={styles.createButton}>Create ✨</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            launchImageLibrary(
-              {
-                cameraType: "back",
-                mediaType: "photo",
-                saveToPhotos: true,
-                includeBase64: true,
-              },
-              (e) => {
-                if (e.didCancel) {
-                  console.log("cancelled");
-                } else if (e.errorMessage) {
-                  console.log("error: " + e.errorMessage);
-                } else if (e.errorCode) {
-                  console.log(e.errorCode);
-                } else {
-                  const source = {
-                    uri: "data:image/jpeg;base64," + e.assets[0].base64,
-                  };
-                  setImageObj(
-                    JSON.stringify({
-                      image: e.assets[0].base64,
-                      filename: e.assets[0].fileName,
-                      contentType: e.assets[0].type,
-                    })
-                  );
-                  setImageSource(source);
-                }
-              }
-            )
-          }
-        >
+        <TouchableOpacity onPress={handleLibraryImage}>
           <Text style={styles.uploadButton}>Upload 📁</Text>
         </TouchableOpacity>
         <TouchableOpacity
