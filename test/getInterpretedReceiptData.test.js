@@ -382,6 +382,87 @@ describe("getInterpretedReceiptData method", () => {
     ]);
   });
 
+  it("removes $ sign from the text response", () => {
+    const receiptData = {
+      totalAmount: { data: 29.25 },
+      amounts: [
+        {
+          data: 1.75,
+          text: "2x CHIPS / ONION RINGS $ 1.75 3.50",
+        },
+        {
+          data: 3.5,
+          text: "2x CHIPS / ONION RINGS $ 1.75 3.50",
+        },
+      ],
+    };
+    expect(getInterpretedReceiptData(receiptData)).toEqual([
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+      { amount: 1.75, name: "CHIPS / ONION RINGS" },
+    ]);
+  });
+
+  it("removes any object that contains the words Total, Cash, or Change", () => {
+    const receiptData = {
+      totalAmount: { data: 20 },
+      amounts: [
+        {
+          data: 3.5,
+          text: "CHIPS",
+        },
+        {
+          data: 16.5,
+          text: "HALIBUT",
+        },
+        {
+          data: 20,
+          text: "Total bill £3.50 ",
+        },
+        {
+          data: 30,
+          text: "Cash £30.00",
+        },
+        {
+          data: 10,
+          text: "Change £10.00",
+        },
+      ],
+    };
+    expect(getInterpretedReceiptData(receiptData)).toEqual([
+      { amount: 3.5, name: "CHIPS"},
+      { amount: 16.5, name: "HALIBUT"}
+    ]);
+  });
+
+  it("removes any object that contains the words VAT or Service", () => {
+    const receiptData = {
+      totalAmount: { data: 15 },
+      amounts: [
+        {
+          data: 10,
+          text: "PASTA",
+        },
+        {
+          data: 5,
+          text: "BROWNIE",
+        },
+        {
+          data: 3,
+          text: "20% VAT £3.00 ",
+        },
+        {
+          data: 1.5,
+          text: "Service charge 10% ",
+        },
+      ],
+    };
+    expect(getInterpretedReceiptData(receiptData)).toEqual([
+      { amount: 10, name: "PASTA"},
+      { amount: 5, name: "BROWNIE"},
+    ]);
+  });
+
+
   it("returns the desired result from the example response", () => {
     const result = [
       { amount: 3.95, name: "SOUP" },

@@ -29,8 +29,15 @@ const getAlteredArrayWithAddedAndRemovedEntries = (responseObj) => {
 const removeInvalidEntriesFromArray = (responseObj) => {
   const result = [];
   const resultText = [];
+  const receiptObjectsToFilterOut = ["CASH", "CHANGE", "TOTAL", "SERVICE", "SUBTOTAL",
+   "TAX", "Cash","Change", "Total", "Service", "Subtotal", "Tax", "VAT"];
+
   responseObj.amounts.forEach((item) => {
     if (responseObj.totalAmount.data === item.data) return;
+    // removes the cash, change, total keywords from the bill
+    if (receiptObjectsToFilterOut.some(keyword => item.text.includes(keyword))) {
+      return;
+    } 
     // resultText is so indexOf can find the item with
     // a text property with the same index
     // without having to mutate result with map
@@ -68,6 +75,9 @@ const stripInvalidStringsFromItemName = (item) => {
     // removes case insensitive quantities at the beginning of the name
     // eg. 2x, 14x, 5X
     .replace(/^[0-9]x/gi, "")
+    .replace(/(£)(?=.*\1)/gi, "")
+    // removes $ symbol from receipt
+    .replace(/\$|/gi, "")
     // removes item amount from the item name
     .replace(new RegExp(item.data.toFixed(2)), "")
     .replace(/[\d\.]+$/gi, "")
