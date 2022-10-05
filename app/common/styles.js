@@ -172,7 +172,6 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 30,
   },
 
   createButton: {
@@ -204,7 +203,6 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 30,
   },
 
   cameraEmojiButton: {
@@ -219,7 +217,6 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 30,
   },
 
   /*
@@ -268,4 +265,8 @@ export default styles = StyleSheet.create({
   photoScreenshot: {
     color: "#fff",
   },
+
+  /*
+   * Meal Screen
+   */
 });

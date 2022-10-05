@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RealmProvider } from "./app/createRealmContext";
 import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Image, ImageBackground, TouchableHighlight } from "react-native";
+import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import Items from "./app/components/items";
 import { useRealm } from "./app/createRealmContext";
@@ -22,12 +22,12 @@ const HomeScreen = ({ navigation }) => {
     >
       <View style={styles.homeScreenContainer}>
         <Image style={styles.divvyLogo} source={require("./assets/adaptive-icon.png")} />
-        <TouchableHighlight style={styles.newMealsButton} onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableOpacity style={styles.newMealsButton} onPress={() => navigation.navigate("Camera Screen")}>
           <Text style={styles.newMealsButtonText}>New Meals 🍽️</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Text style={styles.myMealsButtonText}>My Meals 🍲</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -49,10 +49,10 @@ const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) =>
       style={styles.cameraScreenBackground}
     >
       <View style={styles.cameraScreenContainer}>
-        <TouchableHighlight onPress={() => navigation.navigate("🏠")}>
+        <TouchableOpacity onPress={() => navigation.navigate("🏠")}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
+        </TouchableOpacity>
+        <TouchableOpacity>
           <Text
             style={styles.createButton}
             onPress={() => {
@@ -66,8 +66,8 @@ const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) =>
           >
             Create ✨
           </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() =>
             launchImageLibrary(
               {
@@ -101,10 +101,10 @@ const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) =>
           }
         >
           <Text style={styles.uploadButton}>Upload 📁</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate("Save Photo Screen")}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Save Photo Screen")}>
           <Text style={styles.cameraEmojiButton}>📸</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -117,12 +117,12 @@ const SavePhotoScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.savePhotoContainer}>
-        <TouchableHighlight onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
           <Text style={styles.retakePhotoButton}>⬅ Retake</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => navigation.navigate("Camera Screen")}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
           <Text style={styles.usePhotoButton}>Use</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
       <View style={styles.photoScreenshotContainer}>
         <Text style={styles.photoScreenshot}>"Itemised Receipt functionality"</Text>
