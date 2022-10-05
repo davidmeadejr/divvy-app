@@ -21,6 +21,8 @@ export default styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    backgroundColor: "#4B23F3",
+    // backgroundColor: "#333",
   },
   button: {
     borderRadius: 20,
@@ -38,7 +40,7 @@ export default styles = StyleSheet.create({
   },
 
   cancelButtonClose: {
-    backgroundColor: "#2196F3",
+    // backgroundColor: "#fff",
   },
   modalAddButton: {
     borderRadius: 20,
@@ -46,11 +48,11 @@ export default styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    // backgroundColor: "#F194FF",
   },
 
   modalAddButtonOpen: {
-    backgroundColor: "#F194FF",
+    // backgroundColor: "#fff",
   },
   buttonClose: {
     backgroundColor: "#2196F3",
@@ -63,6 +65,8 @@ export default styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+    color: "#fff",
+    fontWeight: "bold",
   },
   openModalContainer: {
     display: "flex",
@@ -93,6 +97,7 @@ export default styles = StyleSheet.create({
   /*
    * HomeScreen
    */
+
   homeScreenBackground: {
     flex: 1,
     width: "100%",
@@ -269,4 +274,248 @@ export default styles = StyleSheet.create({
   /*
    * Meal Screen
    */
+
+  mealScreenContainer: {
+    flex: 1,
+    backgroundColor: "#333",
+    // marginTop: 50,
+    // marginRight: 16,
+    // marginBottom: 16,
+    // marginLeft: 16,
+    // alignItems: "center",
+  },
+
+  /* *************************************************** */
+
+  /*
+   * items.js styles
+   */
+
+  /* *************************************************** */
+
+  itemsContainer: {
+    display: "flex",
+    backgroundColor: "#333",
+    marginTop: 40,
+    alignItems: "center",
+  },
+
+  mealScreenBackButton: {
+    fontSize: 32,
+    color: "#fff",
+    // borderWidth: 2,
+    // borderColor: "#4B23F3",
+    // borderRadius: 10,
+    // backgroundColor: "#4B23F3",
+    paddingTop: 10,
+    paddingBottom: 10,
+    // overflow: "hidden",
+    fontWeight: "bold",
+    paddingLeft: 15,
+    // paddingRight: 10,
+    width: 215,
+    marginBottom: 10,
+    // marginRight: 30,
+  },
+
+  mealScreenTotalButton: {
+    fontSize: 32,
+    color: "#fff",
+    // borderWidth: 2,
+    // borderColor: "#4B23F3",
+    // borderRadius: 10,
+    // backgroundColor: "#4B23F3",
+    paddingTop: 10,
+    paddingBottom: 10,
+    // overflow: "hidden",
+    fontWeight: "bold",
+    paddingLeft: 15,
+    // paddingRight: 10,
+    width: 150,
+    marginBottom: 10,
+    // marginRight: 30,
+    // marginLeft: 15,
+  },
+
+  itemsText: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#fff",
+    marginRight: 90,
+  },
+
+  totalsText: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#fff",
+  },
+
+  item: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  mealHeader: {
+    flexDirection: "row",
+  },
+
+  mealList: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginLeft: 16,
+    marginRight: 16,
+    // borderBottomColor: "#fff",
+    // borderBottomWidth: 2,
+    marginBottom: 40,
+    alignItems: "center",
+  },
+
+  addItemButton: {
+    width: 32,
+    height: 32,
+  },
+
+  separator: {
+    borderBottomWidth: 2,
+    borderBottomColor: "#fff",
+    width: 350,
+    alignItems: "center",
+    marginBottom: -30,
+  },
+
+  /* *************************************************** */
+
+  /*
+   * nameDivvyInput.js styles
+   */
+
+  /* *************************************************** */
+
+  divvyInputField: {
+    color: "#000",
+    height: 40,
+    marginBottom: 16,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: "#4B23F3",
+    fontWeight: "bold",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+  },
+
+  /* *************************************************** */
+
+  /*
+   * addItem.js styles
+   */
+
+  /* *************************************************** */
+
+  enterDishInput: {
+    color: "#000",
+    height: 40,
+    marginBottom: 16,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: "#4B23F3",
+    fontWeight: "bold",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+  },
+
+  enterDishAmount: {
+    color: "#000",
+    height: 40,
+    marginBottom: 16,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: "#4B23F3",
+    fontWeight: "bold",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+  },
+
+  addFriendModalContainer: {
+    backgroundColor: "#000",
+  },
+
+  /* *************************************************** */
+
+  /*
+   * itemComponent.js styles
+   */
+
+  /* *************************************************** */
+
+  itemContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: 350,
+    // backgroundColor: "#4B2",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  itemName: {
+    marginBottom: 15,
+    borderRadius: 10,
+    padding: 10,
+    width: 190,
+    overflow: "hidden",
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+
+  priceAndFriendsContainer: {
+    flexDirection: "column",
+    alignItems: "flex-end",
+  },
+
+  amount: {
+    // marginTop: 5,
+    marginBottom: 5,
+    borderRadius: 10,
+    padding: 10,
+    overflow: "hidden",
+    color: "#FFD700",
+    fontWeight: "bold",
+    fontSize: 24,
+    // borderBottomColor: "#fff",
+    // borderBottomWidth: 2,
+    marginRight: -10,
+  },
+  friend: {
+    marginTop: -10,
+    marginLeft: 10,
+    color: "#fff",
+    fontWeight: "500",
+  },
+
+  test: {
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  /* *************************************************** */
+
+  /*
+   * addFriendModal.js styles
+   */
+
+  /* *************************************************** */
+
+  addFriendInput: {
+    color: "#000",
+    height: 40,
+    marginBottom: 16,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: "#4B23F3",
+    fontWeight: "bold",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+  },
 });

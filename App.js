@@ -10,6 +10,8 @@ import { Meal } from "./app/models/Meal";
 import styles from "./app/common/styles";
 import Users from "./app/components/users";
 
+const Stack = createNativeStackNavigator();
+
 /*
  * Home Screen Functionality
  */
@@ -138,8 +140,13 @@ const MealScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
   const [selectedFriend, setSelectedFriend] = useState();
   return (
-    <View style={styles.container}>
-      <Items selectedMeal={selectedMeal} setSelectedMeal={setSelectedMeal} selectedFriend={selectedFriend} />
+    <View style={styles.mealScreenContainer}>
+      <Items
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+        selectedFriend={selectedFriend}
+        navigation={navigation}
+      />
       <Users
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
@@ -149,8 +156,6 @@ const MealScreen = ({ navigation, route }) => {
     </View>
   );
 };
-
-const Stack = createNativeStackNavigator();
 
 /*
  * The main component which acts as a container for all other components within the the codebase.
