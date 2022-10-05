@@ -5,6 +5,6 @@
   "minify": false,
   "urlRandomness": null,
   "https": false,
-  "scheme": "i",
+  "scheme": "com.makers.finalproject",
   "devClient": true
 }

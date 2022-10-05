@@ -89,6 +89,12 @@ export default UploadReceipt = ({ setCreateNewMeal, setSelectedMeal }) => {
       />
       <Image style={{ width: 150, height: 150 }} source={imageSource} />
       <Button title="Submit to taggun" onPress={sendImageToTaggun} />
+      <Button
+        title="Take A Photo"
+        color="darkgray"
+        onPress={handleTakePhotoButtonPress}
+      /> 
+       <Image style={{ width: 150, height: 150 }} source={imageSource} />
       <StatusBar style="auto" />
     </View>
   );

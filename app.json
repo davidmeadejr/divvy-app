@@ -10,7 +10,7 @@
       "web"
     ],
     "ios": {
-      "bundleIdentifier": "i"
+      "bundleIdentifier": "com.makers.finalproject"
     },
     "extra": {
       "eas": {

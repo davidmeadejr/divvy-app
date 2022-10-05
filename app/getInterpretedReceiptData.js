@@ -1,7 +1,10 @@
 export default getInterpretedReceiptData = (responseObj) => {
   if (!responseObj) return [];
+  //check that the responseObj is a valid array of objects
   verifyArgumentIsObject(responseObj);
+  //filter out the invalid and duplicate entries
   const alteredArray = getAlteredArrayWithAddedAndRemovedEntries(responseObj);
+  //get rid of numbers in the string so it only shows the item name
   return alteredArray.map(stripInvalidStringsFromItemName);
 };
 
