@@ -85,6 +85,14 @@ export default styles = StyleSheet.create({
     marginLeft: 16,
   },
 
+  usersContainer: {
+    flex: 1,
+    marginTop: 50,
+    marginRight: 16,
+    marginBottom: 16,
+    marginLeft: 16,
+  },
+
   /* *************************************************** */
 
   /*

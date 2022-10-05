@@ -17,7 +17,7 @@ export default HomeScreen = ({ navigation }) => {
       <View style={styles.homeScreenContainer}>
         <Image
           style={styles.divvyLogo}
-          source={require("./assets/adaptive-icon.png")}
+          source={require("../assets/adaptive-icon.png")}
         />
         <TouchableOpacity
           style={styles.newMealsButton}
