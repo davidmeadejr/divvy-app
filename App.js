@@ -72,7 +72,7 @@ const CameraScreen = ({
       style={styles.cameraScreenBackground}
     >
       <View style={styles.cameraScreenContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("🏠")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -164,6 +164,11 @@ const SavePhotoScreen = ({ navigation }) => {
 const MealScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
   const [selectedFriend, setSelectedFriend] = useState();
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedMeal(route.params.selectedMeal);
+    })
+  );
   return (
     <View style={styles.mealScreenContainer}>
       <Items
@@ -190,7 +195,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="🏠"
+          name="Home Screen"
           component={HomeScreen}
           options={{ headerShown: false }}
         />

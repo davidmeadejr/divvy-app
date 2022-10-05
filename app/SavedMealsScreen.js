@@ -4,11 +4,6 @@ import { useQuery } from "./createRealmContext";
 
 export default SavedMealsScreen = ({ navigation }) => {
   const result = useQuery("Meal");
-  const getMealNameOrDate = (meal) => {
-    if (meal.name) return meal.name;
-    const mealCreatedDateObj = new Date(Date.parse(meal.createdAt));
-    return `Meal at ${mealCreatedDateObj.toDateString()} ${mealCreatedDateObj.toTimeString()}`;
-  };
 
   const renderSavedMealListItem = (meal) => {
     return (
@@ -22,6 +17,12 @@ export default SavedMealsScreen = ({ navigation }) => {
     );
   };
 
+  const getMealNameOrDate = (meal) => {
+    if (meal.name) return meal.name;
+    const mealDateStr = new Date(Date.parse(meal.createdAt)).toDateString();
+    return `Meal at ${mealDateStr}`;
+  };
+
   return (
     <View style={styles.container}>
       <Text>Saved Meals:</Text>
@@ -30,6 +31,9 @@ export default SavedMealsScreen = ({ navigation }) => {
         renderItem={({ item }) => renderSavedMealListItem(item)}
         keyExtractor={(item) => item._id.toString()}
       />
+      <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+        <Text>Back</Text>
+      </TouchableOpacity>
     </View>
   );
 };
