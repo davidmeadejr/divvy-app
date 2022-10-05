@@ -12,12 +12,21 @@ export default FriendsBar = ({
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [myStyle, setMyStyle] = useState({});
+  const handleSelectedFriendStyle = (item) => {
+    const itemId = item._id.toString();
+    [...Object.keys(myStyle), itemId].forEach(
+      (key) => (myStyle[key] = key === itemId)
+    );
+    setMyStyle(myStyle);
+    setSelectedFriend(item);
+  };
 
   return (
     <View>
       <View style={{ ...styles.openModalContainer, ...styles.usersContainer }}>
         <AddFriendButton setModalVisible={setModalVisible} />
         <AddFriendScrollView
+          handleSelectedFriendStyle={handleSelectedFriendStyle}
           myStyle={myStyle}
           setMyStyle={setMyStyle}
           setModalVisible={setModalVisible}
@@ -28,9 +37,7 @@ export default FriendsBar = ({
         />
       </View>
       <AddFriendModal
-        myStyle={myStyle}
-        setMyStyle={setMyStyle}
-        setSelectedFriend={setSelectedFriend}
+        handleSelectedFriendStyle={handleSelectedFriendStyle}
         selectedMeal={selectedMeal}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

@@ -23,22 +23,13 @@ const friendColours = [
 ];
 export default AddFriendScrollView = ({
   myStyle,
-  setMyStyle,
   selectedFriend,
   setSelectedFriend,
   selectedMeal,
   setSelectedMeal,
+  handleSelectedFriendStyle,
 }) => {
   const realm = useRealm();
-
-  const handleClick = (item) => {
-    const itemId = item._id.toString();
-    [...Object.keys(myStyle), itemId].forEach(
-      (key) => (myStyle[key] = key === itemId)
-    );
-    setMyStyle(myStyle);
-    setSelectedFriend(item);
-  };
 
   const handleLongPress = (item) => {
     if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
@@ -54,7 +45,7 @@ export default AddFriendScrollView = ({
       <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
-            onPress={() => handleClick(item, index)}
+            onPress={() => handleSelectedFriendStyle(item)}
             onLongPress={() => handleLongPress(item)}
             style={{
               borderWidth: myStyle[item._id.toString()] ? 5 : 2,

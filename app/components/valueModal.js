@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import styles from "../common/styles";
 
@@ -57,7 +58,7 @@ export default ValueModal = ({
     const isTypeSelected = typeSelected === item;
     const itemNameTitled = item.charAt(0).toUpperCase() + item.slice(1);
     return (
-      <Pressable
+      <TouchableOpacity
         style={getPressableStyle(isTypeSelected)}
         onPress={() => {
           realm.write(() => {
@@ -70,7 +71,7 @@ export default ValueModal = ({
         <Text style={getPressableTextStyle(isTypeSelected)}>
           {itemNameTitled}
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     );
   };
 

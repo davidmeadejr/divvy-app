@@ -1,27 +1,11 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-} from "react-native";
+import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { useRealm } from "../createRealmContext";
 import ItemComponent from "./itemComponent";
 import AddItem from "./addItem";
-import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import styles from "../common/styles";
-import { SvgUri } from "react-native-svg";
 import WhiteAddImage from "./whiteAddImage";
 import NameDivvyInput from "./nameDivvyInput.js";
-
-/*
- * The component which handles the functionality divvying out meals.
- */
-const Stack = createNativeStackNavigator();
 
 export default Items = ({
   navigation,
@@ -30,9 +14,6 @@ export default Items = ({
   setSelectedMeal,
 }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-  const [serviceChargeModalVisible, setServiceChargeModalVisible] =
-    useState(false);
-  const [tipModalVisible, setTipModalVisible] = useState(false);
 
   const realm = useRealm();
   return (
