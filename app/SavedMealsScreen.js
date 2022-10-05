@@ -7,12 +7,21 @@ export default SavedMealsScreen = ({ navigation }) => {
   const getMealNameOrDate = (meal) => {
     if (meal.name) return meal.name;
     const mealCreatedDateObj = new Date(Date.parse(meal.createdAt));
-    return `Meal at ${mealCreatedDateObj.toDateString()}`;
+    return `Meal at ${mealCreatedDateObj.toDateString()} ${mealCreatedDateObj.toTimeString()}`;
   };
 
   const renderSavedMealListItem = (meal) => {
-    return <Text>{getMealNameOrDate(meal)}</Text>;
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate("Meal Screen", { selectedMeal: meal })
+        }
+      >
+        <Text>{getMealNameOrDate(meal)}</Text>
+      </TouchableOpacity>
+    );
   };
+
   return (
     <View style={styles.container}>
       <Text>Saved Meals:</Text>
