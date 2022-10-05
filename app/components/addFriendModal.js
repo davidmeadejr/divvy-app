@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Modal,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import styles from "../common/styles";
 import { Friend } from "../models/Friend";
-import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
+import { useRealm } from "../createRealmContext";
 import WhiteAddImage from "./whiteAddImage";
 
 const friendColours = [
@@ -26,7 +35,12 @@ const friendColours = [
 
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
-export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMeal, setSelectedMeal }) => {
+export default AddFriendModal = ({
+  selectedFriend,
+  setSelectedFriend,
+  selectedMeal,
+  setSelectedMeal,
+}) => {
   const realm = useRealm();
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,9 +51,9 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
   // Creates a new entry in the friend collection.
 
   const addFriendToRealm = (name) => {
-    if (!realm.objects("Friend").filtered("name == $0", name).length) {
+    if (!selectedMeal.friends.some((friend) => friend.name === name)) {
       realm.write(() => {
-        const friend = realm.create("Friend", new Friend({ name: name }));
+        const friend = realm.create("Friend", new Friend({ name }));
         selectedMeal.friends.push(friend);
       });
     } else {
@@ -53,13 +67,16 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
   const handleClick = (item, index) => {
     const itemId = item._id.toString();
     // myStyle[itemId] = true;
-    [...Object.keys(myStyle), itemId].forEach((key) => (myStyle[key] = key === itemId));
+    [...Object.keys(myStyle), itemId].forEach(
+      (key) => (myStyle[key] = key === itemId)
+    );
     setMyStyle(myStyle);
     setSelectedFriend(item);
   };
 
   const handleLongPress = (item) => {
-    if (selectedFriend && selectedFriend._id.toString() === item._id.toString()) setSelectedFriend();
+    if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
+      setSelectedFriend();
     realm.write(() => {
       realm.delete(item);
     });
@@ -68,17 +85,7 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
 
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        // Closes the modal on click.
-        // onRequestClose={() => {
-        //   console.log("Modal has been closed.");
-        //   setModalVisible(!modalVisible);
-        // }}
-        // style={styles.addFriendModalContainer}
-      >
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Add Friend</Text>
@@ -90,7 +97,6 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
               value={name}
             />
             <View style={styles.modalButtonContainer}>
-              {/* Pressable is react natives equivalent to "button".  */}
               <Pressable
                 style={[styles.cancelButton, styles.cancelButtonClose]}
                 // Toggles modal visibility on click
@@ -119,9 +125,18 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
         </View>
       </Modal>
       {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
-      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={true}>
+      <ScrollView
+        contentContainerStyle={styles.openModalContainer}
+        horizontal
+        showsHorizontalScrollIndicator={true}
+      >
         <Pressable
-          style={[styles.button, styles.buttonOpen, styles.addFriendContainer, { marginRight: 10 }]}
+          style={[
+            styles.button,
+            styles.buttonOpen,
+            styles.addFriendContainer,
+            { marginRight: 10 },
+          ]}
           onPress={() => setModalVisible(true)}
         >
           <View
@@ -178,5 +193,3 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
     </View>
   );
 };
-
-// export default AddFriendModal;

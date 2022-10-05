@@ -79,7 +79,6 @@ export default styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     marginTop: 50,
     marginRight: 16,
     marginBottom: 16,
@@ -557,4 +556,22 @@ export default styles = StyleSheet.create({
   // },
 
   testing: { backgroundColor: "#781" },
+  valueModalButtonSelected: {
+    borderWidth: 5,
+    marginRight: 13,
+    borderRadius: 10,
+    padding: 7,
+  },
+  valueModalButtonDeselected: {
+    borderWidth: 2,
+    marginRight: 16,
+    borderRadius: 10,
+    padding: 10,
+  },
+  valueModalButtonTextSelected: {
+    fontWeight: "bold",
+  },
+  valueModalButtonTextDeselected: {
+    fontWeight: "normal",
+  },
 });

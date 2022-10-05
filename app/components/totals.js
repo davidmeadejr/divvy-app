@@ -1,71 +1,93 @@
 import React from "react";
 import { Text, View, FlatList } from "react-native";
-import { useRealm, useQuery } from "../createRealmContext";
-import { Realm } from "@realm/react";
 
-const Totals = ({ selectedMeal }) => {
-  const addedCharge = (subtotal) =>
-    [selectedMeal.serivceChargeAmount, selectedMeal.tipAmount]
-      .map((amount) => (subtotal * amount) / 100)
-      .reduce((a, b) => a + b, 0);
-
-  const individualTotalsObj = (friend) => {
-    const friendSubTotal = friend.items
-      .map((item) => item.amount / item.friends.length)
-      .reduce((a, b) => a + b, 0);
-    return {
-      name: friend.name,
-      id: friend._id.toString(),
-      amount: getTotal(friendSubTotal),
-    };
-  };
-  const individualTotals = () => {
-    return useQuery("Friend")
-      .filtered("meal._id == $0", selectedMeal._id)
-      .map(individualTotalsObj);
+export default Totals = ({ selectedMeal }) => {
+  const getChargeText = (charge) => {
+    const chargeName =
+      charge === "Service charge" ? "serviceCharge" : charge.toLowerCase();
+    if (selectedMeal[`${chargeName}Amount`]) {
+      let chargeAmount = selectedMeal[`${chargeName}Amount`];
+      if (selectedMeal[`${chargeName}Type`] === "percent")
+        chargeAmount = getPercentageForString(
+          selectedMeal[`${chargeName}Amount`]
+        );
+      return <Text>{`${charge}: £${chargeAmount.toFixed(2)}`}</Text>;
+    }
   };
 
-  const subTotal = () => {
-    return selectedMeal.items
-      .map((item) => item.amount)
+  const getPercentageForString = (charge) => (getSubTotal() * charge) / 100;
+
+  const getFriendTotalsText = (item) => {
+    return (
+      <View>
+        <Text>
+          {item.name} £{getIndividualTotal(item).toFixed(2)}
+        </Text>
+        <Text>{getIndividualItems(item)}</Text>
+      </View>
+    );
+  };
+
+  const getIndividualTotal = (friend) => {
+    const itemsTotal = friend.items
+      .map((item) => roundToTwo(item.amount / item.friends.length))
       .reduce((a, b) => a + b, 0);
+    return itemsTotal + getAddedChargesSummed(itemsTotal, true);
+  };
+
+  const getAddedChargesSummed = (subtotal, forIndividualFriend) =>
+    ["serviceCharge", "tip", "discount", "tax"]
+      .map((charge) => {
+        let chargeResult;
+        if (selectedMeal[`${charge}Type`] === "percent") {
+          chargeResult = roundToTwo(
+            (subtotal * selectedMeal[`${charge}Amount`]) / 100
+          );
+        } else if (forIndividualFriend) {
+          chargeResult = roundToTwo(
+            selectedMeal[`${charge}Amount`] / selectedMeal.friends.length
+          );
+        } else {
+          chargeResult = selectedMeal[`${charge}Amount`];
+        }
+        return charge === "discount" ? -chargeResult : chargeResult;
+      })
+      .reduce((a, b) => a + b, 0);
+
+  const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
+
+  const getIndividualItems = (friend) => {
+    return friend.items
+      .map((item) =>
+        item.friends.length === 1 ? item.name : `${item.name} (shared)`
+      )
+      .join(", ");
   };
 
   const getTotal = (amount) => {
-    return amount + addedCharge(amount);
+    return amount + getAddedChargesSummed(amount);
   };
 
-  const serviceCharge = () => {
-    if (selectedMeal.serivceChargeAmount) {
-      return <Text>Service charge: {selectedMeal.serivceChargeAmount}%</Text>;
-    }
-  };
-
-  const tip = () => {
-    if (selectedMeal.tipAmount) {
-      return <Text>Tip: {selectedMeal.tipAmount}%</Text>;
-    }
+  const getSubTotal = () => {
+    return selectedMeal.items
+      .map((item) => roundToTwo(item.amount))
+      .reduce((a, b) => a + b, 0);
   };
 
   return (
     <View>
-      <Text>Subtotal: £{subTotal().toFixed(2)}</Text>
-      {serviceCharge()}
-      {tip()}
+      <Text>Subtotal: £{getSubTotal().toFixed(2)}</Text>
       <FlatList
-        data={individualTotals()}
-        renderItem={({ item }) => {
-          return (
-            <Text>
-              {item.name} £{item.amount.toFixed(2)}
-            </Text>
-          );
-        }}
-        keyExtractor={(item) => item.id}
+        data={["Service charge", "Tip", "Tax", "Discount"]}
+        renderItem={({ item }) => getChargeText(item)}
+        keyExtractor={(charge) => charge}
       />
-      <Text>Total: £{getTotal(subTotal()).toFixed(2)}</Text>
+      <FlatList
+        data={selectedMeal.friends}
+        renderItem={({ item }) => getFriendTotalsText(item)}
+        keyExtractor={(friend) => friend._id.toString()}
+      />
+      <Text>Total: £{getTotal(getSubTotal()).toFixed(2)}</Text>
     </View>
   );
 };
-
-export default Totals;

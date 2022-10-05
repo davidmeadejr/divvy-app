@@ -7,6 +7,7 @@ export default AddServiceCharge = ({
   tipModalVisible,
   setTipModalVisible,
   selectedMeal,
+  setSelectedMeal,
 }) => {
   const realm = useRealm();
   const [tip, setTip] = useState("");
@@ -20,6 +21,7 @@ export default AddServiceCharge = ({
     } else {
       realm.write(() => {
         selectedMeal.tipAmount = tipFloat;
+        setSelectedMeal(selectedMeal);
       });
       setTipModalVisible(false);
     }
@@ -40,7 +42,7 @@ export default AddServiceCharge = ({
             <TextInput
               style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
               placeholder="10"
-              onChangeText={(amount) => setTip(amount)}
+              onChangeText={setTip}
             />
             <View style={styles.modalButtonContainer}>
               <Pressable

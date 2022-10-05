@@ -2,13 +2,20 @@ import React, { useState, useEffect } from "react";
 import { RealmProvider } from "./app/createRealmContext";
 import { NavigationContainer, useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Text, Image, ImageBackground, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import Items from "./app/components/items";
 import { useRealm } from "./app/createRealmContext";
 import { Meal } from "./app/models/Meal";
 import styles from "./app/common/styles";
 import Users from "./app/components/users";
+import TotalsScreen from "./app/TotalsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,8 +30,14 @@ const HomeScreen = ({ navigation }) => {
       resizeMode={"cover"}
     >
       <View style={styles.homeScreenContainer}>
-        <Image style={styles.divvyLogo} source={require("./assets/adaptive-icon.png")} />
-        <TouchableOpacity style={styles.newMealsButton} onPress={() => navigation.navigate("Camera Screen")}>
+        <Image
+          style={styles.divvyLogo}
+          source={require("./assets/adaptive-icon.png")}
+        />
+        <TouchableOpacity
+          style={styles.newMealsButton}
+          onPress={() => navigation.navigate("Camera Screen")}
+        >
           <Text style={styles.newMealsButtonText}>New Meals 🍽️</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -38,7 +51,12 @@ const HomeScreen = ({ navigation }) => {
 /*
  * Camera Screen Functionality
  */
-const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) => {
+const CameraScreen = ({
+  navigation,
+  selectedMeal,
+  setSelectedMeal,
+  testVar,
+}) => {
   const [createNewMeal, setCreateNewMeal] = useState(false);
   const [imageSource, setImageSource] = useState();
   const [imageObj, setImageObj] = useState();
@@ -104,7 +122,9 @@ const CameraScreen = ({ navigation, selectedMeal, setSelectedMeal, testVar }) =>
         >
           <Text style={styles.uploadButton}>Upload 📁</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Save Photo Screen")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Save Photo Screen")}
+        >
           <Text style={styles.cameraEmojiButton}>📸</Text>
         </TouchableOpacity>
       </View>
@@ -127,7 +147,9 @@ const SavePhotoScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.photoScreenshotContainer}>
-        <Text style={styles.photoScreenshot}>"Itemised Receipt functionality"</Text>
+        <Text style={styles.photoScreenshot}>
+          "Itemised Receipt functionality"
+        </Text>
       </View>
     </>
   );
@@ -164,10 +186,31 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="🏠" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Camera Screen" component={CameraScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Save Photo Screen" component={SavePhotoScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Meal Screen" component={MealScreen} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="🏠"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Camera Screen"
+          component={CameraScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Save Photo Screen"
+          component={SavePhotoScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Meal Screen"
+          component={MealScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Totals Screen"
+          component={TotalsScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

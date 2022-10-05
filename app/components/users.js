@@ -1,10 +1,15 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { ScrollView } from "react-native-web";
+import { View } from "react-native";
 import AddFriendModal from "./addFriendModal";
+import styles from "../common/styles";
 
 // The Users component which is parent component of the AddFriendModal component.
-const Users = ({ selectedFriend, setSelectedFriend, selectedMeal, setSelectedMeal }) => {
+export default Users = ({
+  selectedFriend,
+  setSelectedFriend,
+  selectedMeal,
+  setSelectedMeal,
+}) => {
   return (
     <View style={styles.container}>
       <AddFriendModal
@@ -16,16 +21,3 @@ const Users = ({ selectedFriend, setSelectedFriend, selectedMeal, setSelectedMea
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "#333",
-    padding: 8,
-    position: "absolute",
-    bottom: 10,
-  },
-});
-
-export default Users;
