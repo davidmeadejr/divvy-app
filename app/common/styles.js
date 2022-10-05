@@ -551,13 +551,15 @@ export default styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 24,
-    // backgroundColor: "#781",
+    // marginTop: -150,
+    // position: "absolute",
   },
 
   addItemContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#781",
   },
 
   addFriendText: {
@@ -571,4 +573,6 @@ export default styles = StyleSheet.create({
   //   flexDirection: "row",
   //   alignItems: "center",
   // },
+
+  testing: { backgroundColor: "#781" },
 });
