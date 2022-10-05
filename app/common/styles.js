@@ -575,4 +575,104 @@ export default styles = StyleSheet.create({
   valueModalButtonTextDeselected: {
     fontWeight: "normal",
   },
+
+  /* *************************************************** */
+
+  /*
+   * totalScreen.js styles
+   */
+
+  /* *************************************************** */
+
+  totalScreenContainer: {
+    flex: 1,
+    paddingTop: 50,
+    paddingRight: 16,
+    paddingBottom: 16,
+    paddingLeft: 16,
+    backgroundColor: "#333",
+  },
+
+  totalsScreenBackButton: {
+    fontSize: 32,
+    marginBottom: 20,
+  },
+
+  divvyTitle: {
+    color: "#000",
+    height: 40,
+    marginBottom: 16,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: "#4B23F3",
+    fontWeight: "bold",
+    borderRadius: 10,
+    overflow: "hidden",
+    backgroundColor: "#fff",
+    width: 100,
+    alignItems: "center",
+  },
+
+  totalsHeader: {
+    flexDirection: "row",
+  },
+
+  divvyTitleContainer: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 40,
+    alignItems: "center",
+  },
+
+  totalsInfoContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  totalsInfoTitle: {
+    fontSize: 16,
+    alignItems: "flex-end",
+    // marginBottom: -10,
+    color: "#fff",
+    fontWeight: "bold",
+    // marginLeft: 275,
+    // width: 100,
+  },
+  subTotalsInfoTitle: {
+    fontSize: 16,
+    alignItems: "flex-end",
+    // marginBottom: -25,
+    color: "#fff",
+    fontWeight: "bold",
+    // marginLeft: 275,
+    // width: 100,
+  },
+  totalsBreakdownContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    color: "#fff",
+    fontWeight: "bold",
+    flexDirection: "row",
+    marginTop: 20,
+  },
+
+  totalsItemName: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+
+  totalsItemAmount: {
+    color: "#fff",
+    fontWeight: "bold",
+    marginLeft: 258,
+  },
+
+  individualItems: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 13,
+  },
 });
