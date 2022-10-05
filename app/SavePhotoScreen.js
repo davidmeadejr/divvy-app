@@ -5,9 +5,21 @@ import React from "react";
 
 export default SavePhotoScreen = ({ navigation, route }) => {
   const [imageSrc, setImageSrc] = useState();
+  const [loadingState, setLoadingState] = useState();
   useFocusEffect(
     React.useCallback(() => {
       const imageResult = route.params.imageResult;
+      setImageSrc({
+        uri: "data:image/jpeg;base64," + result.assets[0].base64,
+      });
+      setImageObj(
+        JSON.stringify({
+          image: e.assets[0].base64,
+          filename: e.assets[0].fileName,
+          contentType: e.assets[0].type,
+        })
+      );
+      setImageSource(source);
     })
   );
   return (
