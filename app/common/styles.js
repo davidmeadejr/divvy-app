@@ -528,4 +528,23 @@ export default styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: "#fff",
   },
+
+  addItemText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 24,
+  },
+
+  addItemContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  addFriendText: {
+    marginTop: 5,
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 13,
+  },
 });

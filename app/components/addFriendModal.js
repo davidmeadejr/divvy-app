@@ -142,6 +142,7 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
               👪
             </Text>
           </View>
+          <Text style={styles.addFriendText}>Add Friend</Text>
         </Pressable>
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity

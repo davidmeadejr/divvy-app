@@ -54,17 +54,16 @@ export default Items = ({ navigation, selectedFriend, selectedMeal, setSelectedM
         setItemModalVisible={setItemModalVisible}
         selectedMeal={selectedMeal}
       />
-      <TouchableOpacity>
-        {/* <Text style={styles.addItemButton} title="Add Item" onPress={() => setItemModalVisible(true)}>
+      <View>
+        <TouchableOpacity style={styles.addItemContainer} onPress={() => setItemModalVisible(true)}>
+          {/* <Text style={styles.addItemButton} title="Add Item" onPress={() => setItemModalVisible(true)}>
           Add Item
         </Text> */}
-        {/* <Image style={styles.addItemButton} source={require("../../assets/white-plus-sign.png")} /> */}
-        <WhiteAddImage
-          style={styles.addItemButton}
-          onPress={() => setItemModalVisible(true)}
-          selectedMeal={selectedMeal}
-        />
-      </TouchableOpacity>
+          {/* <Image style={styles.addItemButton} source={require("../../assets/white-plus-sign.png")} /> */}
+          <WhiteAddImage style={styles.addItemButton} selectedMeal={selectedMeal} />
+          <Text style={styles.addItemText}> Add Item </Text>
+        </TouchableOpacity>
+      </View>
       {/* <AddServiceCharge
         selectedMeal={selectedMeal}
         serviceChargeModalVisible={serviceChargeModalVisible}

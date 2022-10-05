@@ -74,7 +74,7 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
                 onPress={() => handleItemModalAddDishOnPress()}
               >
-                {/* <Text style={styles.textStyle}>➕</Text> */}
+                {/* <Text style={styles.textStyle}>➕Add Item</Text> */}
                 <WhiteAddImage />
               </Pressable>
             </View>
