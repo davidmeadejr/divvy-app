@@ -2,7 +2,7 @@ import { View } from "react-native";
 import React, { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import Items from "./components/items";
-import Users from "./components/friendsBar";
+import FriendsBar from "./components/friendsBar";
 
 export default MealScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
