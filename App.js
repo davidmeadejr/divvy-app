@@ -16,6 +16,7 @@ import { Meal } from "./app/models/Meal";
 import styles from "./app/common/styles";
 import Users from "./app/components/users";
 import TotalsScreen from "./app/TotalsScreen";
+import SavedMealsScreen from "./app/SavedMealsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,9 @@ const HomeScreen = ({ navigation }) => {
         >
           <Text style={styles.newMealsButtonText}>New Meals 🍽️</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Saved Meals Screen")}
+        >
           <Text style={styles.myMealsButtonText}>My Meals 🍲</Text>
         </TouchableOpacity>
       </View>
@@ -69,7 +72,7 @@ const CameraScreen = ({
       style={styles.cameraScreenBackground}
     >
       <View style={styles.cameraScreenContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("🏠")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
         <TouchableOpacity>
@@ -161,6 +164,11 @@ const SavePhotoScreen = ({ navigation }) => {
 const MealScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
   const [selectedFriend, setSelectedFriend] = useState();
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedMeal(route.params.selectedMeal);
+    })
+  );
   return (
     <View style={styles.mealScreenContainer}>
       <Items
@@ -187,7 +195,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="🏠"
+          name="Home Screen"
           component={HomeScreen}
           options={{ headerShown: false }}
         />
@@ -209,6 +217,11 @@ const App = () => {
         <Stack.Screen
           name="Totals Screen"
           component={TotalsScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Saved Meals Screen"
+          component={SavedMealsScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
