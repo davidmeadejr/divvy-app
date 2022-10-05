@@ -31,13 +31,19 @@ export default SavePhotoScreen = ({ navigation, route }) => {
           },
         }
       );
+      if (!response.data.amounts.length) throw new Error("No receipt data");
       const selectedMeal = createNewMealEntryFromData(response.data);
       navigation.navigate("Meal Screen", { selectedMeal });
     } catch (e) {
-      console.error(e);
-      Alert.alert(
-        "There has been an issue uploading the receipt, please try again or create a blank meal"
-      );
+      if (e.toString().includes("No receipt data"))
+        Alert.alert(
+          "Please check this is an image of a receipt, or use better lighting"
+        );
+      else {
+        Alert.alert(
+          "There has been an issue uploading the receipt, please try again or create a blank meal"
+        );
+      }
       navigation.navigate("New Meal Screen");
     }
   };
@@ -62,7 +68,9 @@ export default SavePhotoScreen = ({ navigation, route }) => {
         >
           <Text style={styles.retakePhotoButton}>⬅ Retake</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("New Meal Screen")}
+        >
           <Text style={styles.usePhotoButton}>Use</Text>
         </TouchableOpacity>
       </View>
