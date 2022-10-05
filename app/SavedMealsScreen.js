@@ -1,15 +1,24 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import styles from "./common/styles";
 import { useQuery } from "./createRealmContext";
 
 export default SavedMealsScreen = ({ navigation }) => {
   const result = useQuery("Meal");
+  const getMealNameOrDate = (meal) => {
+    if (meal.name) return meal.name;
+    const mealCreatedDateObj = new Date(Date.parse(meal.createdAt));
+    return `Meal at ${mealCreatedDateObj.toDateString()}`;
+  };
+
+  const renderSavedMealListItem = (meal) => {
+    return <Text>{getMealNameOrDate(meal)}</Text>;
+  };
   return (
     <View style={styles.container}>
       <Text>Saved Meals:</Text>
       <FlatList
         data={result}
-        renderItem={({ item }) => <Text>{item.createdAt}</Text>}
+        renderItem={({ item }) => renderSavedMealListItem(item)}
         keyExtractor={(item) => item._id.toString()}
       />
     </View>
