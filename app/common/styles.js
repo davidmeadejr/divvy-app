@@ -540,7 +540,7 @@ export default styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#781",
+    // backgroundColor: "#781",
   },
 
   addFriendText: {
@@ -551,8 +551,9 @@ export default styles = StyleSheet.create({
   },
   // addFriendContainer: {
   //   display: "flex",
-  //   flexDirection: "row",
-  //   alignItems: "center",
+  //   // flexDirection: "row",
+  //   // alignItems: "center",
+  //   // backgroundColor: "#345",
   // },
 
   testing: { backgroundColor: "#781" },

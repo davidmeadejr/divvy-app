@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { Text, View, Button, FlatList, TouchableOpacity, Image } from "react-native";
 import { useRealm } from "../createRealmContext";
 import ItemComponent from "./itemComponent";
 import AddItem from "./addItem";
@@ -22,15 +15,9 @@ import NameDivvyInput from "./nameDivvyInput.js";
  */
 const Stack = createNativeStackNavigator();
 
-export default Items = ({
-  navigation,
-  selectedFriend,
-  selectedMeal,
-  setSelectedMeal,
-}) => {
+export default Items = ({ navigation, selectedFriend, selectedMeal, setSelectedMeal }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-  const [serviceChargeModalVisible, setServiceChargeModalVisible] =
-    useState(false);
+  const [serviceChargeModalVisible, setServiceChargeModalVisible] = useState(false);
   const [tipModalVisible, setTipModalVisible] = useState(false);
 
   const realm = useRealm();
@@ -40,17 +27,23 @@ export default Items = ({
         <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
           <Text style={styles.mealScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Totals Screen", { selectedMeal: selectedMeal })
-          }
-        >
+        <TouchableOpacity onPress={() => navigation.navigate("Totals Screen", { selectedMeal: selectedMeal })}>
           <Text style={styles.mealScreenTotalButton}>Total ➡️</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.mealList}>
         <NameDivvyInput />
         <View style={styles.separator}></View>
+      </View>
+      <View>
+        <TouchableOpacity style={styles.addItemContainer} onPress={() => setItemModalVisible(true)}>
+          {/* <Text style={styles.addItemButton} title="Add Item" onPress={() => setItemModalVisible(true)}>
+          Add Item
+        </Text> */}
+          {/* <Image style={styles.addItemButton} source={require("../../assets/white-plus-sign.png")} /> */}
+          <WhiteAddImage style={styles.addItemButton} selectedMeal={selectedMeal} />
+          <Text style={styles.addItemText}> Add Item </Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={selectedMeal.items}
@@ -66,22 +59,6 @@ export default Items = ({
         }}
         keyExtractor={(item) => item._id.toString()}
       />
-      <View>
-        <TouchableOpacity
-          style={styles.addItemContainer}
-          onPress={() => setItemModalVisible(true)}
-        >
-          {/* <Text style={styles.addItemButton} title="Add Item" onPress={() => setItemModalVisible(true)}>
-          Add Item
-        </Text> */}
-          {/* <Image style={styles.addItemButton} source={require("../../assets/white-plus-sign.png")} /> */}
-          <WhiteAddImage
-            style={styles.addItemButton}
-            selectedMeal={selectedMeal}
-          />
-          <Text style={styles.addItemText}> Add Item </Text>
-        </TouchableOpacity>
-      </View>
       <AddItem
         itemModalVisible={itemModalVisible}
         setItemModalVisible={setItemModalVisible}
