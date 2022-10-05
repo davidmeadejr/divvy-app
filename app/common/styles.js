@@ -87,7 +87,7 @@ export default styles = StyleSheet.create({
 
   usersContainer: {
     position: "absolute",
-    bottom: 0,
+    bottom: -40,
     marginTop: 50,
     marginRight: 16,
     marginBottom: 16,

@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import styles from "../common/styles";
 import { useRealm } from "../createRealmContext";
-import AddFriendButton from "./addFriendButton";
 
 const friendColours = [
   "#e6194B",
@@ -25,7 +24,6 @@ const friendColours = [
 export default AddFriendScrollView = ({
   myStyle,
   setMyStyle,
-  setModalVisible,
   selectedFriend,
   setSelectedFriend,
   selectedMeal,
@@ -53,13 +51,9 @@ export default AddFriendScrollView = ({
 
   return (
     <View style={styles.openModalContainer}>
-      <AddFriendButton setModalVisible={setModalVisible} />
       <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
-            // When a users presses a name.
-            // The function handleClick(index) is called.
-            // Which handles the toggle functionality of the background colours.
             onPress={() => handleClick(item, index)}
             onLongPress={() => handleLongPress(item)}
             style={{
@@ -71,7 +65,6 @@ export default AddFriendScrollView = ({
             }}
             key={item._id.toString()}
           >
-            {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
             <View>
               <Text
                 style={{
