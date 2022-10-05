@@ -18,6 +18,7 @@ import Users from "./app/components/users";
 import TotalsScreen from "./app/TotalsScreen";
 import SavedMealsScreen from "./app/SavedMealsScreen";
 import NewMealScreen from "./app/NewMealScreen";
+import SavePhotoScreen from "./app/SavePhotoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -49,29 +50,6 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </ImageBackground>
-  );
-};
-
-/*
- * Save Photo Screen Functionality
- */
-const SavePhotoScreen = ({ navigation }) => {
-  return (
-    <>
-      <View style={styles.savePhotoContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
-          <Text style={styles.retakePhotoButton}>⬅ Retake</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Camera Screen")}>
-          <Text style={styles.usePhotoButton}>Use</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.photoScreenshotContainer}>
-        <Text style={styles.photoScreenshot}>
-          "Itemised Receipt functionality"
-        </Text>
-      </View>
-    </>
   );
 };
 

@@ -11,13 +11,7 @@ import styles from "./common/styles";
 import { useRealm } from "./createRealmContext";
 import { Meal } from "./models/Meal";
 
-export default NewMealScreen = ({
-  navigation,
-  selectedMeal,
-  setSelectedMeal,
-  testVar,
-}) => {
-  const [createNewMeal, setCreateNewMeal] = useState(false);
+export default NewMealScreen = ({ navigation }) => {
   const [imageSource, setImageSource] = useState();
   const [imageObj, setImageObj] = useState();
   const realm = useRealm();
