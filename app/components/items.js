@@ -66,6 +66,8 @@ export default Items = ({
         </TouchableOpacity>
       </View>
       <FlatList
+        showsVerticalScrollIndicator={true}
+        persistentScrollbar={true}
         style={{ height: "60%" }}
         data={selectedMeal.items}
         renderItem={({ item }) => {

@@ -8,6 +8,9 @@ import WhiteAddImage from "./whiteAddImage";
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
 export default AddFriendModal = ({
+  myStyle,
+  setMyStyle,
+  setSelectedFriend,
   selectedMeal,
   modalVisible,
   setModalVisible,
@@ -16,12 +19,20 @@ export default AddFriendModal = ({
   // The useState for handling the modal.
   // The useState handling the names added.
   const [name, setName] = useState("");
-
+  const handleClick = (item) => {
+    const itemId = item._id.toString();
+    [...Object.keys(myStyle), itemId].forEach(
+      (key) => (myStyle[key] = key === itemId)
+    );
+    setMyStyle(myStyle);
+    setSelectedFriend(item);
+  };
   const addFriendToRealm = (name) => {
     if (!selectedMeal.friends.some((friend) => friend.name === name)) {
       realm.write(() => {
         const friend = realm.create("Friend", new Friend({ name }));
         selectedMeal.friends.push(friend);
+        handleClick(friend);
       });
     } else {
       Alert.alert("This name already exists, please use a different name.");
@@ -59,10 +70,6 @@ export default AddFriendModal = ({
               </Pressable>
               <Pressable
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                // When a user types a name.
-                // Then presses the add button.
-                // This adds the name to the page as a list.
-                // While also logging the typed name to the console.
                 onPress={handleAddButtonPress}
               >
                 <WhiteAddImage />
@@ -71,7 +78,6 @@ export default AddFriendModal = ({
           </View>
         </View>
       </Modal>
-      {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -29,13 +29,14 @@ const friendColours = [
   "#a9a9a9",
 ];
 export default AddFriendScrollView = ({
+  myStyle,
+  setMyStyle,
   setModalVisible,
   selectedFriend,
   setSelectedFriend,
   selectedMeal,
   setSelectedMeal,
 }) => {
-  const [myStyle, setMyStyle] = useState({});
   const realm = useRealm();
 
   const handleClick = (item) => {
@@ -56,12 +57,8 @@ export default AddFriendScrollView = ({
     setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
   return (
-    <ScrollView
-      contentContainerStyle={styles.openModalContainer}
-      horizontal
-      showsHorizontalScrollIndicator={true}
-    >
-      <Pressable
+    <View style={styles.openModalContainer}>
+      <TouchableOpacity
         style={[
           styles.button,
           styles.buttonOpen,
@@ -90,36 +87,38 @@ export default AddFriendScrollView = ({
           </Text>
         </View>
         <Text style={styles.addFriendText}>Add Friend</Text>
-      </Pressable>
-      {selectedMeal.friends.map((item, index) => (
-        <TouchableOpacity
-          // When a users presses a name.
-          // The function handleClick(index) is called.
-          // Which handles the toggle functionality of the background colours.
-          onPress={() => handleClick(item, index)}
-          onLongPress={() => handleLongPress(item)}
-          style={{
-            borderWidth: myStyle[item._id.toString()] ? 5 : 2,
-            borderColor: friendColours[index],
-            marginRight: myStyle[item._id.toString()] ? 13 : 16,
-            borderRadius: 10,
-            padding: myStyle[item._id.toString()] ? 7 : 10,
-          }}
-          key={item._id.toString()}
-        >
-          {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
-          <View>
-            <Text
-              style={{
-                fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
-                color: "#fff",
-              }}
-            >
-              {item.name}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
-    </ScrollView>
+      </TouchableOpacity>
+      <ScrollView horizontal showsHorizontalScrollIndicator={true}>
+        {selectedMeal.friends.map((item, index) => (
+          <TouchableOpacity
+            // When a users presses a name.
+            // The function handleClick(index) is called.
+            // Which handles the toggle functionality of the background colours.
+            onPress={() => handleClick(item, index)}
+            onLongPress={() => handleLongPress(item)}
+            style={{
+              borderWidth: myStyle[item._id.toString()] ? 5 : 2,
+              borderColor: friendColours[index],
+              marginRight: myStyle[item._id.toString()] ? 13 : 16,
+              borderRadius: 10,
+              padding: myStyle[item._id.toString()] ? 7 : 10,
+            }}
+            key={item._id.toString()}
+          >
+            {/* The names added by the users are then placed at the bottom of the screen as a horizontal list. */}
+            <View>
+              <Text
+                style={{
+                  fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
+                  color: "#fff",
+                }}
+              >
+                {item.name}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };

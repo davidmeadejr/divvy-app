@@ -11,15 +11,21 @@ export default FriendsBar = ({
   setSelectedMeal,
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [myStyle, setMyStyle] = useState({});
 
   return (
     <View style={styles.usersContainer}>
       <AddFriendModal
+        myStyle={myStyle}
+        setMyStyle={setMyStyle}
+        setSelectedFriend={setSelectedFriend}
         selectedMeal={selectedMeal}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
       />
       <AddFriendScrollView
+        myStyle={myStyle}
+        setMyStyle={setMyStyle}
         setModalVisible={setModalVisible}
         selectedFriend={selectedFriend}
         setSelectedFriend={setSelectedFriend}

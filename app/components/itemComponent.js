@@ -22,7 +22,7 @@ export default ItemComponent = ({
     return item.friends.map((friend) => friend.name).join(", ");
   };
 
-  const handleLongPress = (item) => {
+  const handleDeleteItem = (item) => {
     realm.write(() => {
       realm.delete(item);
     });
@@ -48,21 +48,12 @@ export default ItemComponent = ({
       <TouchableOpacity
         style={styles.itemContainer}
         onPress={() => itemOnPressAddFriend(item)}
-        // onLongPress={() => handleLongPress(item)}
       >
         <View style={styles.itemNameContainer}>
-          <Text
-            style={styles.redCancel}
-            // onLongPress={() => handleLongPress(item)}
-          >
+          <Text style={styles.redCancel} onPress={() => handleDeleteItem(item)}>
             ❌
           </Text>
-          <Text
-            style={styles.itemName}
-            // onLongPress={() => handleLongPress(item)}
-          >
-            {item.name}
-          </Text>
+          <Text style={styles.itemName}>{item.name}</Text>
         </View>
         <View style={styles.priceAndFriendsContainer}>
           <Text style={styles.amount}>£{item.amount.toFixed(2)}</Text>
