@@ -49,11 +49,6 @@ export default Items = ({ navigation, selectedFriend, selectedMeal, setSelectedM
         }}
         keyExtractor={(item) => item._id.toString()}
       />
-      <AddItem
-        itemModalVisible={itemModalVisible}
-        setItemModalVisible={setItemModalVisible}
-        selectedMeal={selectedMeal}
-      />
       <View>
         <TouchableOpacity style={styles.addItemContainer} onPress={() => setItemModalVisible(true)}>
           {/* <Text style={styles.addItemButton} title="Add Item" onPress={() => setItemModalVisible(true)}>
@@ -64,6 +59,11 @@ export default Items = ({ navigation, selectedFriend, selectedMeal, setSelectedM
           <Text style={styles.addItemText}> Add Item </Text>
         </TouchableOpacity>
       </View>
+      <AddItem
+        itemModalVisible={itemModalVisible}
+        setItemModalVisible={setItemModalVisible}
+        selectedMeal={selectedMeal}
+      />
       {/* <AddServiceCharge
         selectedMeal={selectedMeal}
         serviceChargeModalVisible={serviceChargeModalVisible}

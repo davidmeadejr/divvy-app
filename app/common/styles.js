@@ -533,6 +533,7 @@ export default styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 24,
+    // backgroundColor: "#781",
   },
 
   addItemContainer: {
@@ -547,4 +548,9 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 13,
   },
+  // addFriendContainer: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  // },
 });

@@ -121,7 +121,7 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
       {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
       <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={true}>
         <Pressable
-          style={[styles.button, styles.buttonOpen, { marginRight: 10 }]}
+          style={[styles.button, styles.buttonOpen, styles.addFriendContainer, { marginRight: 10 }]}
           onPress={() => setModalVisible(true)}
         >
           <View
@@ -130,6 +130,7 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
               flexDirection: "row",
               alignItems: "center",
             }}
+            i
           >
             <WhiteAddImage />
             <Text
