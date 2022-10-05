@@ -25,15 +25,20 @@ export default SavedMealsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Saved Meals:</Text>
-      <FlatList
-        data={result}
-        renderItem={({ item }) => renderSavedMealListItem(item)}
-        keyExtractor={(item) => item._id.toString()}
-      />
-      <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-        <Text>Back</Text>
-      </TouchableOpacity>
+      <View style={styles.modalView}>
+        <Text style={{ fontSize: 20 }}>Saved Meals:</Text>
+        <FlatList
+          style={{ height: 200 }}
+          showsVerticalScrollIndicator={true}
+          persistentScrollbar={true}
+          data={result}
+          renderItem={({ item }) => renderSavedMealListItem(item)}
+          keyExtractor={(item) => item._id.toString()}
+        />
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+          <Text>Back</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
