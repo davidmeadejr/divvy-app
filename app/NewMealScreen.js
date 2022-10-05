@@ -58,17 +58,40 @@ export default NewMealScreen = ({ navigation }) => {
       }
     );
   };
-  // const source = {
-  //   uri: "data:image/jpeg;base64," + result.assets[0].base64,
-  // };
-  // setImageObj(
-  //   JSON.stringify({
-  //     image: e.assets[0].base64,
-  //     filename: e.assets[0].fileName,
-  //     contentType: e.assets[0].type,
-  //   })
-  // );
-  // setImageSource(source);
+
+  const handleCamera = () => {
+    launchCamera(
+      {
+        cameraType: "back",
+        mediaType: "photo",
+        saveToPhotos: true,
+        includeBase64: true,
+      },
+      (imageResult) => {
+        if (imageResult.didCancel) {
+          console.log("cancelled");
+        } else if (imageResult.errorMessage) {
+          console.log("error: " + imageResult.errorMessage);
+        } else if (imageResult.errorCode) {
+          console.log(imageResult.errorCode);
+        } else {
+          const imageSrc = {
+            uri: "data:image/jpeg;base64," + imageResult.assets[0].base64,
+          };
+          const imageTaggunObj = JSON.stringify({
+            image: imageResult.assets[0].base64,
+            filename: imageResult.assets[0].fileName,
+            contentType: imageResult.assets[0].type,
+          });
+
+          navigation.navigate("Save Photo Screen", {
+            imageTaggunObj,
+            imageSrc,
+          });
+        }
+      }
+    );
+  };
 
   return (
     <ImageBackground
@@ -86,9 +109,7 @@ export default NewMealScreen = ({ navigation }) => {
         <TouchableOpacity onPress={handleLibraryImage}>
           <Text style={styles.uploadButton}>Upload 📁</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Save Photo Screen")}
-        >
+        <TouchableOpacity onPress={handleCamera}>
           <Text style={styles.cameraEmojiButton}>📸</Text>
         </TouchableOpacity>
       </View>

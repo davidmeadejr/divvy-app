@@ -2,7 +2,6 @@ import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import styles from "./common/styles";
 import React from "react";
-import { useState } from "react";
 import axios from "axios";
 import { useRealm } from "./createRealmContext";
 import { Meal } from "./models/Meal";
@@ -10,8 +9,6 @@ import getInterpretedReceiptData from "./getInterpretedReceiptData";
 import { Item } from "./models/Item";
 
 export default SavePhotoScreen = ({ navigation, route }) => {
-  const [loadingState, setLoadingState] = useState();
-  const [uploadStatus, setUploadStatus] = useState();
   const { imageTaggunObj, imageSrc } = route.params;
   const realm = useRealm();
 
@@ -20,6 +17,30 @@ export default SavePhotoScreen = ({ navigation, route }) => {
       sendImageToTaggun();
     })
   );
+
+  const sendImageToTaggun = async () => {
+    try {
+      const response = await axios.post(
+        "https://api.taggun.io/api/receipt/v1/verbose/encoded",
+        imageTaggunObj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            apikey: "3c61e4503e6911edb69573233a13efd6",
+            accept: "application/json",
+          },
+        }
+      );
+      const selectedMeal = createNewMealEntryFromData(response.data);
+      navigation.navigate("Meal Screen", { selectedMeal });
+    } catch (e) {
+      console.error(e);
+      Alert.alert(
+        "There has been an issue uploading the receipt, please try again or create a blank meal"
+      );
+      navigation.navigate("New Meal Screen");
+    }
+  };
 
   const createNewMealEntryFromData = (data) => {
     let newMeal;
@@ -31,28 +52,6 @@ export default SavePhotoScreen = ({ navigation, route }) => {
       });
     });
     return newMeal;
-  };
-
-  const sendImageToTaggun = async () => {
-    let url = "https://api.taggun.io/api/receipt/v1/verbose/encoded";
-    try {
-      const response = await axios.post(url, imageTaggunObj, {
-        headers: {
-          "Content-Type": "application/json",
-          apikey: "3c61e4503e6911edb69573233a13efd6", // this needs to be an ENV
-          accept: "application/json",
-        },
-      });
-      console.log(response);
-      const selectedMeal = createNewMealEntryFromData(response.data);
-      navigation.navigate("Meal Screen", { selectedMeal });
-    } catch (e) {
-      console.error(e);
-      Alert.alert(
-        "There has been an issue uploading the receipt, please try again or create a blank meal"
-      );
-      navigation.navigate("New Meal Screen");
-    }
   };
 
   return (
