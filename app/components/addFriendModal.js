@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Modal,
-  Pressable,
-  ScrollView,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Modal, Pressable, ScrollView, TouchableOpacity, Alert } from "react-native";
 import styles from "../common/styles";
 import { Friend } from "../models/Friend";
 import { useQuery, useRealm, RealmProvider } from "../createRealmContext";
+import WhiteAddImage from "./whiteAddImage";
 
 const friendColours = [
   "#e6194B",
@@ -35,12 +26,7 @@ const friendColours = [
 
 // The AddFriendModal component handles the functionality of the modal.
 // So that users can type a name and add that friend to a page.
-export default AddFriendModal = ({
-  selectedFriend,
-  setSelectedFriend,
-  selectedMeal,
-  setSelectedMeal,
-}) => {
+export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMeal, setSelectedMeal }) => {
   const realm = useRealm();
   // The useState for handling the modal.
   const [modalVisible, setModalVisible] = useState(false);
@@ -67,16 +53,13 @@ export default AddFriendModal = ({
   const handleClick = (item, index) => {
     const itemId = item._id.toString();
     // myStyle[itemId] = true;
-    [...Object.keys(myStyle), itemId].forEach(
-      (key) => (myStyle[key] = key === itemId)
-    );
+    [...Object.keys(myStyle), itemId].forEach((key) => (myStyle[key] = key === itemId));
     setMyStyle(myStyle);
     setSelectedFriend(item);
   };
 
   const handleLongPress = (item) => {
-    if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
-      setSelectedFriend();
+    if (selectedFriend && selectedFriend._id.toString() === item._id.toString()) setSelectedFriend();
     realm.write(() => {
       realm.delete(item);
     });
@@ -94,12 +77,13 @@ export default AddFriendModal = ({
         //   console.log("Modal has been closed.");
         //   setModalVisible(!modalVisible);
         // }}
+        // style={styles.addFriendModalContainer}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Add Friend</Text>
             <TextInput
-              style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              style={styles.addFriendInput}
               // Handles the typing of characters by the user.
               onChangeText={(name) => setName(name)}
               placeholder={"enter name"}
@@ -112,7 +96,7 @@ export default AddFriendModal = ({
                 // Toggles modal visibility on click
                 onPress={() => setModalVisible(false)}
               >
-                <Text style={styles.textStyle}>Cancel</Text>
+                <Text style={styles.textStyle}>❌</Text>
               </Pressable>
               <Pressable
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
@@ -128,39 +112,38 @@ export default AddFriendModal = ({
                   setModalVisible(false);
                 }}
               >
-                <Text style={styles.textStyle}>➕</Text>
+                <WhiteAddImage />
               </Pressable>
             </View>
           </View>
         </View>
       </Modal>
       {/* Enables horizontal scrolling the the names added at the bottom of the screen.*/}
-      <ScrollView
-        contentContainerStyle={styles.openModalContainer}
-        horizontal
-        showsHorizontalScrollIndicator={true}
-      >
+      <ScrollView contentContainerStyle={styles.openModalContainer} horizontal showsHorizontalScrollIndicator={true}>
         <Pressable
-          style={[styles.button, styles.buttonOpen, { marginRight: 10 }]}
+          style={[styles.button, styles.buttonOpen, styles.addFriendContainer, { marginRight: 10 }]}
           onPress={() => setModalVisible(true)}
         >
           <View
             style={{
               display: "flex",
               flexDirection: "row",
+              alignItems: "center",
             }}
+            i
           >
+            <WhiteAddImage />
             <Text
               style={{
-                color: "black",
-                fontWeight: "bold",
                 textAlign: "center",
+                marginLeft: 10,
+                fontSize: 32,
               }}
             >
-              Add Friend
+              👪
             </Text>
-            <Text style={styles.textStyle}>➕</Text>
           </View>
+          <Text style={styles.addFriendText}>Add Friend</Text>
         </Pressable>
         {selectedMeal.friends.map((item, index) => (
           <TouchableOpacity
@@ -183,6 +166,7 @@ export default AddFriendModal = ({
               <Text
                 style={{
                   fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
+                  color: "#fff",
                 }}
               >
                 {item.name}

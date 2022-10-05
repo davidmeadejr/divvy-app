@@ -3,6 +3,7 @@ import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
 import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
 import styles from "../common/styles";
+import WhiteAddImage from "./whiteAddImage";
 
 const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
   const [itemName, setItemName] = useState("");
@@ -49,14 +50,14 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add an item</Text>
+            <Text style={styles.modalText}>Add an item 😋</Text>
             <TextInput
-              style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              style={styles.enterDishInput}
               placeholder="Enter dish name"
               onChangeText={(name) => setItemName(name)}
             />
             <TextInput
-              style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
+              style={styles.enterDishAmount}
               placeholder="Enter dish amount - eg. 15.99"
               onChangeText={(amount) => setItemAmount(amount)}
             />
@@ -67,13 +68,14 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
                   setItemModalVisible(!itemModalVisible);
                 }}
               >
-                <Text style={styles.textStyle}>Send back</Text>
+                <Text style={styles.textStyle}>❌</Text>
               </Pressable>
               <Pressable
                 style={[styles.modalAddButton, styles.modalAddButtonOpen]}
                 onPress={() => handleItemModalAddDishOnPress()}
               >
-                <Text style={styles.textStyle}>➕</Text>
+                {/* <Text style={styles.textStyle}>➕Add Item</Text> */}
+                <WhiteAddImage />
               </Pressable>
             </View>
           </View>
