@@ -52,7 +52,7 @@ export default AddFriendModal = ({
   const addFriendToRealm = (name) => {
     if (!selectedMeal.friends.some((friend) => friend.name === name)) {
       realm.write(() => {
-        const friend = realm.create("Friend", new Friend({ name: name }));
+        const friend = realm.create("Friend", new Friend({ name }));
         selectedMeal.friends.push(friend);
       });
     } else {
@@ -105,7 +105,6 @@ export default AddFriendModal = ({
               value={name}
             />
             <View style={styles.modalButtonContainer}>
-              {/* Pressable is react natives equivalent to "button".  */}
               <Pressable
                 style={[styles.cancelButton, styles.cancelButtonClose]}
                 // Toggles modal visibility on click

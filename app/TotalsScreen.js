@@ -1,16 +1,7 @@
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  Button,
-  TouchableHighlight,
-} from "react-native";
+import { View, Text, Button } from "react-native";
 import { useState } from "react";
 import styles from "./common/styles";
 import Totals from "./components/totals";
-import AddServiceCharge from "./components/addServiceCharge";
-import AddTip from "./components/addTip";
 import ValueModal from "./components/valueModal";
 
 export default TotalsScreen = ({ navigation, route }) => {
@@ -19,15 +10,12 @@ export default TotalsScreen = ({ navigation, route }) => {
     useState(false);
   const [tipModalVisible, setTipModalVisible] = useState(false);
   const [discountModalVisible, setDiscountModalVisible] = useState(false);
+  const [taxModalVisible, setTaxModalVisible] = useState(false);
 
   const handleItemsButtonPress = () => {
     navigation.navigate("Meal Screen", {
       selectedMeal: selectedMeal,
     });
-  };
-
-  const getZeroOrAmountAsPercentage = (amountType) => {
-    return !selectedMeal[amountType] ? "0%" : selectedMeal[amountType] + "%";
   };
 
   return (
@@ -59,7 +47,7 @@ export default TotalsScreen = ({ navigation, route }) => {
         <Button
           title="Tax"
           onPress={() => {
-            // tax modal doens't exist yet
+            setTaxModalVisible(true);
           }}
         />
         <Text>0%</Text>
@@ -87,6 +75,14 @@ export default TotalsScreen = ({ navigation, route }) => {
         selectedMeal={selectedMeal}
         setSelectedMeal={setSelectedMeal}
         modalType={"discount"}
+      />
+      {/* tax value modal */}
+      <ValueModal
+        valueModalVisible={taxModalVisible}
+        setValueModalVisible={setTaxModalVisible}
+        selectedMeal={selectedMeal}
+        setSelectedMeal={setSelectedMeal}
+        modalType={"tax"}
       />
     </View>
   );

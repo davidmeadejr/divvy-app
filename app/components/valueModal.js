@@ -40,18 +40,22 @@ export default ValueModal = ({
     }
   };
 
+  const getPressableStyle = (isTypeSelected) =>
+    isTypeSelected
+      ? styles.valueModalButtonSelected
+      : styles.valueModalButtonDeselected;
+
+  const getPressableTextStyle = (isTypeSelected) =>
+    isTypeSelected
+      ? styles.valueModalButtonTextSelected
+      : styles.valueModalButtonTextDeselected;
+
   const flatListValueTypeButtons = (item) => {
     const isTypeSelected = typeSelected === item;
     const itemNameTitled = item.charAt(0).toUpperCase() + item.slice(1);
     return (
       <Pressable
-        style={{
-          borderWidth: isTypeSelected ? 5 : 2,
-          borderColor: isTypeSelected,
-          marginRight: isTypeSelected ? 13 : 16,
-          borderRadius: 10,
-          padding: isTypeSelected ? 7 : 10,
-        }}
+        style={getPressableStyle(isTypeSelected)}
         onPress={() => {
           realm.write(() => {
             selectedMeal[`${modalType}Type`] = item;
@@ -60,7 +64,9 @@ export default ValueModal = ({
           });
         }}
       >
-        <Text>{itemNameTitled}</Text>
+        <Text style={getPressableTextStyle(isTypeSelected)}>
+          {itemNameTitled}
+        </Text>
       </Pressable>
     );
   };

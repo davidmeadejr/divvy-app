@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 // Imports that allow you to use "react" and "react-natives" features.
 import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
-import { RealmProvider } from "../createRealmContext";
 
 // Components that have been imported.
 import Items from "./items";

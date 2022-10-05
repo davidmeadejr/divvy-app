@@ -81,4 +81,22 @@ export default styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: 16,
   },
+  valueModalButtonSelected: {
+    borderWidth: 5,
+    marginRight: 13,
+    borderRadius: 10,
+    padding: 7,
+  },
+  valueModalButtonDeselected: {
+    borderWidth: 2,
+    marginRight: 16,
+    borderRadius: 10,
+    padding: 10,
+  },
+  valueModalButtonTextSelected: {
+    fontWeight: "bold",
+  },
+  valueModalButtonTextDeselected: {
+    fontWeight: "normal",
+  },
 });
