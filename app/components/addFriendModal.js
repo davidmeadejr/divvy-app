@@ -164,6 +164,7 @@ export default AddFriendModal = ({ selectedFriend, setSelectedFriend, selectedMe
               <Text
                 style={{
                   fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
+                  color: "#fff",
                 }}
               >
                 {item.name}

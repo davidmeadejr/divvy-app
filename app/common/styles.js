@@ -493,9 +493,19 @@ export default styles = StyleSheet.create({
     fontWeight: "500",
   },
 
-  test: {
+  // test: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  // },
+
+  itemNameContainer: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+  },
+
+  redCancel: {
+    marginBottom: 12,
   },
 
   /* *************************************************** */

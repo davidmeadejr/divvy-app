@@ -1,6 +1,6 @@
 import React from "react";
 import { useRealm } from "../createRealmContext";
-import { Text, View, Pressable, Alert } from "react-native";
+import { Text, View, Pressable, Alert, Image } from "react-native";
 import styles from "../common/styles";
 
 export default ItemComponent = ({ selectedFriend, item, selectedMeal, setSelectedMeal }) => {
@@ -32,9 +32,17 @@ export default ItemComponent = ({ selectedFriend, item, selectedMeal, setSelecte
       <Pressable
         style={styles.itemContainer}
         onPress={() => itemOnPressAddFriend(item)}
-        onLongPress={() => handleLongPress(item)}
+        // onLongPress={() => handleLongPress(item)}
       >
-        <Text style={styles.itemName}>{item.name}</Text>
+        <View style={styles.itemNameContainer}>
+          <Text style={styles.redCancel} onLongPress={() => handleLongPress(item)}>
+            ❌
+          </Text>
+          <Text style={styles.itemName} onLongPress={() => handleLongPress(item)}>
+            {/* <Image style={styles.redCancel} source={require("../../assets/red-x.png")} /> */}
+            {item.name}
+          </Text>
+        </View>
         <View style={styles.priceAndFriendsContainer}>
           <Text style={styles.amount}>£{item.amount.toFixed(2)}</Text>
           <Text style={styles.friend}>{itemFriends(item)}</Text>
