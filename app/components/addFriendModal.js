@@ -12,8 +12,6 @@ import { Friend } from "../models/Friend";
 import { useRealm } from "../createRealmContext";
 import WhiteAddImage from "./whiteAddImage";
 
-// The AddFriendModal component handles the functionality of the modal.
-// So that users can type a name and add that friend to a page.
 export default AddFriendModal = ({
   handleSelectedFriendStyle,
   selectedMeal,

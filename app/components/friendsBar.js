@@ -3,6 +3,7 @@ import { View } from "react-native";
 import AddFriendModal from "./addFriendModal";
 import styles from "../common/styles";
 import AddFriendScrollView from "./addFriendScrollView";
+import AddFriendButton from "./addFriendButton";
 // The Users component which is parent component of the AddFriendModal component.
 export default FriendsBar = ({
   selectedFriend,

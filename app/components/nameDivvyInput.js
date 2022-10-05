@@ -1,26 +1,33 @@
 import React, { useState } from "react";
-import { View, TextInput } from "react-native";
+import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import styles from "../common/styles";
+import { useRealm } from "../createRealmContext";
 
-const NameDivvyInput = () => {
-  // const [text, onChangeText] = React.useState("Name your Divvy 🍲");
-  // const [number, onChangeNumber] = React.useState(null);
-
+export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
   const [divvyName, setDivvyName] = useState("");
+  const realm = useRealm();
 
-  const changeText = () => {};
+  const getPlaceholderText = () =>
+    selectedMeal.name ? selectedMeal.name : "Name your Divvy 🍲";
 
+  const handleTouchablePress = () => {
+    if (divvyName) {
+      realm.write(() => {
+        selectedMeal.name = divvyName;
+      });
+    }
+    setEditName(false);
+  };
   return (
-    <View>
-      {/* <TextInput style={styles.divvyInputField} onChangeText={onChangeText} value={text} /> */}
+    <View style={styles.modalButtonContainer}>
       <TextInput
-        // style={{ backgroundColor: "white", padding: 10, marginTop: 10 }}
         style={styles.divvyInputField}
-        placeholder="Name your Divvy 🍲"
+        placeholder={getPlaceholderText()}
         onChangeText={(name) => setDivvyName(name)}
       />
+      <TouchableOpacity onPress={handleTouchablePress}>
+        <Text style={{ fontSize: 20 }}>Okay</Text>
+      </TouchableOpacity>
     </View>
   );
 };
-
-export default NameDivvyInput;

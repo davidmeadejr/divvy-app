@@ -14,8 +14,23 @@ export default Items = ({
   setSelectedMeal,
 }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-
+  const [editName, setEditName] = useState(true);
   const realm = useRealm();
+
+  const getMealNameOrEdit = () => {
+    if (editName)
+      return (
+        <NameDivvyInput setEditName={setEditName} selectedMeal={selectedMeal} />
+      );
+    return (
+      <View style={{ flexDirection: "row", height: 61 }}>
+        <Text style={{ fontSize: 20 }}>{selectedMeal.name}</Text>
+        <TouchableOpacity onPress={() => setEditName(true)}>
+          <Text style={{ fontSize: 20 }}>✎</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <View style={styles.itemsContainer}>
       <View style={styles.mealHeader}>
@@ -31,7 +46,8 @@ export default Items = ({
         </TouchableOpacity>
       </View>
       <View style={styles.mealList}>
-        <NameDivvyInput />
+        {getMealNameOrEdit()}
+        {/* <Text style={styles.mealScreenBackButton}>Divvy ✎</Text> */}
         <View style={styles.separator}></View>
       </View>
       <View>
