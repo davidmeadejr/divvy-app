@@ -29,10 +29,11 @@ export default NewMealScreen = ({ navigation }) => {
       {
         cameraType: "back",
         mediaType: "photo",
-        saveToPhotos: true,
+        // saveToPhotos: true,
         includeBase64: true,
         maxHeight: 640,
         maxWidgth: 640,
+        quality: 1,
       },
       (imageResult) => {
         if (imageResult.didCancel) {
