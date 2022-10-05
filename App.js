@@ -206,6 +206,11 @@ const App = () => {
           component={MealScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Totals Screen"
+          component={TotalsScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
