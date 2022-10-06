@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import styles from "../common/styles";
 import WhiteAddImage from "./whiteAddImage";
