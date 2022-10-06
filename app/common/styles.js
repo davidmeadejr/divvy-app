@@ -808,11 +808,18 @@ export default styles = StyleSheet.create({
   },
 
   savedMealsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 5,
+    // display: "flex",
+    // flexDirection: "row",
+    // marginBottom: 5,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "space-evenly",
+    backgroundColor: "blue",
+    // height: "50%",
+    width: "80%",
+    borderRadius: 10,
   },
   savedMealsText: {
     color: "#00",
@@ -832,22 +839,38 @@ export default styles = StyleSheet.create({
 
   savedMealsTitleContainer: {
     marginTop: 30,
-    display: "flex",
+    width: "60%",
+    // display: "flex",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#4B23F3",
   },
 
+  savedMealsCenteredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+
+  // centeredView: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   marginTop: 22,
+  // },
+
   savedMealScreenBackButton: {
     fontSize: 32,
     color: "#000",
-    paddingTop: 10,
-    paddingBottom: 10,
+    // paddingTop: 10,
+    // paddingBottom: 10,
     fontWeight: "bold",
-    paddingLeft: 15,
-    width: 215,
-    marginBottom: 40,
-    marginLeft: 20,
+    paddingRight: 20,
+    // paddingLeft: 15,
+    // width: 215,
+    // marginBottom: 40,
+    // marginLeft: 20,
   },
 
   savedMealScreenMealName: {

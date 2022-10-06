@@ -13,15 +13,15 @@ export default SavedMealsScreen = ({ navigation }) => {
 
   const renderSavedMealListItem = (meal) => {
     return (
-      <View style={styles.savedMealsContainer}>
+      <View>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Meal Screen", { selectedMeal: meal })
           }
-          style={styles.savedMealsContainer}
         >
-          <Text style={styles.savedMealsText}>{getMealNameOrDate(meal)}</Text>
-          <Text> ➡️</Text>
+          <Text style={styles.savedMealsText}>
+            {getMealNameOrDate(meal)} ➡️
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -39,17 +39,20 @@ export default SavedMealsScreen = ({ navigation }) => {
       source={require("../assets/background-image.png")}
       resizeMode={"cover"}
     >
-      <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-        <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
-      </TouchableOpacity>
-      <View style={styles.savedMealsTitleContainer}>
-        <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
-        {/* <View style={styles.separator}></View> */}
-        <FlatList
-          data={result}
-          renderItem={({ item }) => renderSavedMealListItem(item)}
-          keyExtractor={(item) => item._id.toString()}
-        />
+      <View style={styles.savedMealsCenteredView}>
+        <View style={styles.savedMealsContainer}>
+          <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
+          {/* <View style={styles.separator}></View> */}
+          <FlatList
+            style={{ height: "20%", backgroundColor: "white" }}
+            data={result}
+            renderItem={({ item }) => renderSavedMealListItem(item)}
+            keyExtractor={(item) => item._id.toString()}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+            <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ImageBackground>
   );
