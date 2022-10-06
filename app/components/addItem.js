@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useRealm } from "../createRealmContext";
 import { Item } from "../models/Item";
-import { View, Modal, Text, Pressable, TextInput, Alert } from "react-native";
+import {
+  View,
+  Modal,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+} from "react-native";
 import styles from "../common/styles";
-import WhiteAddImage from "./whiteAddImage";
 
 const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
   const [itemName, setItemName] = useState("");
@@ -45,11 +51,6 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
         animationType="slide"
         transparent={true}
         visible={itemModalVisible}
-        // Closes the modal on click.
-        // onRequestClose={() => {
-        //   console.log("Modal has been closed.");
-        //   setModalVisible(!modalVisible);
-        // }}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
@@ -59,27 +60,29 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
               placeholder="Enter dish name"
               onChangeText={(name) => setItemName(name)}
             />
+            <View style={{ padding: 10 }}></View>
+
+            <Text style={styles.modalText}>Add item amount 😋</Text>
             <TextInput
-              style={styles.enterDishAmount}
-              placeholder="Enter dish amount - eg. 15.99"
+              style={styles.enterDishInput}
+              placeholder="Enter amount, eg. 8.99"
               onChangeText={(amount) => setItemAmount(amount)}
             />
             <View style={styles.modalButtonContainer}>
-              <Pressable
-                style={[styles.cancelButton, styles.cancelButtonClose]}
+              <TouchableOpacity
                 onPress={() => {
-                  setItemModalVisible(!itemModalVisible);
+                  setItemModalVisible(false);
                 }}
               >
-                <Text style={styles.textStyle}>❌</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                onPress={() => handleItemModalAddDishOnPress()}
-              >
-                {/* <Text style={styles.textStyle}>➕Add Item</Text> */}
-                <WhiteAddImage />
-              </Pressable>
+                <Text style={styles.cancelButtonText}>❌</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleItemModalAddDishOnPress}>
+                <Text
+                  style={{ color: "white", fontWeight: "bold", fontSize: 80 }}
+                >
+                  +
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>

@@ -12,7 +12,11 @@ export default Totals = ({ selectedMeal }) => {
         chargeAmount = getPercentageForString(
           selectedMeal[`${chargeName}Amount`]
         );
-      return <Text>{`${charge}: £${chargeAmount.toFixed(2)}`}</Text>;
+      return (
+        <Text
+          style={{ fontSize: 16, color: "#fff" }}
+        >{`${charge}: £${chargeAmount.toFixed(2)}`}</Text>
+      );
     }
   };
 
@@ -27,7 +31,14 @@ export default Totals = ({ selectedMeal }) => {
             £{getIndividualTotal(item).toFixed(2)}
           </Text>
         </View>
-        <Text>{getIndividualItems(item)}</Text>
+        <Text
+          style={{
+            marginBottom: 20,
+            color: "white",
+          }}
+        >
+          {getIndividualItems(item)}
+        </Text>
       </View>
     );
   };
@@ -61,17 +72,11 @@ export default Totals = ({ selectedMeal }) => {
   const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
 
   const getIndividualItems = (friend) => {
-    return (
-      <View style={styles.individualItemsContainer}>
-        <Text style={styles.individualItems}>
-          {friend.items
-            .map((item) =>
-              item.friends.length === 1 ? item.name : `${item.name} (shared)`
-            )
-            .join(", ")}
-        </Text>
-      </View>
-    );
+    return friend.items
+      .map((item) =>
+        item.friends.length === 1 ? item.name : `${item.name} (shared)`
+      )
+      .join(", ");
   };
 
   const getTotal = (amount) => {
@@ -84,28 +89,49 @@ export default Totals = ({ selectedMeal }) => {
       .reduce((a, b) => a + b, 0);
   };
 
+  const getFlatListHeight = () => {
+    const heights = ["54%", "51%", "48%", "45%", "42%"];
+    const heightsIdx = [
+      selectedMeal.serviceChargeAmount,
+      selectedMeal.tipAmount,
+      selectedMeal.taxAmount,
+      selectedMeal.discountAmount,
+    ].filter(Boolean).length;
+    return heights[heightsIdx];
+  };
+
   return (
     <View>
       <View style={styles.totalsInfoContainer}>
-        <Text style={styles.subTotalsInfoTitle}>
-          Subtotal: £{getSubTotal().toFixed(2)}
-        </Text>
-        <Text style={styles.totalsInfoTitle}>
-          Total: £{getTotal(getSubTotal()).toFixed(2)}
-        </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            color: "#fff",
+          }}
+        >
+          <Text style={styles.subTotalsInfoTitle}>
+            Subtotal: £{getSubTotal().toFixed(2)}
+          </Text>
+          <Text style={styles.totalsInfoTitle}>
+            Total: £{getTotal(getSubTotal()).toFixed(2)}
+          </Text>
+        </View>
         <FlatList
           data={["Service charge", "Tip", "Tax", "Discount"]}
           renderItem={({ item }) => getChargeText(item)}
           keyExtractor={(charge) => charge}
         />
       </View>
-      <View style={styles.totalsBreakdownContainer}>
-        <FlatList
-          data={selectedMeal.friends}
-          renderItem={({ item }) => getFriendTotalsText(item)}
-          keyExtractor={(friend) => friend._id.toString()}
-        />
-      </View>
+      {/* <View style={styles.totalsBreakdownContainer}> */}
+      <FlatList
+        style={{ height: getFlatListHeight() }}
+        data={selectedMeal.friends}
+        renderItem={({ item }) => getFriendTotalsText(item)}
+        keyExtractor={(friend) => friend._id.toString()}
+      />
+      {/* </View> */}
     </View>
   );
 };

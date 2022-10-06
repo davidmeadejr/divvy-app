@@ -1,13 +1,6 @@
 import React from "react";
 import { useRealm } from "../createRealmContext";
-import {
-  Text,
-  View,
-  Pressable,
-  Alert,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../common/styles";
 
 export default ItemComponent = ({
@@ -17,6 +10,7 @@ export default ItemComponent = ({
   setSelectedMeal,
 }) => {
   const realm = useRealm();
+
   const itemFriends = (item) => {
     if (!item.friends.length) return [];
     return item.friends.map((friend) => friend.name).join(", ");
@@ -46,21 +40,23 @@ export default ItemComponent = ({
   };
 
   return (
-    <View>
-      <TouchableOpacity
-        style={styles.itemContainer}
-        onPress={() => itemOnPressAddFriend(item)}
-      >
-        <View style={styles.itemNameContainer}>
-          <Text style={styles.redCancel} onPress={() => handleDeleteItem(item)}>
-            ❌
-          </Text>
-          <Text style={styles.itemName}>{item.name}</Text>
-        </View>
-        <View style={styles.priceAndFriendsContainer}>
+    <View style={{ marginBottom: 20 }}>
+      <TouchableOpacity onPress={() => itemOnPressAddFriend(item)}>
+        <View style={styles.itemContainer}>
+          <View style={styles.itemNameContainer}>
+            <Text
+              style={styles.redCancel}
+              onPress={() => handleDeleteItem(item)}
+              onLongPress={() => handleDeleteItem(item)}
+            >
+              ❌
+            </Text>
+            <Text style={styles.itemName}>{item.name}</Text>
+          </View>
+          {/* <View style={styles.priceAndFriendsContainer}> */}
           <Text style={styles.amount}>£{item.amount.toFixed(2)}</Text>
-          <Text style={styles.friend}>{itemFriends(item)}</Text>
         </View>
+        <Text style={styles.friend}>{itemFriends(item)}</Text>
       </TouchableOpacity>
     </View>
   );

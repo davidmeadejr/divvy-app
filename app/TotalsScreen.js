@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import styles from "./common/styles";
 import Totals from "./components/totals";
@@ -6,61 +6,61 @@ import ValueModal from "./components/valueModal";
 
 export default TotalsScreen = ({ navigation, route }) => {
   const [selectedMeal, setSelectedMeal] = useState(route.params.selectedMeal);
-  const [serviceChargeModalVisible, setServiceChargeModalVisible] = useState(false);
+  const [serviceChargeModalVisible, setServiceChargeModalVisible] =
+    useState(false);
   const [tipModalVisible, setTipModalVisible] = useState(false);
   const [discountModalVisible, setDiscountModalVisible] = useState(false);
   const [taxModalVisible, setTaxModalVisible] = useState(false);
 
-  const handleItemsButtonPress = () => {
-    navigation.navigate("Home Screen", {
-      // selectedMeal: selectedMeal,
+  const handleMenuPress = () => navigation.navigate("Home Screen");
+
+  const handleItemsPress = () =>
+    navigation.navigate("Meal Screen", {
+      selectedMeal: selectedMeal,
     });
-  };
 
   const getAddedCostAmountOrPercentage = (addedCost, name) => {
-    if (selectedMeal[`${addedCost}Type`] === "percent") return `${selectedMeal[`${addedCost}Amount`]}%`;
+    if (selectedMeal[`${addedCost}Type`] === "percent")
+      return `${selectedMeal[`${addedCost}Amount`]}%`;
     return `£${selectedMeal[`${addedCost}Amount`].toFixed(2)}`;
   };
 
   return (
     <>
-      <View style={styles.totalScreenContainer}>
-        {/* <TouchableOpacity onPress={handleItemsButtonPress}>
-          <Text style={styles.totalsScreenBackButton}>🏠</Text>
-        </TouchableOpacity>
-
-        <TextInput style={styles.divvyTitle} placeholder="Name" onChangeText={(name) => setDivvyName(name)} /> */}
+      <View style={styles.totalsScreenContainer}>
         <View style={styles.totalsHeader}>
-          <TouchableOpacity onPress={handleItemsButtonPress}>
-            <Text style={styles.totalsScreenBackButton}>🏠</Text>
+          <TouchableOpacity onPress={handleItemsPress}>
+            <Text style={styles.totalsScreenItemsButton}>⬅ Items</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleMenuPress}>
+            <Text style={styles.totalsScreenTotalButton}>Menu 🏠</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divvyTitleContainer}>
-          {/* <TextInput style={styles.divvyTitle} placeholder="Name" onChangeText={(name) => setDivvyName(name)} /> */}
-          <Text style={styles.divvyTitle}>Total 🧾</Text>
+          <Text style={styles.totalTitle}>Total 🧾</Text>
           <View style={styles.separator}></View>
         </View>
-        {/* <View style={styles.totalsInfoContainer}> */}
-        {/* <Text style={styles.totalsInfoTitle}>Subtotal</Text> */}
-        {/* <Text style={styles.totalsInfoTitle}>Total</Text> */}
-        {/* </View> */}
-
-        {/* <View style={styles.separator}></View> */}
         <Totals selectedMeal={selectedMeal} />
         {/* service charge view */}
         <View style={styles.additionalCostsContainer}>
           <View style={styles.individualCostContainer}>
-            <TouchableOpacity onPress={() => setServiceChargeModalVisible(true)}>
+            <TouchableOpacity
+              onPress={() => setServiceChargeModalVisible(true)}
+            >
               <Text style={styles.additionalCostTitle}>Service Charge</Text>
             </TouchableOpacity>
-            <Text style={styles.individualCostAmount}>{getAddedCostAmountOrPercentage("serviceCharge")}</Text>
+            <Text style={styles.individualCostAmount}>
+              {getAddedCostAmountOrPercentage("serviceCharge")}
+            </Text>
           </View>
           {/* tip view */}
           <View style={styles.individualCostContainer}>
             <TouchableOpacity onPress={() => setTipModalVisible(true)}>
               <Text style={styles.additionalCostTitle}>Tip</Text>
             </TouchableOpacity>
-            <Text style={styles.individualCostAmount}>{getAddedCostAmountOrPercentage("tip")}</Text>
+            <Text style={styles.individualCostAmount}>
+              {getAddedCostAmountOrPercentage("tip")}
+            </Text>
           </View>
           {/* tax view */}
           <View style={styles.individualCostContainer}>
@@ -71,7 +71,9 @@ export default TotalsScreen = ({ navigation, route }) => {
             >
               <Text style={styles.additionalCostTitle}>Tax</Text>
             </TouchableOpacity>
-            <Text style={styles.individualCostAmount}>{getAddedCostAmountOrPercentage("tax")}</Text>
+            <Text style={styles.individualCostAmount}>
+              {getAddedCostAmountOrPercentage("tax")}
+            </Text>
           </View>
           {/* discount view */}
           <View style={styles.individualCostContainer}>
@@ -82,7 +84,9 @@ export default TotalsScreen = ({ navigation, route }) => {
             >
               <Text style={styles.additionalCostTitle}>Discount</Text>
             </TouchableOpacity>
-            <Text style={styles.individualCostAmount}>{getAddedCostAmountOrPercentage("discount")}</Text>
+            <Text style={styles.individualCostAmount}>
+              {getAddedCostAmountOrPercentage("discount")}
+            </Text>
           </View>
         </View>
         {/* service charge value modal */}

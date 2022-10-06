@@ -44,29 +44,29 @@ export default AddFriendModal = ({
   return (
     <View style={styles.centeredView}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={styles.totalsModalCenteredView}>
+          <View style={styles.totalsModalView}>
             <Text style={styles.modalText}>Add Friend</Text>
             <TextInput
               style={styles.addFriendInput}
-              // Handles the typing of characters by the user.
               onChangeText={setName}
               placeholder={"enter name"}
               value={name}
             />
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
-                style={[styles.cancelButton, styles.cancelButtonClose]}
-                // Toggles modal visibility on click
-                onPress={() => setModalVisible(false)}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
               >
-                <Text style={styles.textStyle}>❌</Text>
+                <Text style={styles.cancelButtonText}>❌</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                onPress={handleAddButtonPress}
-              >
-                <WhiteAddImage />
+              <TouchableOpacity onPress={handleAddButtonPress}>
+                <Text
+                  style={{ color: "white", fontWeight: "bold", fontSize: 80 }}
+                >
+                  +
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
