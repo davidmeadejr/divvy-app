@@ -402,7 +402,8 @@ export default styles = StyleSheet.create({
     color: "#000",
     height: 45,
     width: 230,
-    marginBottom: 16,
+    marginBottom: 5,
+    marginLeft: 40,
     borderWidth: 2,
     padding: 10,
     borderColor: "#4B23F3",
@@ -828,5 +829,12 @@ export default styles = StyleSheet.create({
     width: 215,
     marginBottom: 40,
     marginLeft: -120,
+  },
+
+  savedMealScreenMealName: {
+    paddingLeft: 24,
+    fontSize: 35,
+    color: "white",
+    fontWeight: "bold",
   },
 });

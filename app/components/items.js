@@ -23,10 +23,11 @@ export default Items = ({
         <NameDivvyInput setEditName={setEditName} selectedMeal={selectedMeal} />
       );
     return (
-      <View style={{ flexDirection: "row", height: 61 }}>
-        <Text style={{ fontSize: 20 }}>{selectedMeal.name}</Text>
+      <View style={{ height: 50 }}>
         <TouchableOpacity onPress={() => setEditName(true)}>
-          <Text style={{ fontSize: 20 }}>✎</Text>
+          <Text style={styles.savedMealScreenMealName}>
+            {selectedMeal.name} ✎
+          </Text>
         </TouchableOpacity>
       </View>
     );
