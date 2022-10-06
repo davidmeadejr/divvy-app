@@ -172,7 +172,7 @@ export default styles = StyleSheet.create({
   },
 
   cameraScreenBackButton: {
-    fontSize: 32,
+    fontSize: 24,
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -181,8 +181,8 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 95,
-    paddingRight: 95,
+    paddingLeft: 130,
+    paddingRight: 130,
     color: "#fff",
   },
 
@@ -197,8 +197,8 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 42,
+    paddingRight: 42,
     // marginBottom: 30,
   },
 
