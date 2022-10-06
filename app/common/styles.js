@@ -108,7 +108,7 @@ export default styles = StyleSheet.create({
   homeScreenBackground: {
     flex: 1,
     width: "100%",
-    height: "100%",
+    height: "110%",
   },
 
   homeScreenContainer: {
@@ -850,6 +850,8 @@ export default styles = StyleSheet.create({
     borderColor: "#4B23F3",
     borderWidth: 2,
     fontWeight: "bold",
+    paddingTop: 30,
+    paddingBottom: 30,
 
     // height: "50%",
     width: "80%",
@@ -865,7 +867,7 @@ export default styles = StyleSheet.create({
   savedMealsTitle: {
     display: "flex",
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: 30,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
@@ -900,6 +902,7 @@ export default styles = StyleSheet.create({
     // width: 215,
     // marginBottom: 40,
     // marginLeft: 20,
+    marginTop: 30,
   },
 
   savedMealScreenMealName: {
