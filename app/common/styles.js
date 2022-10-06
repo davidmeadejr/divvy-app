@@ -43,9 +43,9 @@ export default styles = StyleSheet.create({
     // backgroundColor: "#fff",
   },
   modalAddButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    // borderRadius: 20,
+    // padding: 10,
+    // elevation: 2,
   },
   buttonOpen: {
     // backgroundColor: "#F194FF",
@@ -63,6 +63,7 @@ export default styles = StyleSheet.create({
     textAlign: "center",
   },
   modalText: {
+    fontSize: 20,
     marginBottom: 15,
     textAlign: "center",
     color: "#fff",
@@ -245,19 +246,24 @@ export default styles = StyleSheet.create({
   },
 
   cancelButton: {
-    width: 85,
-    fontSize: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    borderWidth: 2,
-    borderColor: "#4B23F3",
-    borderRadius: 10,
-    backgroundColor: "#4B23F3",
-    padding: 8,
-    overflow: "hidden",
-    marginTop: 40,
-    marginLeft: 125,
+    // width: 85,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // color: "#fff",
+    // borderWidth: 2,
+    // borderColor: "#4B23F3",
+    // borderRadius: 10,
+    // backgroundColor: "#4B23F3",
+    // padding: 8,
+    // overflow: "hidden",
+    // marginTop: 40,
+    // marginLeft: 125,
+  },
+
+  cancelButtonText: {
+    fontSize: 35,
+    paddingTop: 35,
+    paddingRight: 60,
   },
 
   loadingImageButton: {
@@ -600,11 +606,10 @@ export default styles = StyleSheet.create({
     borderWidth: 4,
     marginRight: 13,
     borderRadius: 10,
-    padding: 7,
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 10,
+    padding: 8,
+    // backgroundColor: "#fff",
+    // display: "flex",
+    // flexDirection: "row",
     alignItems: "center",
   },
   valueModalButtonDeselected: {
@@ -612,16 +617,18 @@ export default styles = StyleSheet.create({
     marginRight: 16,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 10,
+    paddingRight: 13,
   },
   valueModalButtonTextSelected: {
+    fontSize: 20,
     fontWeight: "bold",
+    color: "white",
   },
   valueModalButtonTextDeselected: {
+    fontSize: 20,
+
     fontWeight: "normal",
+    color: "white",
   },
 
   /* *************************************************** */
@@ -795,16 +802,24 @@ export default styles = StyleSheet.create({
 
   totalsModalInput: {
     color: "#000",
-    height: 40,
+    // height: 40,
     marginBottom: 16,
     borderWidth: 2,
     padding: 10,
     borderColor: "#4B23F3",
     fontWeight: "bold",
+    fontSize: 30,
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#fff",
   },
+  totalsModalCenteredView: {
+    flex: 1,
+    justifyContent: "center",
+    // alignItems: "center",
+    // top: "0%",
+  },
+
   totalsModalView: {
     margin: 20,
     backgroundColor: "white",
@@ -821,7 +836,7 @@ export default styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: "#4B23F3",
     // backgroundColor: "#333",
-    height: 300,
+    // height: 270,
   },
 
   savedMealsContainer: {

@@ -4,14 +4,12 @@ import {
   View,
   Modal,
   Text,
-  Pressable,
   TextInput,
   Alert,
   FlatList,
   TouchableOpacity,
 } from "react-native";
 import styles from "../common/styles";
-import WhiteAddImage from "./whiteAddImage";
 
 export default ValueModal = ({
   valueModalVisible,
@@ -85,7 +83,6 @@ export default ValueModal = ({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        // marginTop: 22,
       }}
     >
       <Modal
@@ -93,7 +90,7 @@ export default ValueModal = ({
         transparent={true}
         visible={valueModalVisible}
       >
-        <View style={styles.centeredView}>
+        <View style={styles.totalsModalCenteredView}>
           <View style={styles.totalsModalView}>
             <Text style={styles.modalText}>Add {getModalType()} value</Text>
             <TextInput
@@ -101,28 +98,31 @@ export default ValueModal = ({
               placeholder="10"
               onChangeText={setValue}
             />
-            <FlatList
-              style={styles.modalButtonContainer}
+            {/* <FlatList
+              horizontal
               data={valueTypes}
               renderItem={({ item }) => flatListValueTypeButtons(item)}
               keyExtractor={(item) => valueTypes.indexOf(item)}
-            />
+            /> */}
+            <View style={{ flexDirection: "row" }}>
+              {flatListValueTypeButtons("percent")}
+              {flatListValueTypeButtons("amount")}
+            </View>
             <View style={styles.modalButtonContainer}>
-              <Pressable
-                style={[styles.cancelButton, styles.cancelButtonClose]}
+              <TouchableOpacity
                 onPress={() => {
                   setValueModalVisible(false);
                 }}
               >
-                <Text style={styles.textStyle}>❌</Text>
-              </Pressable>
-              <Pressable
-                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                onPress={() => handlePress()}
-              >
-                {/* <Text style={styles.textStyle}>➕</Text> */}
-                <WhiteAddImage />
-              </Pressable>
+                <Text style={styles.cancelButtonText}>❌</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handlePress()}>
+                <Text
+                  style={{ color: "white", fontWeight: "bold", fontSize: 80 }}
+                >
+                  +
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
