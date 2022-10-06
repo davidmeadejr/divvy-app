@@ -329,10 +329,6 @@ export default styles = StyleSheet.create({
   mealScreenBackButton: {
     fontSize: 32,
     color: "#fff",
-    // borderWidth: 2,
-    // borderColor: "#4B23F3",
-    // borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     paddingTop: 10,
     paddingBottom: 10,
     // overflow: "hidden",
@@ -344,23 +340,36 @@ export default styles = StyleSheet.create({
     // marginRight: 30,
   },
 
+  totalsScreenItemsButton: {
+    fontSize: 32,
+    color: "#fff",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    width: 215,
+    marginBottom: 10,
+  },
+
   mealScreenTotalButton: {
     fontSize: 32,
     color: "#fff",
-    // borderWidth: 2,
-    // borderColor: "#4B23F3",
-    // borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     paddingTop: 10,
     paddingBottom: 10,
-    // overflow: "hidden",
     fontWeight: "bold",
     paddingLeft: 15,
-    // paddingRight: 10,
     width: 150,
     marginBottom: 10,
-    // marginRight: 30,
-    // marginLeft: 15,
+  },
+
+  totalsScreenTotalButton: {
+    fontSize: 32,
+    color: "#fff",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    paddingLeft: 3,
+    width: 150,
+    marginBottom: 10,
   },
 
   itemsText: {

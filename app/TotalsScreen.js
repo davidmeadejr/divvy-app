@@ -12,11 +12,12 @@ export default TotalsScreen = ({ navigation, route }) => {
   const [discountModalVisible, setDiscountModalVisible] = useState(false);
   const [taxModalVisible, setTaxModalVisible] = useState(false);
 
-  const handleItemsButtonPress = () => {
-    navigation.navigate("Home Screen", {
-      // selectedMeal: selectedMeal,
+  const handleMenuPress = () => navigation.navigate("Home Screen");
+
+  const handleItemsPress = () =>
+    navigation.navigate("Meal Screen", {
+      selectedMeal: selectedMeal,
     });
-  };
 
   const getAddedCostAmountOrPercentage = (addedCost, name) => {
     if (selectedMeal[`${addedCost}Type`] === "percent")
@@ -27,23 +28,12 @@ export default TotalsScreen = ({ navigation, route }) => {
   return (
     <>
       <View style={styles.totalsScreenContainer}>
-        {/* <View style={styles.totalsHeader}>
-          <TouchableOpacity onPress={handleItemsButtonPress}>
-            <Text style={styles.totalsScreenBackButton}>🏠</Text>
-          </TouchableOpacity>
-        </View> */}
         <View style={styles.totalsHeader}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Meal Screen", {
-                selectedMeal: selectedMeal,
-              })
-            }
-          >
-            <Text style={styles.mealScreenBackButton}>⬅ Items</Text>
+          <TouchableOpacity onPress={handleItemsPress}>
+            <Text style={styles.totalsScreenItemsButton}>⬅ Items</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-            <Text style={styles.mealScreenTotalButton}>Menu 🏠</Text>
+          <TouchableOpacity onPress={handleMenuPress}>
+            <Text style={styles.totalsScreenTotalButton}>Menu 🏠</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divvyTitleContainer}>
