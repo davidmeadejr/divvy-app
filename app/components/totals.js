@@ -53,9 +53,11 @@ export default Totals = ({ selectedMeal }) => {
 
   const getIndividualItems = (friend) => {
     return (
-      <Text style={styles.individualItems}>
-        {friend.items.map((item) => (item.friends.length === 1 ? item.name : `${item.name} (shared)`)).join(", ")}
-      </Text>
+      <View style={styles.individualItemsContainer}>
+        <Text style={styles.individualItems}>
+          {friend.items.map((item) => (item.friends.length === 1 ? item.name : `${item.name} (shared)`)).join(", ")}
+        </Text>
+      </View>
     );
   };
 
