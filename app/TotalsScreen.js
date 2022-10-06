@@ -12,7 +12,7 @@ export default TotalsScreen = ({ navigation, route }) => {
   const [taxModalVisible, setTaxModalVisible] = useState(false);
 
   const handleItemsButtonPress = () => {
-    navigation.navigate("🏠", {
+    navigation.navigate("Home Screen", {
       // selectedMeal: selectedMeal,
     });
   };

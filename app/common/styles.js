@@ -763,4 +763,46 @@ export default styles = StyleSheet.create({
     // backgroundColor: "#333",
     height: 300,
   },
+
+  savedMealsContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  savedMealsText: {
+    color: "#00",
+    fontWeight: "bold",
+  },
+
+  savedMealsTitle: {
+    display: "flex",
+    flexDirection: "row",
+    marginBottom: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#000",
+    fontWeight: "bold",
+    fontSize: 30,
+  },
+
+  savedMealsTitleContainer: {
+    marginTop: 30,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  savedMealScreenBackButton: {
+    fontSize: 32,
+    color: "#000",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    paddingLeft: 15,
+    width: 215,
+    marginBottom: 40,
+    marginLeft: -120,
+  },
 });
