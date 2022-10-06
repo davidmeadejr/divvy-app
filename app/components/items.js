@@ -32,6 +32,7 @@ export default Items = ({
       </View>
     );
   };
+
   return (
     <View style={styles.itemsContainer}>
       <View style={styles.mealHeader}>

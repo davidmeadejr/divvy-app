@@ -26,10 +26,24 @@ export default TotalsScreen = ({ navigation, route }) => {
 
   return (
     <>
-      <View style={styles.totalScreenContainer}>
-        <View style={styles.totalsHeader}>
+      <View style={styles.totalsScreenContainer}>
+        {/* <View style={styles.totalsHeader}>
           <TouchableOpacity onPress={handleItemsButtonPress}>
             <Text style={styles.totalsScreenBackButton}>🏠</Text>
+          </TouchableOpacity>
+        </View> */}
+        <View style={styles.totalsHeader}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Meal Screen", {
+                selectedMeal: selectedMeal,
+              })
+            }
+          >
+            <Text style={styles.mealScreenBackButton}>⬅ Items</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+            <Text style={styles.mealScreenTotalButton}>Menu 🏠</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divvyTitleContainer}>

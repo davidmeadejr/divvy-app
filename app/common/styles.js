@@ -623,11 +623,10 @@ export default styles = StyleSheet.create({
 
   /* *************************************************** */
 
-  totalScreenContainer: {
+  totalsScreenContainer: {
     height: "100%",
-    paddingTop: 50,
+    paddingTop: 40,
     paddingRight: 16,
-    // paddingBottom: 16,
     paddingLeft: 16,
     backgroundColor: "#333",
   },
