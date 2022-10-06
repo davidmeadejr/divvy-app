@@ -463,7 +463,6 @@ export default styles = StyleSheet.create({
     height: 40,
     marginBottom: 16,
     borderWidth: 2,
-    padding: 10,
     width: 250,
     fontSize: 20,
     textAlign: "center",
