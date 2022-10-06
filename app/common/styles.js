@@ -772,6 +772,7 @@ export default styles = StyleSheet.create({
   },
 
   additionalCostsContainer: {
+    zIndex: 1,
     bottom: 20,
     position: "absolute",
     display: "flex",
