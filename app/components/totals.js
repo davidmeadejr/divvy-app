@@ -91,7 +91,7 @@ export default Totals = ({ selectedMeal }) => {
 
   const getFlatListHeight = () => {
     console.log(selectedMeal);
-    const heights = ["75%", "71%", "67%", "63%", "59%"];
+    const heights = ["80%", "75%", "71%", "67%", "62%"];
     const heightsIdx = [
       selectedMeal.serviceChargeAmount,
       selectedMeal.tipAmount,
