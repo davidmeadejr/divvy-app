@@ -31,7 +31,15 @@ export default Totals = ({ selectedMeal }) => {
             £{getIndividualTotal(item).toFixed(2)}
           </Text>
         </View>
-        <Text>{getIndividualItems(item)}</Text>
+        <Text
+          style={{
+            marginBottom: 20,
+            color: "white",
+            // textDecorationLine: "underline",
+          }}
+        >
+          {getIndividualItems(item)}
+        </Text>
       </View>
     );
   };
@@ -65,19 +73,11 @@ export default Totals = ({ selectedMeal }) => {
   const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
 
   const getIndividualItems = (friend) => {
-    return (
-      // <View style={styles.individualItemsContainer}>
-      //   <Text style={styles.individualItems}>
-      <View>
-        <Text>
-          {friend.items
-            .map((item) =>
-              item.friends.length === 1 ? item.name : `${item.name} (shared)`
-            )
-            .join(", ")}
-        </Text>
-      </View>
-    );
+    return friend.items
+      .map((item) =>
+        item.friends.length === 1 ? item.name : `${item.name} (shared)`
+      )
+      .join(", ");
   };
 
   const getTotal = (amount) => {
@@ -116,7 +116,7 @@ export default Totals = ({ selectedMeal }) => {
       </View>
       <View style={styles.totalsBreakdownContainer}>
         <FlatList
-          style={{ height: "70%" }}
+          style={{ height: "43%" }}
           data={selectedMeal.friends}
           renderItem={({ item }) => getFriendTotalsText(item)}
           keyExtractor={(friend) => friend._id.toString()}

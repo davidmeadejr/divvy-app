@@ -692,7 +692,7 @@ export default styles = StyleSheet.create({
     borderRadius: 10,
     padding: 8,
     overflow: "hidden",
-    marginBottom: -20,
+    marginBottom: 15,
   },
 
   totalsInfoTitle: {
@@ -716,23 +716,24 @@ export default styles = StyleSheet.create({
     // width: 100,
   },
   totalsBreakdownContainer: {
-    // display: "flex",
-    // justifyContent: "space-between",
-    // color: "#fff",
-    // fontWeight: "bold",
-    // flexDirection: "row",
-    marginTop: 20,
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginBottom: 5,
   },
 
   totalsItemName: {
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 24,
   },
 
   totalsItemAmount: {
     color: "#fff",
     fontWeight: "bold",
-    marginLeft: 258,
+    color: "#FFD700",
+
+    fontSize: 24,
   },
 
   individualItems: {
