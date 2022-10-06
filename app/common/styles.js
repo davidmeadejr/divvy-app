@@ -70,6 +70,7 @@ export default styles = StyleSheet.create({
   },
   openModalContainer: {
     display: "flex",
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },

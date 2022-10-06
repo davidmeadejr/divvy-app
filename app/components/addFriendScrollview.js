@@ -43,33 +43,37 @@ export default AddFriendScrollView = ({
 
   return (
     <View style={styles.openModalContainer}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-        {selectedMeal.friends.map((item, index) => (
-          <TouchableOpacity
-            onPress={() => handleSelectedFriendStyle(item)}
-            onLongPress={() => handleLongPress(item)}
-            style={{
-              borderWidth: myStyle[item._id.toString()] ? 5 : 2,
-              borderColor: friendColours[index],
-              marginRight: myStyle[item._id.toString()] ? 13 : 16,
-              borderRadius: 10,
-              padding: myStyle[item._id.toString()] ? 7 : 10,
-            }}
-            key={item._id.toString()}
-          >
-            <View>
-              <Text
-                style={{
-                  fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
-                  color: "#fff",
-                }}
-              >
-                {item.name}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <View>
+        <ScrollView horizontal>
+          {selectedMeal.friends.map((item, index) => (
+            <TouchableOpacity
+              onPress={() => handleSelectedFriendStyle(item)}
+              onLongPress={() => handleLongPress(item)}
+              style={{
+                borderWidth: myStyle[item._id.toString()] ? 5 : 2,
+                borderColor: friendColours[index],
+                marginRight: myStyle[item._id.toString()] ? 13 : 16,
+                borderRadius: 10,
+                padding: myStyle[item._id.toString()] ? 7 : 10,
+              }}
+              key={item._id.toString()}
+            >
+              <View>
+                <Text
+                  style={{
+                    fontWeight: myStyle[item._id.toString()]
+                      ? "bold"
+                      : "normal",
+                    color: "#fff",
+                  }}
+                >
+                  {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
