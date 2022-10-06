@@ -44,7 +44,7 @@ export default SavedMealsScreen = ({ navigation }) => {
           <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
           {/* <View style={styles.separator}></View> */}
           <FlatList
-            style={{ height: "20%", backgroundColor: "white" }}
+            style={{ height: "20%" }}
             data={result}
             renderItem={({ item }) => renderSavedMealListItem(item)}
             keyExtractor={(item) => item._id.toString()}

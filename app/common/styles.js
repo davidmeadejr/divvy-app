@@ -174,7 +174,6 @@ export default styles = StyleSheet.create({
 
   cameraScreenBackButton: {
     fontSize: 32,
-    color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -816,14 +815,20 @@ export default styles = StyleSheet.create({
     // flex: 1,
     alignItems: "center",
     // justifyContent: "space-evenly",
-    backgroundColor: "blue",
+    backgroundColor: "#4B23F3",
+    borderColor: "#4B23F3",
+    borderWidth: 2,
+    fontWeight: "bold",
+
     // height: "50%",
     width: "80%",
     borderRadius: 10,
   },
   savedMealsText: {
-    color: "#00",
+    color: "white",
     fontWeight: "bold",
+    fontSize: 15,
+    padding: 5,
   },
 
   savedMealsTitle: {
@@ -832,7 +837,7 @@ export default styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
-    color: "#000",
+    color: "white",
     fontWeight: "bold",
     fontSize: 30,
   },
@@ -853,16 +858,9 @@ export default styles = StyleSheet.create({
     marginTop: 22,
   },
 
-  // centeredView: {
-  //   flex: 1,
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   marginTop: 22,
-  // },
-
   savedMealScreenBackButton: {
     fontSize: 32,
-    color: "#000",
+    color: "white",
     // paddingTop: 10,
     // paddingBottom: 10,
     fontWeight: "bold",

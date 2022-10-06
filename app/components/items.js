@@ -48,7 +48,6 @@ export default Items = ({
       </View>
       <View style={styles.mealList}>
         {getMealNameOrEdit()}
-        {/* <Text style={styles.mealScreenBackButton}>Divvy ✎</Text> */}
         <View style={styles.separator}></View>
       </View>
       <View>
