@@ -9,7 +9,9 @@ export default SavedMealsScreen = ({ navigation }) => {
     return (
       <View style={styles.savedMealsContainer}>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Meal Screen", { selectedMeal: meal })}
+          onPress={() =>
+            navigation.navigate("Meal Screen", { selectedMeal: meal })
+          }
           style={styles.savedMealsContainer}
         >
           <Text style={styles.savedMealsText}>{getMealNameOrDate(meal)}</Text>

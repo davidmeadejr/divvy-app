@@ -1,19 +1,10 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import styles from "./common/styles";
 import { useRealm } from "./createRealmContext";
 import { Meal } from "./models/Meal";
 
 export default NewMealScreen = ({ navigation }) => {
-  // const [imageSource, setImageSource] = useState();
-  // const [imageObj, setImageObj] = useState();
   const realm = useRealm();
 
   const createNewMeal = () => {
@@ -29,10 +20,10 @@ export default NewMealScreen = ({ navigation }) => {
       {
         cameraType: "back",
         mediaType: "photo",
-        saveToPhotos: true,
         includeBase64: true,
         maxHeight: 640,
         maxWidgth: 640,
+        quality: 1,
       },
       (imageResult) => {
         if (imageResult.didCancel) {
@@ -59,73 +50,6 @@ export default NewMealScreen = ({ navigation }) => {
       }
     );
   };
-  // const handleLibraryImage = () => {
-  //   launchImageLibrary(
-  //     {
-  //       cameraType: "back",
-  //       mediaType: "photo",
-  //       saveToPhotos: true,
-  //       includeBase64: true,
-  //     },
-  //     (imageResult) => {
-  //       if (imageResult.didCancel) {
-  //         console.log("cancelled");
-  //       } else if (imageResult.errorMessage) {
-  //         console.log("error: " + imageResult.errorMessage);
-  //       } else if (imageResult.errorCode) {
-  //         console.log(imageResult.errorCode);
-  //       } else {
-  //         const imageSrc = {
-  //           uri: "data:image/jpeg;base64," + imageResult.assets[0].base64,
-  //         };
-  //         const imageTaggunObj = JSON.stringify({
-  //           image: imageResult.assets[0].base64,
-  //           filename: imageResult.assets[0].fileName,
-  //           contentType: imageResult.assets[0].type,
-  //         });
-
-  //         navigation.navigate("Save Photo Screen", {
-  //           imageTaggunObj,
-  //           imageSrc,
-  //         });
-  //       }
-  //     }
-  //   );
-  // };
-
-  // const handleCamera = () => {
-  //   launchCamera(
-  //     {
-  //       cameraType: "back",
-  //       mediaType: "photo",
-  //       saveToPhotos: true,
-  //       includeBase64: true,
-  //     },
-  //     (imageResult) => {
-  //       if (imageResult.didCancel) {
-  //         console.log("cancelled");
-  //       } else if (imageResult.errorMessage) {
-  //         console.log("error: " + imageResult.errorMessage);
-  //       } else if (imageResult.errorCode) {
-  //         console.log(imageResult.errorCode);
-  //       } else {
-  //         const imageSrc = {
-  //           uri: "data:image/jpeg;base64," + imageResult.assets[0].base64,
-  //         };
-  //         const imageTaggunObj = JSON.stringify({
-  //           image: imageResult.assets[0].base64,
-  //           filename: imageResult.assets[0].fileName,
-  //           contentType: imageResult.assets[0].type,
-  //         });
-
-  //         navigation.navigate("Save Photo Screen", {
-  //           imageTaggunObj,
-  //           imageSrc,
-  //         });
-  //       }
-  //     }
-  //   );
-  // };
 
   return (
     <ImageBackground

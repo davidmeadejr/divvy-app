@@ -85,6 +85,15 @@ export default styles = StyleSheet.create({
     marginLeft: 16,
   },
 
+  usersContainer: {
+    position: "absolute",
+    bottom: -40,
+    marginTop: 50,
+    marginRight: 16,
+    marginBottom: 16,
+    marginLeft: 16,
+  },
+
   /* *************************************************** */
 
   /*
@@ -391,12 +400,15 @@ export default styles = StyleSheet.create({
 
   divvyInputField: {
     color: "#000",
-    height: 40,
+    height: 45,
+    width: 230,
     marginBottom: 16,
     borderWidth: 2,
     padding: 10,
     borderColor: "#4B23F3",
     fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 20,
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#fff",
@@ -695,6 +707,18 @@ export default styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 13,
+  },
+
+  addFriendEmojiText: {
+    textAlign: "center",
+    marginLeft: 10,
+    fontSize: 32,
+  },
+
+  addFriendEmojiView: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
   individualItemsContainer: {
     marginTop: 10,
