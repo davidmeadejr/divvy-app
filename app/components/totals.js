@@ -62,8 +62,10 @@ export default Totals = ({ selectedMeal }) => {
 
   const getIndividualItems = (friend) => {
     return (
-      <View style={styles.individualItemsContainer}>
-        <Text style={styles.individualItems}>
+      // <View style={styles.individualItemsContainer}>
+      //   <Text style={styles.individualItems}>
+      <View>
+        <Text>
           {friend.items
             .map((item) =>
               item.friends.length === 1 ? item.name : `${item.name} (shared)`
@@ -110,7 +112,7 @@ export default Totals = ({ selectedMeal }) => {
       </View>
       <View style={styles.totalsBreakdownContainer}>
         <FlatList
-          style={{ height: "30%" }}
+          style={{ height: "70%" }}
           data={selectedMeal.friends}
           renderItem={({ item }) => getFriendTotalsText(item)}
           keyExtractor={(friend) => friend._id.toString()}

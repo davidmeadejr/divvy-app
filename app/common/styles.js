@@ -624,10 +624,10 @@ export default styles = StyleSheet.create({
   /* *************************************************** */
 
   totalScreenContainer: {
-    flex: 1,
+    height: "100%",
     paddingTop: 50,
     paddingRight: 16,
-    paddingBottom: 16,
+    // paddingBottom: 16,
     paddingLeft: 16,
     backgroundColor: "#333",
   },
@@ -701,11 +701,11 @@ export default styles = StyleSheet.create({
     // width: 100,
   },
   totalsBreakdownContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    color: "#fff",
-    fontWeight: "bold",
-    flexDirection: "row",
+    // display: "flex",
+    // justifyContent: "space-between",
+    // color: "#fff",
+    // fontWeight: "bold",
+    // flexDirection: "row",
     marginTop: 20,
   },
 
@@ -742,6 +742,8 @@ export default styles = StyleSheet.create({
   },
 
   additionalCostsContainer: {
+    bottom: 20,
+    position: "absolute",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -750,7 +752,7 @@ export default styles = StyleSheet.create({
 
   additionalCostTitle: {
     fontWeight: "bold",
-    alignItems: "center",
+    // alignItems: "center",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -758,7 +760,7 @@ export default styles = StyleSheet.create({
     backgroundColor: "#4B23F3",
     padding: 8,
     overflow: "hidden",
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 5,
   },
 
@@ -769,6 +771,7 @@ export default styles = StyleSheet.create({
   },
 
   individualCostContainer: {
+    paddingLeft: 15,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
