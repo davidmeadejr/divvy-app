@@ -11,6 +11,10 @@
     <key>EXUpdatesSDKVersion</key>
     <string>46.0.0</string>
     <key>EXUpdatesURL</key>
+<<<<<<< HEAD:ios/awesomeproject/Supporting/Expo.plist
     <string>https://exp.host/@zacmosshk/awesomeproject</string>
+=======
+    <string>https://exp.host/@allengoh/Divvy</string>
+>>>>>>> 4d0994efebcd15943dcddb7b98aa6299f67044d9:ios/Divvy/Supporting/Expo.plist
   </dict>
 </plist>

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, ImageBackground } from "react-native";
 import styles from "./common/styles";
 import { useQuery } from "./createRealmContext";
 
@@ -28,6 +28,7 @@ export default SavedMealsScreen = ({ navigation }) => {
   };
 
   return (
+<<<<<<< HEAD
     <View style={styles.savedMealsTitleContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
         <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
@@ -39,5 +40,25 @@ export default SavedMealsScreen = ({ navigation }) => {
         keyExtractor={(item) => item._id.toString()}
       />
     </View>
+=======
+    <ImageBackground
+      style={styles.homeScreenBackground}
+      source={require("../assets/background-image.png")}
+      resizeMode={"cover"}
+      >
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+          <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
+        </TouchableOpacity>
+      <View style={styles.savedMealsTitleContainer}>
+        <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
+        {/* <View style={styles.separator}></View> */}
+        <FlatList
+          data={result}
+          renderItem={({ item }) => renderSavedMealListItem(item)}
+          keyExtractor={(item) => item._id.toString()}
+        />
+      </View>
+    </ImageBackground>
+>>>>>>> 4d0994efebcd15943dcddb7b98aa6299f67044d9
   );
 };

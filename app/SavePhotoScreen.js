@@ -68,17 +68,12 @@ export default SavePhotoScreen = ({ navigation, route }) => {
         <TouchableOpacity
           onPress={() => navigation.navigate("New Meal Screen")}
         >
-          <Text style={styles.retakePhotoButton}>⬅ Retake</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("New Meal Screen")}
-        >
-          <Text style={styles.usePhotoButton}>Use</Text>
+          <Text style={styles.cancelButton}>Cancel</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.photoScreenshotContainer}>
-        <Image style={{ width: 150, height: 200 }} source={imageSrc}></Image>
-        <Text>Loading Data From Image...</Text>
+        <Image style={{ width: 200, height: 300, marginBottom: 0 }} source={imageSrc}></Image>
+        <Text style={styles.loadingImageButton}>Loading Data From Image...</Text>
       </View>
     </View>
   );
