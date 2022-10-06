@@ -82,7 +82,6 @@ export default styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 20,
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
@@ -112,7 +111,7 @@ export default styles = StyleSheet.create({
   homeScreenBackground: {
     flex: 1,
     width: "100%",
-    height: "100%",
+    height: "110%",
   },
 
   homeScreenContainer: {
@@ -166,7 +165,7 @@ export default styles = StyleSheet.create({
   cameraScreenBackground: {
     flex: 1,
     width: "100%",
-    height: "100%",
+    height: "110%",
   },
 
   cameraScreenContainer: {
@@ -176,7 +175,7 @@ export default styles = StyleSheet.create({
   },
 
   cameraScreenBackButton: {
-    fontSize: 32,
+    fontSize: 24,
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -185,12 +184,13 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 130,
+    paddingRight: 130,
+    color: "#fff",
   },
 
   createButton: {
-    fontSize: 32,
+    fontSize: 24,
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -200,13 +200,13 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
-    marginBottom: 30,
+    paddingLeft: 42,
+    paddingRight: 42,
+    // marginBottom: 30,
   },
 
   uploadButton: {
-    fontSize: 32,
+    fontSize: 24,
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -216,12 +216,12 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 
   cameraEmojiButton: {
-    fontSize: 32,
+    fontSize: 24,
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -230,13 +230,22 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    color: "#fff",
   },
 
   /*
    * Save Photo Screen
    */
+  processingScreenCOntainer: {
+    // Display: "flex",
+    flex: 1,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    // alignItems: "center",
+  },
   savePhotoContainer: {
     flex: 1,
     justifyContent: "space-between",
@@ -244,6 +253,25 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 16,
     paddingRight: 16,
+    paddingTop: 50,
+    // alignItems: "center",
+  },
+
+  processingScreenBackButton: {
+    fontSize: 32,
+    borderWidth: 2,
+    borderColor: "#4B23F3",
+    borderRadius: 10,
+    backgroundColor: "#4B23F3",
+    paddingTop: 10,
+    paddingBottom: 10,
+    overflow: "hidden",
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
+    color: "#fff",
+    alignItems: "center",
+    marginLeft: 90,
   },
 
   cancelButton: {
@@ -279,6 +307,9 @@ export default styles = StyleSheet.create({
     padding: 8,
     overflow: "hidden",
     marginTop: 30,
+    fontWeight: "bold",
+    width: 250,
+    paddingLeft: 27,
   },
 
   usePhotoButton: {
@@ -860,6 +891,8 @@ export default styles = StyleSheet.create({
     borderColor: "#4B23F3",
     borderWidth: 2,
     fontWeight: "bold",
+    paddingTop: 30,
+    paddingBottom: 30,
 
     // height: "50%",
     width: "80%",
@@ -868,14 +901,14 @@ export default styles = StyleSheet.create({
   savedMealsText: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 20,
     padding: 5,
   },
 
   savedMealsTitle: {
     display: "flex",
     flexDirection: "row",
-    marginBottom: 10,
+    marginBottom: 30,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
@@ -910,6 +943,7 @@ export default styles = StyleSheet.create({
     // width: 215,
     // marginBottom: 40,
     // marginLeft: 20,
+    marginTop: 30,
   },
 
   savedMealScreenMealName: {

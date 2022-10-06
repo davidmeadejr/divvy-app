@@ -1,10 +1,4 @@
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, ImageBackground } from "react-native";
 import styles from "./common/styles";
 import { useQuery } from "./createRealmContext";
 
@@ -14,14 +8,8 @@ export default SavedMealsScreen = ({ navigation }) => {
   const renderSavedMealListItem = (meal) => {
     return (
       <View>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("Meal Screen", { selectedMeal: meal })
-          }
-        >
-          <Text style={styles.savedMealsText}>
-            {getMealNameOrDate(meal)} ➡️
-          </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Meal Screen", { selectedMeal: meal })}>
+          <Text style={styles.savedMealsText}>{getMealNameOrDate(meal)} ➡️</Text>
         </TouchableOpacity>
       </View>
     );
@@ -36,7 +24,7 @@ export default SavedMealsScreen = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.homeScreenBackground}
-      source={require("../assets/background-image.png")}
+      source={require("../assets/saved-meals-bg-img.png")}
       resizeMode={"cover"}
     >
       <View style={styles.savedMealsCenteredView}>
@@ -44,7 +32,7 @@ export default SavedMealsScreen = ({ navigation }) => {
           <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
           {/* <View style={styles.separator}></View> */}
           <FlatList
-            style={{ height: "20%" }}
+            style={{ height: "50%" }}
             data={result}
             renderItem={({ item }) => renderSavedMealListItem(item)}
             keyExtractor={(item) => item._id.toString()}
