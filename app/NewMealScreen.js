@@ -7,6 +7,14 @@ import { Meal } from "./models/Meal";
 export default NewMealScreen = ({ navigation }) => {
   const realm = useRealm();
 
+  // const backButtonNavigation = () => {
+  //   if ("condition") {
+  //     navigation.navigate("Home Screen");
+  //   } else {
+  //     handleImagePicker(launchImageLibrary);
+  //   }
+  // };
+
   const createNewMeal = () => {
     let newMeal;
     realm.write(() => {
@@ -59,17 +67,17 @@ export default NewMealScreen = ({ navigation }) => {
       style={styles.cameraScreenBackground}
     >
       <View style={styles.cameraScreenContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-          <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={createNewMeal}>
-          <Text style={styles.createButton}>Create ✨</Text>
+        <TouchableOpacity onPress={() => handleImagePicker(launchCamera)}>
+          <Text style={styles.cameraEmojiButton}>Take photo of receipt 📸</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleImagePicker(launchImageLibrary)}>
-          <Text style={styles.uploadButton}>Upload 📁</Text>
+          <Text style={styles.uploadButton}>Upload photo of receipt 📁</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleImagePicker(launchCamera)}>
-          <Text style={styles.cameraEmojiButton}>📸</Text>
+        <TouchableOpacity onPress={createNewMeal}>
+          <Text style={styles.createButton}>Start without receipt ✨</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+          <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>

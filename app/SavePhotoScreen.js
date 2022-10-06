@@ -20,29 +20,21 @@ export default SavePhotoScreen = ({ navigation, route }) => {
 
   const sendImageToTaggun = async () => {
     try {
-      const response = await axios.post(
-        "https://api.taggun.io/api/receipt/v1/verbose/encoded",
-        imageTaggunObj,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            apikey: "3c61e4503e6911edb69573233a13efd6",
-            accept: "application/json",
-          },
-        }
-      );
+      const response = await axios.post("https://api.taggun.io/api/receipt/v1/verbose/encoded", imageTaggunObj, {
+        headers: {
+          "Content-Type": "application/json",
+          apikey: "3c61e4503e6911edb69573233a13efd6",
+          accept: "application/json",
+        },
+      });
       if (!response.data.amounts.length) throw new Error("No receipt data");
       const selectedMeal = createNewMealEntryFromData(response.data);
       navigation.navigate("Meal Screen", { selectedMeal });
     } catch (e) {
       if (e.toString().includes("No receipt data"))
-        Alert.alert(
-          "Please check this is an image of a receipt, or use better lighting"
-        );
+        Alert.alert("Please check this is an image of a receipt, or use better lighting");
       else {
-        Alert.alert(
-          "There has been an issue uploading the receipt, please try again or create a blank meal"
-        );
+        Alert.alert("There has been an issue uploading the receipt, please try again or create a blank meal");
       }
       navigation.navigate("New Meal Screen");
     }
@@ -64,20 +56,13 @@ export default SavePhotoScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <View style={styles.savePhotoContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("New Meal Screen")}
-        >
-          <Text style={styles.cancelButton}>Cancel</Text>
-        </TouchableOpacity>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("New Meal Screen")}>
+          <Text style={styles.processingScreenBackButton}>⬅ Back</Text>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.photoScreenshotContainer}>
-        <Image
-          style={{ width: 200, height: 300, marginBottom: 0 }}
-          source={imageSrc}
-        ></Image>
-        <Text style={styles.loadingImageButton}>
-          Loading Data From Image...
-        </Text>
+        <Image style={{ width: 300, height: 350, marginBottom: 0, marginTop: -70 }} source={imageSrc}></Image>
+        <Text style={styles.loadingImageButton}>Loading Data From Image...</Text>
       </View>
     </View>
   );
