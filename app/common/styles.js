@@ -664,6 +664,16 @@ export default styles = StyleSheet.create({
 
   totalsHeader: {
     flexDirection: "row",
+    // marginBottom: 1,
+  },
+
+  totalTitle: {
+    color: "#fff",
+    height: 40,
+    marginBottom: 19,
+    fontWeight: "bold",
+    alignItems: "center",
+    fontSize: 40,
   },
 
   divvyTitleContainer: {
@@ -671,14 +681,11 @@ export default styles = StyleSheet.create({
     justifyContent: "space-between",
     marginLeft: 16,
     marginRight: 16,
-    marginBottom: 40,
+    marginBottom: 45,
     alignItems: "center",
   },
 
   totalsInfoContainer: {
-    // display: "flex",
-    // flexDirection: "row",
-    // justifyContent: "space-between",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",

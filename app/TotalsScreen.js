@@ -37,7 +37,7 @@ export default TotalsScreen = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.divvyTitleContainer}>
-          <Text style={styles.divvyTitle}>Total 🧾</Text>
+          <Text style={styles.totalTitle}>Total 🧾</Text>
           <View style={styles.separator}></View>
         </View>
         <Totals selectedMeal={selectedMeal} />
