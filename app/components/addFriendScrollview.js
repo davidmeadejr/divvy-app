@@ -32,7 +32,6 @@ export default AddFriendScrollView = ({
   const realm = useRealm();
 
   const handleLongPress = (item) => {
-    console.log(item);
     if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
       realm.write(() => {
         realm.delete(item);

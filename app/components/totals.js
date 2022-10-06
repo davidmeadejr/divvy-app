@@ -91,13 +91,14 @@ export default Totals = ({ selectedMeal }) => {
 
   const getFlatListHeight = () => {
     console.log(selectedMeal);
-    const heights = ["80%", "75%", "71%", "67%", "62%"];
+    const heights = ["54%", "51%", "48%", "45%", "42%"];
     const heightsIdx = [
       selectedMeal.serviceChargeAmount,
       selectedMeal.tipAmount,
       selectedMeal.taxAmount,
       selectedMeal.discountAmount,
     ].filter(Boolean).length;
+    console.log(heights[heightsIdx]);
     return heights[heightsIdx];
   };
 
@@ -125,14 +126,14 @@ export default Totals = ({ selectedMeal }) => {
           keyExtractor={(charge) => charge}
         />
       </View>
-      <View style={styles.totalsBreakdownContainer}>
-        <FlatList
-          style={{ height: getFlatListHeight() }}
-          data={selectedMeal.friends}
-          renderItem={({ item }) => getFriendTotalsText(item)}
-          keyExtractor={(friend) => friend._id.toString()}
-        />
-      </View>
+      {/* <View style={styles.totalsBreakdownContainer}> */}
+      <FlatList
+        style={{ height: getFlatListHeight() }}
+        data={selectedMeal.friends}
+        renderItem={({ item }) => getFriendTotalsText(item)}
+        keyExtractor={(friend) => friend._id.toString()}
+      />
+      {/* </View> */}
     </View>
   );
 };
