@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useRealm } from "../createRealmContext";
-<<<<<<< HEAD
 import {
   View,
   Modal,
@@ -9,19 +8,23 @@ import {
   TextInput,
   Alert,
   FlatList,
-  TouchableOpacity,
 } from "react-native";
-=======
-import { View, Modal, Text, Pressable, TextInput, Alert, FlatList } from "react-native";
->>>>>>> origin/main
 import styles from "../common/styles";
 import WhiteAddImage from "./whiteAddImage";
 
-export default ValueModal = ({ valueModalVisible, setValueModalVisible, selectedMeal, setSelectedMeal, modalType }) => {
+export default ValueModal = ({
+  valueModalVisible,
+  setValueModalVisible,
+  selectedMeal,
+  setSelectedMeal,
+  modalType,
+}) => {
   const realm = useRealm();
   const [value, setValue] = useState("");
   const valueTypes = ["percent", "amount"];
-  const [typeSelected, setTypeSelected] = useState(selectedMeal[`${modalType}Type`]);
+  const [typeSelected, setTypeSelected] = useState(
+    selectedMeal[`${modalType}Type`]
+  );
 
   const handlePress = () => {
     const valueFloat = parseFloat(value);
@@ -42,10 +45,14 @@ export default ValueModal = ({ valueModalVisible, setValueModalVisible, selected
   };
 
   const getPressableStyle = (isTypeSelected) =>
-    isTypeSelected ? styles.valueModalButtonSelected : styles.valueModalButtonDeselected;
+    isTypeSelected
+      ? styles.valueModalButtonSelected
+      : styles.valueModalButtonDeselected;
 
   const getPressableTextStyle = (isTypeSelected) =>
-    isTypeSelected ? styles.valueModalButtonTextSelected : styles.valueModalButtonTextDeselected;
+    isTypeSelected
+      ? styles.valueModalButtonTextSelected
+      : styles.valueModalButtonTextDeselected;
 
   const flatListValueTypeButtons = (item) => {
     const isTypeSelected = typeSelected === item;
@@ -61,19 +68,15 @@ export default ValueModal = ({ valueModalVisible, setValueModalVisible, selected
           });
         }}
       >
-<<<<<<< HEAD
         <Text style={getPressableTextStyle(isTypeSelected)}>
           {itemNameTitled}
         </Text>
       </TouchableOpacity>
-=======
-        <Text style={getPressableTextStyle(isTypeSelected)}>{itemNameTitled}</Text>
-      </Pressable>
->>>>>>> origin/main
     );
   };
 
-  const getModalType = () => (modalType === "serviceCharge" ? "service charge" : modalType);
+  const getModalType = () =>
+    modalType === "serviceCharge" ? "service charge" : modalType;
   return (
     <View
       style={{
@@ -83,11 +86,19 @@ export default ValueModal = ({ valueModalVisible, setValueModalVisible, selected
         // marginTop: 22,
       }}
     >
-      <Modal animationType="slide" transparent={true} visible={valueModalVisible}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={valueModalVisible}
+      >
         <View style={styles.centeredView}>
           <View style={styles.totalsModalView}>
             <Text style={styles.modalText}>Add {getModalType()} value</Text>
-            <TextInput style={styles.totalsModalInput} placeholder="10" onChangeText={setValue} />
+            <TextInput
+              style={styles.totalsModalInput}
+              placeholder="10"
+              onChangeText={setValue}
+            />
             <FlatList
               style={styles.modalButtonContainer}
               data={valueTypes}
@@ -103,7 +114,10 @@ export default ValueModal = ({ valueModalVisible, setValueModalVisible, selected
               >
                 <Text style={styles.textStyle}>❌</Text>
               </Pressable>
-              <Pressable style={[styles.modalAddButton, styles.modalAddButtonOpen]} onPress={() => handlePress()}>
+              <Pressable
+                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
+                onPress={() => handlePress()}
+              >
                 {/* <Text style={styles.textStyle}>➕</Text> */}
                 <WhiteAddImage />
               </Pressable>
