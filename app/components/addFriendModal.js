@@ -56,17 +56,18 @@ export default AddFriendModal = ({
             />
             <View style={styles.modalButtonContainer}>
               <TouchableOpacity
-                style={[styles.cancelButton, styles.cancelButtonClose]}
-                // Toggles modal visibility on click
-                onPress={() => setModalVisible(false)}
+                onPress={() => {
+                  setModalVisible(false);
+                }}
               >
-                <Text style={styles.textStyle}>❌</Text>
+                <Text style={styles.cancelButtonText}>❌</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalAddButton, styles.modalAddButtonOpen]}
-                onPress={handleAddButtonPress}
-              >
-                <WhiteAddImage />
+              <TouchableOpacity onPress={handleAddButtonPress}>
+                <Text
+                  style={{ color: "white", fontWeight: "bold", fontSize: 80 }}
+                >
+                  +
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

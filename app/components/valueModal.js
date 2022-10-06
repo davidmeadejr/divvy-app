@@ -6,7 +6,6 @@ import {
   Text,
   TextInput,
   Alert,
-  FlatList,
   TouchableOpacity,
 } from "react-native";
 import styles from "../common/styles";
@@ -20,7 +19,6 @@ export default ValueModal = ({
 }) => {
   const realm = useRealm();
   const [value, setValue] = useState("");
-  const valueTypes = ["percent", "amount"];
   const [typeSelected, setTypeSelected] = useState(
     selectedMeal[`${modalType}Type`]
   );
@@ -98,12 +96,6 @@ export default ValueModal = ({
               placeholder="10"
               onChangeText={setValue}
             />
-            {/* <FlatList
-              horizontal
-              data={valueTypes}
-              renderItem={({ item }) => flatListValueTypeButtons(item)}
-              keyExtractor={(item) => valueTypes.indexOf(item)}
-            /> */}
             <View style={{ flexDirection: "row" }}>
               {flatListValueTypeButtons("percent")}
               {flatListValueTypeButtons("amount")}
