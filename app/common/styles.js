@@ -163,7 +163,7 @@ export default styles = StyleSheet.create({
   cameraScreenBackground: {
     flex: 1,
     width: "100%",
-    height: "100%",
+    height: "110%",
   },
 
   cameraScreenContainer: {
@@ -182,8 +182,9 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 95,
+    paddingRight: 95,
+    color: "#fff",
   },
 
   createButton: {
@@ -199,7 +200,7 @@ export default styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingRight: 20,
-    marginBottom: 30,
+    // marginBottom: 30,
   },
 
   uploadButton: {
@@ -213,8 +214,8 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 
   cameraEmojiButton: {
@@ -227,8 +228,9 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 50,
+    paddingRight: 50,
+    color: "#fff",
   },
 
   /*
