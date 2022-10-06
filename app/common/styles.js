@@ -79,7 +79,6 @@ export default styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 20,
     marginRight: 0,
     marginBottom: 0,
     marginLeft: 0,
@@ -236,6 +235,14 @@ export default styles = StyleSheet.create({
   /*
    * Save Photo Screen
    */
+  processingScreenCOntainer: {
+    // Display: "flex",
+    flex: 1,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
+    // alignItems: "center",
+  },
   savePhotoContainer: {
     flex: 1,
     justifyContent: "space-between",
@@ -243,6 +250,25 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     paddingLeft: 16,
     paddingRight: 16,
+    paddingTop: 50,
+    // alignItems: "center",
+  },
+
+  processingScreenBackButton: {
+    fontSize: 32,
+    borderWidth: 2,
+    borderColor: "#4B23F3",
+    borderRadius: 10,
+    backgroundColor: "#4B23F3",
+    paddingTop: 10,
+    paddingBottom: 10,
+    overflow: "hidden",
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingRight: 20,
+    color: "#fff",
+    alignItems: "center",
+    marginLeft: 90,
   },
 
   cancelButton: {
@@ -273,6 +299,9 @@ export default styles = StyleSheet.create({
     padding: 8,
     overflow: "hidden",
     marginTop: 30,
+    fontWeight: "bold",
+    width: 250,
+    paddingLeft: 27,
   },
 
   usePhotoButton: {

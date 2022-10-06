@@ -7,6 +7,14 @@ import { Meal } from "./models/Meal";
 export default NewMealScreen = ({ navigation }) => {
   const realm = useRealm();
 
+  const backButtonNavigation = () => {
+    if ("condition") {
+      navigation.navigate("Home Screen");
+    } else {
+      handleImagePicker(launchImageLibrary);
+    }
+  };
+
   const createNewMeal = () => {
     let newMeal;
     realm.write(() => {
@@ -68,7 +76,7 @@ export default NewMealScreen = ({ navigation }) => {
         <TouchableOpacity onPress={createNewMeal}>
           <Text style={styles.createButton}>Create Receipt ✨</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+        <TouchableOpacity onPress={() => handleImagePicker(launchImageLibrary)}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
       </View>
