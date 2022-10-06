@@ -49,7 +49,6 @@ export default AddFriendModal = ({
             <Text style={styles.modalText}>Add Friend</Text>
             <TextInput
               style={styles.addFriendInput}
-              // Handles the typing of characters by the user.
               onChangeText={setName}
               placeholder={"enter name"}
               value={name}

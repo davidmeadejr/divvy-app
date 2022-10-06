@@ -8,7 +8,7 @@ export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
   const realm = useRealm();
 
   const getPlaceholderText = () =>
-    selectedMeal.name ? selectedMeal.name : "Name your Divvy 🍲";
+    selectedMeal.name ? selectedMeal.name : "Name your meal";
 
   const handleTouchablePress = () => {
     if (divvyName) {
