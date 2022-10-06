@@ -7,13 +7,13 @@ import { Meal } from "./models/Meal";
 export default NewMealScreen = ({ navigation }) => {
   const realm = useRealm();
 
-  const backButtonNavigation = () => {
-    if ("condition") {
-      navigation.navigate("Home Screen");
-    } else {
-      handleImagePicker(launchImageLibrary);
-    }
-  };
+  // const backButtonNavigation = () => {
+  //   if ("condition") {
+  //     navigation.navigate("Home Screen");
+  //   } else {
+  //     handleImagePicker(launchImageLibrary);
+  //   }
+  // };
 
   const createNewMeal = () => {
     let newMeal;
