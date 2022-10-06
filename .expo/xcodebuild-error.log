@@ -1,2 +1,8 @@
-2022-10-05 15:21:43.129 xcodebuild[25426:346358] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
-2022-10-05 15:21:43.129 xcodebuild[25426:346358] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-10-06 13:03:49.650 xcodebuild[29356:227357] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-10-06 13:03:49.650 xcodebuild[29356:227357] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+** BUILD FAILED **
+
+
+The following build commands failed:
+	CompileC /Users/zacmoss/Library/Developer/Xcode/DerivedData/awesomeproject-clsvcskoxulnzgelguqyjjugeldr/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/RCT-Folly.build/Objects-normal/x86_64/SysUio.o /Users/zacmoss/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Makers/final-project-frontend/ios/Pods/RCT-Folly/folly/portability/SysUio.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler (in target 'RCT-Folly' from project 'Pods')
+(1 failure)

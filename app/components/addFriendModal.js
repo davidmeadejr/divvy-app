@@ -28,6 +28,7 @@ export default AddFriendModal = ({
         selectedMeal.friends.push(friend);
         handleSelectedFriendStyle(friend);
       });
+      realm.close();
     } else {
       Alert.alert("This name already exists, please use a different name.");
     }

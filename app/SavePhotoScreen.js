@@ -57,6 +57,8 @@ export default SavePhotoScreen = ({ navigation, route }) => {
         newMeal.items.push(itemEntry);
       });
     });
+    realm.close();
+
     return newMeal;
   };
 
