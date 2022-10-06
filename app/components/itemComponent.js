@@ -1,13 +1,6 @@
 import React from "react";
 import { useRealm } from "../createRealmContext";
-import {
-  Text,
-  View,
-  Pressable,
-  Alert,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../common/styles";
 
 export default ItemComponent = ({

@@ -26,7 +26,7 @@ export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
         onChangeText={(name) => setDivvyName(name)}
       />
       <TouchableOpacity onPress={handleTouchablePress}>
-        <Text style={{ fontSize: 20 }}>Okay</Text>
+        <Text style={{ fontSize: 50, marginTop: -9 }}>☑️</Text>
       </TouchableOpacity>
     </View>
   );
