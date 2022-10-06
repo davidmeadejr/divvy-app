@@ -57,7 +57,6 @@ export default SavePhotoScreen = ({ navigation, route }) => {
         newMeal.items.push(itemEntry);
       });
     });
-    realm.close();
 
     return newMeal;
   };
@@ -72,8 +71,13 @@ export default SavePhotoScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.photoScreenshotContainer}>
-        <Image style={{ width: 200, height: 300, marginBottom: 0 }} source={imageSrc}></Image>
-        <Text style={styles.loadingImageButton}>Loading Data From Image...</Text>
+        <Image
+          style={{ width: 200, height: 300, marginBottom: 0 }}
+          source={imageSrc}
+        ></Image>
+        <Text style={styles.loadingImageButton}>
+          Loading Data From Image...
+        </Text>
       </View>
     </View>
   );

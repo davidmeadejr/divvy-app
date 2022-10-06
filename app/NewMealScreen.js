@@ -13,7 +13,6 @@ export default NewMealScreen = ({ navigation }) => {
       console.log("creating new meal");
       newMeal = realm.create("Meal", new Meal({}));
     });
-    realm.close();
 
     navigation.navigate("Meal Screen", { selectedMeal: newMeal });
   };

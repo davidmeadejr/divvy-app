@@ -15,7 +15,6 @@ export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
       realm.write(() => {
         selectedMeal.name = divvyName;
       });
-      realm.close();
     }
     setEditName(false);
   };

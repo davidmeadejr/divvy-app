@@ -19,7 +19,6 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
       );
       selectedMeal.items.push(item);
     });
-    realm.close();
   };
 
   const handleItemModalAddDishOnPress = () => {

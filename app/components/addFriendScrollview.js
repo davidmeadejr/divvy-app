@@ -37,7 +37,6 @@ export default AddFriendScrollView = ({
     realm.write(() => {
       realm.delete(item);
     });
-    realm.close();
 
     setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };

@@ -1,31 +1,9 @@
-<<<<<<< HEAD
-2022-10-06 13:03:49.650 xcodebuild[29356:227357] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
-2022-10-06 13:03:49.650 xcodebuild[29356:227357] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-10-06 13:31:35.509 xcodebuild[37706:268654] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-10-06 13:31:35.510 xcodebuild[37706:268654] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
 ** BUILD FAILED **
 
 
 The following build commands failed:
-	CompileC /Users/zacmoss/Library/Developer/Xcode/DerivedData/awesomeproject-clsvcskoxulnzgelguqyjjugeldr/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/RCT-Folly.build/Objects-normal/x86_64/SysUio.o /Users/zacmoss/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/Makers/final-project-frontend/ios/Pods/RCT-Folly/folly/portability/SysUio.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler (in target 'RCT-Folly' from project 'Pods')
-(1 failure)
-=======
-2022-10-06 10:23:31.097 xcodebuild[92077:3421875]  DTDeviceKit: Failed to mount DDI from '<DVTFilePath:0x7fdfc6453c20:'/Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform/DeviceSupport/8.7/DeveloperDiskImage.dmg'>', error=-402653158: Error Domain=com.apple.dtdevicekit Code=806 "Failed to prepare the device for development." UserInfo={AssociatedMobileDeviceFunction=AMDeviceMountImage, NSUnderlyingError=0x7fdfc651e880 {Error Domain=com.apple.dt.MobileDeviceErrorDomain Code=-402653158 "The device is passcode protected." UserInfo={MobileDeviceErrorCode=(0xE800001A), com.apple.dtdevicekit.stacktrace=(
-	0   DTDeviceKitBase                     0x0000000114d27c90 DTDKCreateNSErrorFromAMDErrorCode + 235
-	1   DTDeviceKitBase                     0x0000000114d61c3c -[DTDKMobileDeviceToken _mountDeveloperDiskImage:withError:] + 902
-	2   DTDeviceKitBase                     0x0000000114d6271c __58-[DTDKMobileDeviceToken mountDeveloperDiskImageWithError:]_block_invoke + 608
-	3   libdispatch.dylib                   0x00007ff808f04317 _dispatch_client_callout + 8
-	4   libdispatch.dylib                   0x00007ff808f117ee _dispatch_lane_barrier_sync_invoke_and_complete + 60
-	5   DTDeviceKitBase                     0x0000000114d6245c -[DTDKMobileDeviceToken mountDeveloperDiskImageWithError:] + 185
-	6   IDEiOSSupportCore                   0x000000011460e638 -[DVTProxiediOSDevice prepareForDevelopment:] + 1283
-	7   IDEiOSSupportCore                   0x000000011460f229 -[DVTProxiediOSDevice startDeviceReadinessObservationOnQueue:] + 1029
-	8   IDEiOSSupportCore                   0x000000011460d902 __70-[DVTProxiediOSDevice initWithToken:companionDevice:preparationQueue:]_block_invoke + 28
-	9   DVTFoundation                       0x00000001074fc769 __DVT_CALLING_CLIENT_BLOCK__ + 7
-	10  DVTFoundation                       0x00000001074fd27d __DVTDispatchAsync_block_invoke + 196
-	11  libdispatch.dylib                   0x00007ff808f030cc _dispatch_call_block_and_release + 12
-	12  libdispatch.dylib                   0x00007ff808f04317 _dispatch_client_callout + 8
-	13  libdispatch.dylib                   0x00007ff808f0a317 _dispatch_lane_serial_drain + 672
-	14  libdispatch.dylib                   0x00007ff808f0adfd _dispatch_lane_invoke + 366
-	15  libdispatch.dylib                   0x00007ff808f14eee _dispatch_workloop_worker_thread + 753
-	16  libsystem_pthread.dylib             0x00007ff8090b7fd0 _pthread_wqthread + 326
-	17  libsystem_pthread.dylib             0x00007ff8090b6f57 start_wqthread + 15
-), DVTRadarComponentKey=261622, NSLocalizedDescription=The device is passcode protected.}}, NSLocalizedRecoverySuggestion=This operation can fail if the version of the OS on the device is incompatible with the installed version of Xcode. You may also need to restart your Mac and device in order to correctly detect compatibility., NSLocalizedFailure=The device is passcode protected., DVTRadarComponentKey=487927, NSLocalizedDescription=Failed to prepare the device for development.}
->>>>>>> 4d0994efebcd15943dcddb7b98aa6299f67044d9
+	PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/zacmoss/Library/Developer/Xcode/DerivedData/awesomeproject-dsazsulrbuptiwgtnoqdelanhvmx/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FBReactNativeSpec.build/Script-46EB2E00010D40.sh (in target 'FBReactNativeSpec' from project 'Pods')
+	CompileSwiftSources normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'ExpoModulesCore' from project 'Pods')
+(2 failures)
