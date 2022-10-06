@@ -91,7 +91,7 @@ export default Totals = ({ selectedMeal }) => {
 
   const getFlatListHeight = () => {
     console.log(selectedMeal);
-    const heights = ["56%", "53%", "50%", "47%", "43%"];
+    const heights = ["75%", "71%", "67%", "63%", "59%"];
     const heightsIdx = [
       selectedMeal.serviceChargeAmount,
       selectedMeal.tipAmount,
@@ -127,7 +127,7 @@ export default Totals = ({ selectedMeal }) => {
       </View>
       <View style={styles.totalsBreakdownContainer}>
         <FlatList
-          // style={{ height:  }}
+          style={{ height: getFlatListHeight() }}
           data={selectedMeal.friends}
           renderItem={({ item }) => getFriendTotalsText(item)}
           keyExtractor={(friend) => friend._id.toString()}
