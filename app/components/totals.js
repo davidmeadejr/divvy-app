@@ -12,7 +12,11 @@ export default Totals = ({ selectedMeal }) => {
         chargeAmount = getPercentageForString(
           selectedMeal[`${chargeName}Amount`]
         );
-      return <Text>{`${charge}: £${chargeAmount.toFixed(2)}`}</Text>;
+      return (
+        <Text
+          style={{ fontSize: 16, color: "#fff" }}
+        >{`${charge}: £${chargeAmount.toFixed(2)}`}</Text>
+      );
     }
   };
 
