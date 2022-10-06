@@ -35,7 +35,6 @@ export default Totals = ({ selectedMeal }) => {
           style={{
             marginBottom: 20,
             color: "white",
-            // textDecorationLine: "underline",
           }}
         >
           {getIndividualItems(item)}
@@ -90,6 +89,17 @@ export default Totals = ({ selectedMeal }) => {
       .reduce((a, b) => a + b, 0);
   };
 
+  const getFlatListHeight = () => {
+    const heights = ["56%", "53%", "50%", "47%", "43%"];
+    const heightsIdx = [
+      selectedMeal.serviceChargeAmount,
+      selectedMeal.tipAmount,
+      selectedMeal.taxAmount,
+      selectedMeal.discountAmount,
+    ].filter(Boolean).length;
+    return heights[heightsIdx];
+  };
+
   return (
     <View>
       <View style={styles.totalsInfoContainer}>
@@ -116,7 +126,7 @@ export default Totals = ({ selectedMeal }) => {
       </View>
       <View style={styles.totalsBreakdownContainer}>
         <FlatList
-          style={{ height: "43%" }}
+          style={{ height: getFlatListHeight() }}
           data={selectedMeal.friends}
           renderItem={({ item }) => getFriendTotalsText(item)}
           keyExtractor={(friend) => friend._id.toString()}
