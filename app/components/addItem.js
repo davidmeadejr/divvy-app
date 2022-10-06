@@ -13,7 +13,10 @@ const AddItem = ({ itemModalVisible, setItemModalVisible, selectedMeal }) => {
 
   const addItemToRealm = (name, amount) => {
     realm.write(() => {
-      const item = realm.create("Item", new Item({ name: name, amount: amount }));
+      const item = realm.create(
+        "Item",
+        new Item({ name: name, amount: amount })
+      );
       selectedMeal.items.push(item);
     });
   };

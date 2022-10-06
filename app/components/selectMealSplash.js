@@ -4,12 +4,7 @@ import { useRealm, useQuery } from "../createRealmContext";
 import { Meal } from "../models/Meal";
 import AddItem from "./addItem";
 
-export default SelectMealSplash = ({
-  selectedMeal,
-  setSelectedMeal,
-  setCreateNewMeal,
-}) => {
-  const realm = useRealm();
+export default SelectMealSplash = ({ setSelectedMeal, setCreateNewMeal }) => {
   const result = useQuery("Meal");
   const handleButtonPress = () => {
     try {

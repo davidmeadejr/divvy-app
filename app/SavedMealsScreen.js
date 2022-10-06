@@ -1,4 +1,10 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import styles from "./common/styles";
 import { useQuery } from "./createRealmContext";
 
@@ -7,17 +13,16 @@ export default SavedMealsScreen = ({ navigation }) => {
 
   const renderSavedMealListItem = (meal) => {
     return (
-      <View style={styles.savedMealsContainer}>
+      <View>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("Meal Screen", { selectedMeal: meal })
           }
-          style={styles.savedMealsContainer}
         >
-          <Text style={styles.savedMealsText}>{getMealNameOrDate(meal)}</Text>
-          <Text> ➡️</Text>
+          <Text style={styles.savedMealsText}>
+            {getMealNameOrDate(meal)} ➡️
+          </Text>
         </TouchableOpacity>
-        {/* <View style={styles.separator}></View> */}
       </View>
     );
   };
@@ -29,17 +34,26 @@ export default SavedMealsScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.savedMealsTitleContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
-        <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
-      </TouchableOpacity>
-      <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
-      {/* <View style={styles.separator}></View> */}
-      <FlatList
-        data={result}
-        renderItem={({ item }) => renderSavedMealListItem(item)}
-        keyExtractor={(item) => item._id.toString()}
-      />
-    </View>
+    <ImageBackground
+      style={styles.homeScreenBackground}
+      source={require("../assets/background-image.png")}
+      resizeMode={"cover"}
+    >
+      <View style={styles.savedMealsCenteredView}>
+        <View style={styles.savedMealsContainer}>
+          <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
+          {/* <View style={styles.separator}></View> */}
+          <FlatList
+            style={{ height: "20%" }}
+            data={result}
+            renderItem={({ item }) => renderSavedMealListItem(item)}
+            keyExtractor={(item) => item._id.toString()}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
+            <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
   );
 };

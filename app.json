@@ -1,25 +1,16 @@
 {
   "expo": {
-    "name": "Divvy",
-    "slug": "Divvy",
+    "name": "awesomeproject",
+    "slug": "awesomeproject",
     "version": "1.0.0",
     "sdkVersion": "46.0.0",
-    "platforms": ["ios", "android", "web"],
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "backgroundColor": "#4B23F3"
-    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "ios": {
       "bundleIdentifier": "i"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "2f500764-03b9-4879-b834-cd857741f88c"
-      }
-    },
-    "android": {
-      "package": "com.zacmosshk.awesomeproject"
     }
   }
 }

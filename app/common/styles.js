@@ -79,10 +79,10 @@ export default styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 50,
-    marginRight: 16,
-    marginBottom: 16,
-    marginLeft: 16,
+    marginTop: 20,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
   },
 
   usersContainer: {
@@ -174,7 +174,6 @@ export default styles = StyleSheet.create({
 
   cameraScreenBackButton: {
     fontSize: 32,
-    color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -244,8 +243,11 @@ export default styles = StyleSheet.create({
     paddingRight: 16,
   },
 
-  retakePhotoButton: {
+  cancelButton: {
+    width: 85,
     fontSize: 20,
+    alignItems: "center",
+    justifyContent: "center",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -254,6 +256,21 @@ export default styles = StyleSheet.create({
     padding: 8,
     overflow: "hidden",
     marginTop: 40,
+    marginLeft: 125,
+  },
+
+  loadingImageButton: {
+    width: 210,
+    fontSize: 15,
+    alignItems: "center",
+    color: "#fff",
+    borderWidth: 2,
+    borderColor: "#4B23F3",
+    borderRadius: 10,
+    backgroundColor: "#4B23F3",
+    padding: 8,
+    overflow: "hidden",
+    marginTop: 30,
   },
 
   usePhotoButton: {
@@ -269,9 +286,9 @@ export default styles = StyleSheet.create({
   },
 
   photoScreenshotContainer: {
-    flex: 1,
+    flex: 3,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#333",
   },
 
@@ -402,7 +419,8 @@ export default styles = StyleSheet.create({
     color: "#000",
     height: 45,
     width: 230,
-    marginBottom: 16,
+    marginBottom: 15,
+    marginLeft: 40,
     borderWidth: 2,
     padding: 10,
     borderColor: "#4B23F3",
@@ -789,15 +807,28 @@ export default styles = StyleSheet.create({
   },
 
   savedMealsContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 5,
+    // display: "flex",
+    // flexDirection: "row",
+    // marginBottom: 5,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "space-evenly",
+    backgroundColor: "#4B23F3",
+    borderColor: "#4B23F3",
+    borderWidth: 2,
+    fontWeight: "bold",
+
+    // height: "50%",
+    width: "80%",
+    borderRadius: 10,
   },
   savedMealsText: {
-    color: "#00",
+    color: "white",
     fontWeight: "bold",
+    fontSize: 15,
+    padding: 5,
   },
 
   savedMealsTitle: {
@@ -806,27 +837,44 @@ export default styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
-    color: "#000",
+    color: "white",
     fontWeight: "bold",
     fontSize: 30,
   },
 
   savedMealsTitleContainer: {
     marginTop: 30,
-    display: "flex",
+    width: "60%",
+    // display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#4B23F3",
+  },
+
+  savedMealsCenteredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
   },
 
   savedMealScreenBackButton: {
     fontSize: 32,
-    color: "#000",
-    paddingTop: 10,
-    paddingBottom: 10,
+    color: "white",
+    // paddingTop: 10,
+    // paddingBottom: 10,
     fontWeight: "bold",
-    paddingLeft: 15,
-    width: 215,
-    marginBottom: 40,
-    marginLeft: -120,
+    paddingRight: 20,
+    // paddingLeft: 15,
+    // width: 215,
+    // marginBottom: 40,
+    // marginLeft: 20,
+  },
+
+  savedMealScreenMealName: {
+    paddingLeft: 24,
+    fontSize: 40,
+    color: "white",
+    fontWeight: "bold",
   },
 });

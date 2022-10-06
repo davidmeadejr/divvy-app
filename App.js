@@ -2,6 +2,7 @@ import React from "react";
 import { RealmProvider } from "./app/createRealmContext";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { LogBox } from "react-native";
 import TotalsScreen from "./app/TotalsScreen";
 import SavedMealsScreen from "./app/SavedMealsScreen";
 import NewMealScreen from "./app/NewMealScreen";
@@ -12,6 +13,8 @@ import MealScreen from "./app/MealScreen";
 const Stack = createNativeStackNavigator();
 
 export default App = () => {
+  LogBox.ignoreAllLogs();
+
   return (
     <RealmProvider>
       <NavigationContainer>

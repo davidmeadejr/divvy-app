@@ -26,6 +26,7 @@ export default ItemComponent = ({
     realm.write(() => {
       realm.delete(item);
     });
+
     setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
 
@@ -39,6 +40,7 @@ export default ItemComponent = ({
           ? item.friends.push(selectedFriend)
           : item.friends.splice(friendIdx, 1);
       });
+
       setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
     }
   };

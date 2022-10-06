@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import styles from "../common/styles";
 import WhiteAddImage from "./whiteAddImage";
@@ -40,6 +41,7 @@ export default ValueModal = ({
         selectedMeal[`${modalType}Amount`] = valueFloat;
         setSelectedMeal(selectedMeal);
       });
+
       setValueModalVisible(false);
     }
   };
