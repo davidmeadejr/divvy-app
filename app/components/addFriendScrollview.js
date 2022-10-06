@@ -42,7 +42,7 @@ export default AddFriendScrollView = ({
   };
 
   return (
-    <View style={styles.openModalContainer}>
+    <View style={{ flex: 1 }}>
       <View>
         <ScrollView horizontal>
           {selectedMeal.friends.map((item, index) => (

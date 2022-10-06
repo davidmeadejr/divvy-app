@@ -75,6 +75,7 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+
   modalButtonContainer: {
     display: "flex",
     flexDirection: "row",
