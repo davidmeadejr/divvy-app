@@ -87,12 +87,21 @@ export default Totals = ({ selectedMeal }) => {
   return (
     <View>
       <View style={styles.totalsInfoContainer}>
-        <Text style={styles.subTotalsInfoTitle}>
-          Subtotal: £{getSubTotal().toFixed(2)}
-        </Text>
-        <Text style={styles.totalsInfoTitle}>
-          Total: £{getTotal(getSubTotal()).toFixed(2)}
-        </Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            color: "#fff",
+          }}
+        >
+          <Text style={styles.subTotalsInfoTitle}>
+            Subtotal: £{getSubTotal().toFixed(2)}
+          </Text>
+          <Text style={styles.totalsInfoTitle}>
+            Total: £{getTotal(getSubTotal()).toFixed(2)}
+          </Text>
+        </View>
         <FlatList
           data={["Service charge", "Tip", "Tax", "Discount"]}
           renderItem={({ item }) => getChargeText(item)}
@@ -101,6 +110,7 @@ export default Totals = ({ selectedMeal }) => {
       </View>
       <View style={styles.totalsBreakdownContainer}>
         <FlatList
+          style={{ height: "30%" }}
           data={selectedMeal.friends}
           renderItem={({ item }) => getFriendTotalsText(item)}
           keyExtractor={(friend) => friend._id.toString()}

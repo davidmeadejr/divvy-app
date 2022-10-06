@@ -668,19 +668,16 @@ export default styles = StyleSheet.create({
   },
 
   totalsInfoContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    // display: "flex",
+    // flexDirection: "row",
+    // justifyContent: "space-between",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     padding: 8,
     overflow: "hidden",
-    // marginTop: 10,
     marginBottom: -20,
-    // height: 20,
   },
 
   totalsInfoTitle: {
@@ -689,6 +686,8 @@ export default styles = StyleSheet.create({
     // marginBottom: -10,
     color: "#fff",
     fontWeight: "bold",
+    textAlign: "right",
+
     // marginLeft: 275,
     // width: 100,
   },
