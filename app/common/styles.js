@@ -517,7 +517,8 @@ export default styles = StyleSheet.create({
   },
   friend: {
     marginTop: -10,
-    marginLeft: 10,
+    marginLeft: -50,
+    textAlign: "right",
     color: "#fff",
     fontWeight: "500",
   },
