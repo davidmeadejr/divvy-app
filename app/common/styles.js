@@ -79,10 +79,10 @@ export default styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    marginTop: 50,
-    marginRight: 16,
-    marginBottom: 16,
-    marginLeft: 16,
+    marginTop: 20,
+    marginRight: 0,
+    marginBottom: 0,
+    marginLeft: 0,
   },
 
   usersContainer: {
@@ -244,8 +244,11 @@ export default styles = StyleSheet.create({
     paddingRight: 16,
   },
 
-  retakePhotoButton: {
+  cancelButton: {
+    width: 85,
     fontSize: 20,
+    alignItems: "center",
+    justifyContent: "center",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -254,6 +257,21 @@ export default styles = StyleSheet.create({
     padding: 8,
     overflow: "hidden",
     marginTop: 40,
+    marginLeft: 125,
+  },
+
+  loadingImageButton: {
+    width: 210,
+    fontSize: 15,
+    alignItems: "center",
+    color: "#fff",
+    borderWidth: 2,
+    borderColor: "#4B23F3",
+    borderRadius: 10,
+    backgroundColor: "#4B23F3",
+    padding: 8,
+    overflow: "hidden",
+    marginTop: 30,
   },
 
   usePhotoButton: {
@@ -269,9 +287,9 @@ export default styles = StyleSheet.create({
   },
 
   photoScreenshotContainer: {
-    flex: 1,
+    flex: 3,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#333",
   },
 
