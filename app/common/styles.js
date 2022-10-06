@@ -834,6 +834,7 @@ export default styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#4B23F3",
   },
 
   savedMealScreenBackButton: {
@@ -845,6 +846,6 @@ export default styles = StyleSheet.create({
     paddingLeft: 15,
     width: 215,
     marginBottom: 40,
-    marginLeft: -120,
+    marginLeft: 20,
   },
 });
