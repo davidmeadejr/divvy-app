@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Text, View, FlatList, TouchableOpacity } from "react-native";
-import { useRealm } from "../createRealmContext";
 import ItemComponent from "./itemComponent";
 import AddItem from "./addItem";
 import styles from "../common/styles";
@@ -14,8 +13,7 @@ export default Items = ({
   setSelectedMeal,
 }) => {
   const [itemModalVisible, setItemModalVisible] = useState(false);
-  const [editName, setEditName] = useState(true);
-  const realm = useRealm();
+  const [editName, setEditName] = useState(!selectedMeal.name);
 
   const getMealNameOrEdit = () => {
     if (editName)
@@ -32,6 +30,7 @@ export default Items = ({
       </View>
     );
   };
+
   return (
     <View style={styles.itemsContainer}>
       <View style={styles.mealHeader}>

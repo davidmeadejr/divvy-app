@@ -43,9 +43,9 @@ export default styles = StyleSheet.create({
     // backgroundColor: "#fff",
   },
   modalAddButton: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    // borderRadius: 20,
+    // padding: 10,
+    // elevation: 2,
   },
   buttonOpen: {
     // backgroundColor: "#F194FF",
@@ -63,6 +63,7 @@ export default styles = StyleSheet.create({
     textAlign: "center",
   },
   modalText: {
+    fontSize: 20,
     marginBottom: 15,
     textAlign: "center",
     color: "#fff",
@@ -70,9 +71,11 @@ export default styles = StyleSheet.create({
   },
   openModalContainer: {
     display: "flex",
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
+
   modalButtonContainer: {
     display: "flex",
     flexDirection: "row",
@@ -272,19 +275,24 @@ export default styles = StyleSheet.create({
   },
 
   cancelButton: {
-    width: 85,
-    fontSize: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    borderWidth: 2,
-    borderColor: "#4B23F3",
-    borderRadius: 10,
-    backgroundColor: "#4B23F3",
-    padding: 8,
-    overflow: "hidden",
-    marginTop: 40,
-    marginLeft: 125,
+    // width: 85,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // color: "#fff",
+    // borderWidth: 2,
+    // borderColor: "#4B23F3",
+    // borderRadius: 10,
+    // backgroundColor: "#4B23F3",
+    // padding: 8,
+    // overflow: "hidden",
+    // marginTop: 40,
+    // marginLeft: 125,
+  },
+
+  cancelButtonText: {
+    fontSize: 35,
+    paddingTop: 35,
+    paddingRight: 60,
   },
 
   loadingImageButton: {
@@ -359,10 +367,6 @@ export default styles = StyleSheet.create({
   mealScreenBackButton: {
     fontSize: 32,
     color: "#fff",
-    // borderWidth: 2,
-    // borderColor: "#4B23F3",
-    // borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     paddingTop: 10,
     paddingBottom: 10,
     // overflow: "hidden",
@@ -374,23 +378,36 @@ export default styles = StyleSheet.create({
     // marginRight: 30,
   },
 
+  totalsScreenItemsButton: {
+    fontSize: 32,
+    color: "#fff",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    width: 215,
+    marginBottom: 10,
+  },
+
   mealScreenTotalButton: {
     fontSize: 32,
     color: "#fff",
-    // borderWidth: 2,
-    // borderColor: "#4B23F3",
-    // borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     paddingTop: 10,
     paddingBottom: 10,
-    // overflow: "hidden",
     fontWeight: "bold",
     paddingLeft: 15,
-    // paddingRight: 10,
     width: 150,
     marginBottom: 10,
-    // marginRight: 30,
-    // marginLeft: 15,
+  },
+
+  totalsScreenTotalButton: {
+    fontSize: 32,
+    color: "#fff",
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontWeight: "bold",
+    paddingLeft: 3,
+    width: 150,
+    marginBottom: 10,
   },
 
   itemsText: {
@@ -451,13 +468,14 @@ export default styles = StyleSheet.create({
     height: 45,
     width: 230,
     marginBottom: 15,
-    marginLeft: 40,
+    marginLeft: 14,
+    marginRight: 10,
     borderWidth: 2,
-    padding: 10,
+    // padding: 10,
     borderColor: "#4B23F3",
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 25,
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#fff",
@@ -476,7 +494,9 @@ export default styles = StyleSheet.create({
     height: 40,
     marginBottom: 16,
     borderWidth: 2,
-    padding: 10,
+    width: 250,
+    fontSize: 20,
+    textAlign: "center",
     borderColor: "#4B23F3",
     fontWeight: "bold",
     borderRadius: 10,
@@ -514,13 +534,13 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     width: 350,
     // backgroundColor: "#4B2",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
   },
   itemName: {
-    marginBottom: 15,
+    // marginBottom: 15,
     borderRadius: 10,
-    padding: 10,
+    // padding: 10,
     width: 190,
     overflow: "hidden",
     color: "#fff",
@@ -529,26 +549,24 @@ export default styles = StyleSheet.create({
   },
 
   priceAndFriendsContainer: {
-    flexDirection: "column",
-    alignItems: "flex-end",
+    // flexDirection: "column",
+    // alignItems: "flex-end",
   },
 
   amount: {
-    // marginTop: 5,
-    marginBottom: 5,
-    borderRadius: 10,
-    padding: 10,
+    // marginBottom: 16,
     overflow: "hidden",
     color: "#FFD700",
     fontWeight: "bold",
     fontSize: 24,
+    textAlign: "right",
     // borderBottomColor: "#fff",
     // borderBottomWidth: 2,
-    marginRight: -10,
+    marginRight: 0,
+    flex: 1,
   },
   friend: {
-    marginTop: -10,
-    marginLeft: 10,
+    textAlign: "right",
     color: "#fff",
     fontWeight: "500",
   },
@@ -565,7 +583,8 @@ export default styles = StyleSheet.create({
   },
 
   redCancel: {
-    marginBottom: 12,
+    marginTop: 2,
+    marginRight: 9,
   },
 
   /* *************************************************** */
@@ -581,8 +600,11 @@ export default styles = StyleSheet.create({
     height: 40,
     marginBottom: 16,
     borderWidth: 2,
-    padding: 10,
+    // padding: ,
+    fontSize: 20,
+    width: "100%",
     borderColor: "#4B23F3",
+    textAlign: "center",
     fontWeight: "bold",
     borderRadius: 10,
     overflow: "hidden",
@@ -622,11 +644,10 @@ export default styles = StyleSheet.create({
     borderWidth: 4,
     marginRight: 13,
     borderRadius: 10,
-    padding: 7,
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 10,
+    padding: 8,
+    // backgroundColor: "#fff",
+    // display: "flex",
+    // flexDirection: "row",
     alignItems: "center",
   },
   valueModalButtonDeselected: {
@@ -634,16 +655,18 @@ export default styles = StyleSheet.create({
     marginRight: 16,
     borderRadius: 10,
     padding: 10,
-    backgroundColor: "#fff",
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 10,
+    paddingRight: 13,
   },
   valueModalButtonTextSelected: {
+    fontSize: 20,
     fontWeight: "bold",
+    color: "white",
   },
   valueModalButtonTextDeselected: {
+    fontSize: 20,
+
     fontWeight: "normal",
+    color: "white",
   },
 
   /* *************************************************** */
@@ -654,11 +677,10 @@ export default styles = StyleSheet.create({
 
   /* *************************************************** */
 
-  totalScreenContainer: {
-    flex: 1,
-    paddingTop: 50,
+  totalsScreenContainer: {
+    height: "100%",
+    paddingTop: 40,
     paddingRight: 16,
-    paddingBottom: 16,
     paddingLeft: 16,
     backgroundColor: "#333",
   },
@@ -687,6 +709,16 @@ export default styles = StyleSheet.create({
 
   totalsHeader: {
     flexDirection: "row",
+    // marginBottom: 1,
+  },
+
+  totalTitle: {
+    color: "#fff",
+    height: 40,
+    marginBottom: 19,
+    fontWeight: "bold",
+    alignItems: "center",
+    fontSize: 40,
   },
 
   divvyTitleContainer: {
@@ -694,24 +726,18 @@ export default styles = StyleSheet.create({
     justifyContent: "space-between",
     marginLeft: 16,
     marginRight: 16,
-    marginBottom: 40,
+    marginBottom: 45,
     alignItems: "center",
   },
 
   totalsInfoContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
-    // backgroundColor: "#4B23F3",
     padding: 8,
     overflow: "hidden",
-    // marginTop: 10,
-    marginBottom: -20,
-    // height: 20,
+    marginBottom: 15,
   },
 
   totalsInfoTitle: {
@@ -720,6 +746,8 @@ export default styles = StyleSheet.create({
     // marginBottom: -10,
     color: "#fff",
     fontWeight: "bold",
+    textAlign: "right",
+
     // marginLeft: 275,
     // width: 100,
   },
@@ -735,21 +763,22 @@ export default styles = StyleSheet.create({
   totalsBreakdownContainer: {
     display: "flex",
     justifyContent: "space-between",
-    color: "#fff",
-    fontWeight: "bold",
     flexDirection: "row",
-    marginTop: 20,
+    marginBottom: 5,
   },
 
   totalsItemName: {
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 24,
   },
 
   totalsItemAmount: {
     color: "#fff",
     fontWeight: "bold",
-    marginLeft: 258,
+    color: "#FFD700",
+
+    fontSize: 24,
   },
 
   individualItems: {
@@ -774,6 +803,9 @@ export default styles = StyleSheet.create({
   },
 
   additionalCostsContainer: {
+    zIndex: 1,
+    bottom: 20,
+    position: "absolute",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -782,7 +814,7 @@ export default styles = StyleSheet.create({
 
   additionalCostTitle: {
     fontWeight: "bold",
-    alignItems: "center",
+    // alignItems: "center",
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -790,7 +822,7 @@ export default styles = StyleSheet.create({
     backgroundColor: "#4B23F3",
     padding: 8,
     overflow: "hidden",
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 5,
   },
 
@@ -801,6 +833,7 @@ export default styles = StyleSheet.create({
   },
 
   individualCostContainer: {
+    paddingLeft: 15,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -808,16 +841,24 @@ export default styles = StyleSheet.create({
 
   totalsModalInput: {
     color: "#000",
-    height: 40,
+    // height: 40,
     marginBottom: 16,
     borderWidth: 2,
     padding: 10,
     borderColor: "#4B23F3",
     fontWeight: "bold",
+    fontSize: 30,
     borderRadius: 10,
     overflow: "hidden",
     backgroundColor: "#fff",
   },
+  totalsModalCenteredView: {
+    flex: 1,
+    justifyContent: "center",
+    // alignItems: "center",
+    // top: "0%",
+  },
+
   totalsModalView: {
     margin: 20,
     backgroundColor: "white",
@@ -834,7 +875,7 @@ export default styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: "#4B23F3",
     // backgroundColor: "#333",
-    height: 300,
+    // height: 270,
   },
 
   savedMealsContainer: {

@@ -33,43 +33,46 @@ export default AddFriendScrollView = ({
 
   const handleLongPress = (item) => {
     if (selectedFriend && selectedFriend._id.toString() === item._id.toString())
-      setSelectedFriend();
-    realm.write(() => {
-      realm.delete(item);
-    });
-
+      realm.write(() => {
+        realm.delete(item);
+      });
+    setSelectedFriend(null);
     setSelectedMeal(realm.objectForPrimaryKey("Meal", selectedMeal._id));
   };
 
   return (
-    <View style={styles.openModalContainer}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={true}>
-        {selectedMeal.friends.map((item, index) => (
-          <TouchableOpacity
-            onPress={() => handleSelectedFriendStyle(item)}
-            onLongPress={() => handleLongPress(item)}
-            style={{
-              borderWidth: myStyle[item._id.toString()] ? 5 : 2,
-              borderColor: friendColours[index],
-              marginRight: myStyle[item._id.toString()] ? 13 : 16,
-              borderRadius: 10,
-              padding: myStyle[item._id.toString()] ? 7 : 10,
-            }}
-            key={item._id.toString()}
-          >
-            <View>
-              <Text
-                style={{
-                  fontWeight: myStyle[item._id.toString()] ? "bold" : "normal",
-                  color: "#fff",
-                }}
-              >
-                {item.name}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+    <View style={{ flex: 1 }}>
+      <View>
+        <ScrollView horizontal>
+          {selectedMeal.friends.map((item, index) => (
+            <TouchableOpacity
+              onPress={() => handleSelectedFriendStyle(item)}
+              onLongPress={() => handleLongPress(item)}
+              style={{
+                borderWidth: myStyle[item._id.toString()] ? 5 : 2,
+                borderColor: friendColours[index],
+                marginRight: myStyle[item._id.toString()] ? 13 : 16,
+                borderRadius: 10,
+                padding: myStyle[item._id.toString()] ? 7 : 10,
+              }}
+              key={item._id.toString()}
+            >
+              <View>
+                <Text
+                  style={{
+                    fontWeight: myStyle[item._id.toString()]
+                      ? "bold"
+                      : "normal",
+                    color: "#fff",
+                  }}
+                >
+                  {item.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };

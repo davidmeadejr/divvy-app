@@ -8,7 +8,7 @@ export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
   const realm = useRealm();
 
   const getPlaceholderText = () =>
-    selectedMeal.name ? selectedMeal.name : "Name your Divvy 🍲";
+    selectedMeal.name ? selectedMeal.name : "Name your meal";
 
   const handleTouchablePress = () => {
     if (divvyName) {
@@ -26,7 +26,7 @@ export default NameDivvyInput = ({ selectedMeal, setEditName }) => {
         onChangeText={(name) => setDivvyName(name)}
       />
       <TouchableOpacity onPress={handleTouchablePress}>
-        <Text style={{ fontSize: 20 }}>Okay</Text>
+        <Text style={{ fontSize: 50, marginTop: -9 }}>☑️</Text>
       </TouchableOpacity>
     </View>
   );
