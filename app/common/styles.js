@@ -484,13 +484,13 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     width: 350,
     // backgroundColor: "#4B2",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     alignItems: "center",
   },
   itemName: {
-    marginBottom: 15,
+    // marginBottom: 15,
     borderRadius: 10,
-    padding: 10,
+    // padding: 10,
     width: 190,
     overflow: "hidden",
     color: "#fff",
@@ -499,26 +499,23 @@ export default styles = StyleSheet.create({
   },
 
   priceAndFriendsContainer: {
-    flexDirection: "column",
-    alignItems: "flex-end",
+    // flexDirection: "column",
+    // alignItems: "flex-end",
   },
 
   amount: {
-    // marginTop: 5,
-    marginBottom: 5,
-    borderRadius: 10,
-    padding: 10,
+    // marginBottom: 16,
     overflow: "hidden",
     color: "#FFD700",
     fontWeight: "bold",
     fontSize: 24,
+    textAlign: "right",
     // borderBottomColor: "#fff",
     // borderBottomWidth: 2,
-    marginRight: -10,
+    marginRight: 0,
+    flex: 1,
   },
   friend: {
-    marginTop: -10,
-    marginLeft: -50,
     textAlign: "right",
     color: "#fff",
     fontWeight: "500",
@@ -536,7 +533,8 @@ export default styles = StyleSheet.create({
   },
 
   redCancel: {
-    marginBottom: 12,
+    marginTop: 2,
+    marginRight: 9,
   },
 
   /* *************************************************** */
