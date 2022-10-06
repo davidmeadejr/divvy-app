@@ -44,8 +44,8 @@ export default AddFriendModal = ({
   return (
     <View style={styles.centeredView}>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={styles.totalsModalCenteredView}>
+          <View style={styles.totalsModalView}>
             <Text style={styles.modalText}>Add Friend</Text>
             <TextInput
               style={styles.addFriendInput}
