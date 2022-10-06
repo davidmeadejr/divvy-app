@@ -68,15 +68,15 @@ export default NewMealScreen = ({ navigation }) => {
     >
       <View style={styles.cameraScreenContainer}>
         <TouchableOpacity onPress={() => handleImagePicker(launchCamera)}>
-          <Text style={styles.cameraEmojiButton}>Take Photo 📸</Text>
+          <Text style={styles.cameraEmojiButton}>Take photo of receipt 📸</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleImagePicker(launchImageLibrary)}>
-          <Text style={styles.uploadButton}>Upload Photo 📁</Text>
+          <Text style={styles.uploadButton}>Upload photo of receipt 📁</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={createNewMeal}>
-          <Text style={styles.createButton}>Create Receipt ✨</Text>
+          <Text style={styles.createButton}>Start without receipt ✨</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleImagePicker(launchImageLibrary)}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home Screen")}>
           <Text style={styles.cameraScreenBackButton}>⬅ Back</Text>
         </TouchableOpacity>
       </View>

@@ -187,7 +187,7 @@ export default styles = StyleSheet.create({
   },
 
   createButton: {
-    fontSize: 32,
+    fontSize: 24,
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -197,13 +197,13 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
     // marginBottom: 30,
   },
 
   uploadButton: {
-    fontSize: 32,
+    fontSize: 24,
     color: "#fff",
     borderWidth: 2,
     borderColor: "#4B23F3",
@@ -218,7 +218,7 @@ export default styles = StyleSheet.create({
   },
 
   cameraEmojiButton: {
-    fontSize: 32,
+    fontSize: 24,
     borderWidth: 2,
     borderColor: "#4B23F3",
     borderRadius: 10,
@@ -227,8 +227,8 @@ export default styles = StyleSheet.create({
     paddingBottom: 10,
     overflow: "hidden",
     fontWeight: "bold",
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 40,
+    paddingRight: 40,
     color: "#fff",
   },
 
@@ -860,7 +860,7 @@ export default styles = StyleSheet.create({
   savedMealsText: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 15,
+    fontSize: 20,
     padding: 5,
   },
 
