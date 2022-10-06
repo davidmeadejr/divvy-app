@@ -17,7 +17,6 @@ export default SavedMealsScreen = ({ navigation }) => {
           <Text style={styles.savedMealsText}>{getMealNameOrDate(meal)}</Text>
           <Text> ➡️</Text>
         </TouchableOpacity>
-        {/* <View style={styles.separator}></View> */}
       </View>
     );
   };
@@ -34,7 +33,6 @@ export default SavedMealsScreen = ({ navigation }) => {
         <Text style={styles.savedMealScreenBackButton}>⬅ Back</Text>
       </TouchableOpacity>
       <Text style={styles.savedMealsTitle}>Saved Meals: 💾 </Text>
-      {/* <View style={styles.separator}></View> */}
       <FlatList
         data={result}
         renderItem={({ item }) => renderSavedMealListItem(item)}
