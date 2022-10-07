@@ -77,7 +77,11 @@ export default Totals = ({ selectedMeal }) => {
           getIndividualTotal(friend)
         ))
     );
-    if (!!selectedMeal.friends.length) {
+    if (
+      !!selectedMeal.friends.length &&
+      selectedMeal.items.map((item) => item.friends.length).filter(Boolean)
+        .length === selectedMeal.items.length
+    ) {
       const friendsTotal = selectedMeal.friends
         .map((friend) => amounts[friend._id.toString()])
         .reduce((a, b) => a + b, 0);
