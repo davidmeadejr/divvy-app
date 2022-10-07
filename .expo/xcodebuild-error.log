@@ -1,9 +1,2 @@
-2022-10-06 20:38:13.309 xcodebuild[60288:568660] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
-2022-10-06 20:38:13.312 xcodebuild[60288:568660] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
-** BUILD FAILED **
-
-
-The following build commands failed:
-	PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/zacmoss/Library/Developer/Xcode/DerivedData/awesomeproject-dsazsulrbuptiwgtnoqdelanhvmx/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FBReactNativeSpec.build/Script-46EB2E00010D40.sh (in target 'FBReactNativeSpec' from project 'Pods')
-	CompileSwiftSources normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'ExpoModulesCore' from project 'Pods')
-(2 failures)
+2022-10-06 23:58:21.553 xcodebuild[69839:735944] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionSentinelHostApplications for extension Xcode.DebuggerFoundation.AppExtensionHosts.watchOS of plug-in com.apple.dt.IDEWatchSupportCore
+2022-10-06 23:58:21.553 xcodebuild[69839:735944] Requested but did not find extension point with identifier Xcode.IDEKit.ExtensionPointIdentifierToBundleIdentifier for extension Xcode.DebuggerFoundation.AppExtensionToBundleIdentifierMap.watchOS of plug-in com.apple.dt.IDEWatchSupportCore

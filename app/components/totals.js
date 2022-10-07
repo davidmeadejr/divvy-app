@@ -47,7 +47,9 @@ export default Totals = ({ selectedMeal }) => {
     const itemsTotal = friend.items
       .map((item) => roundToTwo(item.amount / item.friends.length))
       .reduce((a, b) => a + b, 0);
-    return itemsTotal + getAddedChargesSummed(itemsTotal, true);
+    return roundToTwo(
+      roundToTwo(itemsTotal) + getAddedChargesSummed(itemsTotal, true)
+    );
   };
 
   const getAddedChargesSummed = (subtotal, forIndividualFriend) =>
@@ -70,7 +72,6 @@ export default Totals = ({ selectedMeal }) => {
       .reduce((a, b) => a + b, 0);
 
   const roundToTwo = (num) => +(Math.round(num + "e+2") + "e-2");
-
   const getIndividualItems = (friend) => {
     return friend.items
       .map((item) =>
@@ -80,13 +81,17 @@ export default Totals = ({ selectedMeal }) => {
   };
 
   const getTotal = (amount) => {
-    return amount + getAddedChargesSummed(amount);
+    return roundToTwo(
+      roundToTwo(amount) + roundToTwo(getAddedChargesSummed(amount))
+    );
   };
 
   const getSubTotal = () => {
-    return selectedMeal.items
-      .map((item) => roundToTwo(item.amount))
-      .reduce((a, b) => a + b, 0);
+    return roundToTwo(
+      selectedMeal.items
+        .map((item) => roundToTwo(item.amount))
+        .reduce((a, b) => roundToTwo(a) + roundToTwo(b), 0)
+    );
   };
 
   const getFlatListHeight = () => {
