@@ -11,6 +11,14 @@
     ],
     "ios": {
       "bundleIdentifier": "i"
+    },
+    "android": {
+      "package": "com.zacmosshk.awesomeproject"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2f500764-03b9-4879-b834-cd857741f88c"
+      }
     }
   }
 }
