@@ -23,12 +23,11 @@ Potential future features to add:
 - Allowing users to share a snapshot of the bill-split totals breakdown easily among other attendees via messaging platforms.
 
 ## Installation and Run Process
-
-- (Update this)
+- You would only need to download the app from the iOS store.
 
 ## How to use the Project
 
-- Currently you can't as the free trial with taggun which handles the digitising of the receipt has expired with no plans to renew anytime soon. 
+- Not on the app store currently with no plans to add it in the near future.
 
 ---
 
