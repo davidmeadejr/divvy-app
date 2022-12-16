@@ -1,21 +1,22 @@
-# Bank Tech Test
+# Divvy
 
 ## Project Description
 
 What the application does:
+- A mobile app for calculating how to split group meal costs in restaurants. Users can take a photo of a receipt and have it itemised on the app. It supports additional charges including tips, service charges, taxes, and can deduct discounts.
 
 Technologies used and why:
 
-- Version Control: **Github** (As all my projects are on GitHub, makes sense to keep things centralised in one place.)
-- REPL:
-- Testing:
-- Library:
-- Framework:
+- Version Control: GitHub
+- REPL: Node.js
+- Library: React Native
+- Framework: Expo
+- Languages: JavaScript
+- Database: Realm (MongoDB)
+- AI/ML: Taggun
 
 Challenges faced:
-
-- ...
-- ...
+- Creating the functionality that digitises a photo of a receipt and its information.
 
 Potential future features to add:
 
@@ -27,7 +28,7 @@ Potential future features to add:
 
 ## How to use the Project
 
-- (Update this)
+- Currently you can't as the free trial with taggun which handles the digitising of the receipt has expired with no plans to renew anytime soon. 
 
 ---
 
