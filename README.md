@@ -20,7 +20,7 @@ Challenges faced:
 
 Potential future features to add:
 
-- Allowing users to share bill-split totals breakdown easily among attendees via messaging platforms.
+- Allowing users to share a snapshot of the bill-split totals breakdown easily among other attendees via messaging platforms.
 
 ## Installation and Run Process
 
