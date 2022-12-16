@@ -23,7 +23,7 @@ Potential future features to add:
 - Allowing users to share a snapshot of the bill-split totals breakdown easily among other attendees via messaging platforms.
 
 ## Installation and Run Process
-- You would only need to download the app from the iOS store.
+- You would only need to download the app from the iOS store to run it.
 
 ## How to use the Project
 
